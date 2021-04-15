@@ -1,5 +1,5 @@
 ---
-title:  Promise/async/Generator实现原理解析
+title:  Promise
 group:
   title: 方法
 ---

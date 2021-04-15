@@ -26,7 +26,8 @@ export default () => {
     }
     const tom = new Person('tom', 20);
     const jerry = MyNew(Person, 'jerry', 18);
-    console.log(tom instanceof Person, jerry instanceof Person, '---MyNew');
+    console.log(tom instanceof Person, jerry instanceof Person, '---MyNew'); // true true
+    console.log(jerry?.name, jerry?.age) // jerry 18
   }, [])
 
   const handleBindClick = useCallback(() => {

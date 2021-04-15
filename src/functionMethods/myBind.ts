@@ -1,7 +1,8 @@
 /**
- * bind 方法
- * 说明：只改变 this 的指向
- */
+  * bind 方法
+  * 改变函数内部 this 指向，接受数组作为函数参数
+  * @param context 函数内部 this 指向对象
+  */
 export default function (context: any = global) {
   context.fn = this;
   return function () {

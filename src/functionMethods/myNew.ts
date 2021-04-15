@@ -11,7 +11,7 @@ export function MyNew () {
   let ConStructor = Array.prototype.shift.call(arguments); // 取出构造函数
   let obj: any = {}; // 创建一个新对象
 
-  obj.__proto__ = ConStructor.prototype; // 对象原型等于构造函数的 prototype
+  obj.__proto__ = ConStructor.prototype; // 对象原型指向构造函数的 prototype
 
   let result = ConStructor.apply(obj, arguments); // 执行函数中的代码
 

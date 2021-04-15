@@ -1,9 +1,11 @@
 /**
  * apply 方法
- * 说明：改变 this 指向，接受数组作为函数参数
+ * 改变函数内部 this 指向，接受数组作为函数参数
+ * @param context 函数内部 this 指向对象
+ * @param args 传递给函数的参数数组
  */
 export default function (context: any = global, args: Array<any>) {
-  // 将调用 myCall 的 function 的 this 指向赋给 context 的 fn 属性
+  // 将调用该方法的 function 的 this 指向赋给 context 的 fn 属性
   context.fn = this;
 
   let result;
