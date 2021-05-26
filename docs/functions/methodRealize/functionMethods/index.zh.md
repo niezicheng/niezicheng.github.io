@@ -1,7 +1,11 @@
 ---
-title: new, bind, call, apply
+title: new、 bind、 call、 apply
+order: 0
 group:
-  title: 方法
+  title: Method Realize
+nav:
+  title: 工具库
+  order: 1
 ---
 
 ## new 方法实现思路

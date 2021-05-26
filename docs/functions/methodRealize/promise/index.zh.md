@@ -1,7 +1,11 @@
 ---
-title:  Promise
+title: Promise
+order: 0
 group:
-  title: 方法
+  title: Method Realize
+nav:
+  title: 工具库
+  order: 1
 ---
 
 ## Promise

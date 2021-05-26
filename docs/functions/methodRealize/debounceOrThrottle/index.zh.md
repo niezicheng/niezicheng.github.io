@@ -1,7 +1,11 @@
 ---
-title: 防抖和节流
+title: debounce、throttle
+order: 0
 group:
-  title: 方法
+  title: Method Realize
+nav:
+  title: 工具库
+  order: 1
 ---
 
 ## 防抖和节流
