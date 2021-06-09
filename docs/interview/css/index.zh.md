@@ -89,4 +89,3 @@ div::after{
 - box-sizing: border-box; padding: 0 90px;
 - transform: scale(0.625, 1)
 - zoom: 0.625
-

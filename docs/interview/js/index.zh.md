@@ -9,6 +9,10 @@ nav:
   order: 0
 ---
 
+### js 收集
+
+[前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)
+
 ### Q1: js 数据类型
 
 ### Q2: ES6 中的 Map 和 Set 及其区别
