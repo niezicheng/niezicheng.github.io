@@ -1,5 +1,5 @@
 ---
-title: regExp
+title: RegExp
 order: 1
 group:
   title: Tool Method
@@ -24,18 +24,16 @@ nav:
  * @returns 返回替换之后的 html 字串
  */
 const htmlTagAddPropContent = (htmlStr: string, tagType: string, propName: string, addContent: string) => {
-  // 正则匹配所有 tagType 标签
-  // var regex0 = new RegExp(`(i?)(\<${tagType})([^\>]+\>)`, 'gmi');
-  // 正则匹配不含 propName="" 或 propName='' 的img标签
-  var regex1 = new RegExp(`(i?)(\<${tagType})(?!(.*?${propName}=['\"](.*)['\"])[^\>]+\>)`, 'gmi');
+  //正则匹配不含propName="" 或 propName='' 的 tagType 标签
+  var regex1 = new RegExp(`(i?)(<${tagType})(?![^<>]*?${propName}=['"][^<>]*?>)`, 'gmi');
 
-  // 给不含propName="" 或 propName='' 的 tagType 标签加上 propName=""
+  //给不含propName="" 或 propName='' 的 tagType 标签加上 propName=""
   htmlStr = htmlStr.replace(regex1, `$2 ${propName}=\"\"$3`);
 
-  // 正则匹配含有 propName 的 tagTyp 标签
+  //正则匹配含有 propName 的tagType标签
   var regex2 = new RegExp(`(i?)(\<${tagType}.*?${propName}=['\"])([^\>]+\>)`, 'gmi');
 
-  // 在 tagType 标签的 propName 里面增加内容 addContent
+  //在 tagType 标签的 propName 里面增加内容 addContent
   htmlStr = htmlStr.replace(regex2, `$2${addContent}$3`);
 
   return htmlStr;
