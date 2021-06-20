@@ -9,30 +9,174 @@ nav:
   order: 0
 ---
 
-### js 收集
+## js 收集
 
 [前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)
 
-### Q1: js 数据类型
+## Q1: 事件冒泡和捕获及事件委托
 
-### Q2: ES6 中的 Map 和 Set 及其区别
+> 事件委托是利用冒泡阶段的运行机制来实现的，就是把一个元素响应事件的函数委托到另一个元素，一般是把一组元素的事件委托到他的父元素上
+>
+> 委托的优点:
+>
+> - 减少内存消耗, 节约效率
+> - 动态绑定事件
 
-### Q3: 原型链
+[DOM 事件了解](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93.md)
 
-[JavaScript深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
-[创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
+[你真的理解事件冒泡和事件捕获吗？](https://juejin.cn/post/6844903834075021326)
 
-### 继承的方式有几种？每种形式的优缺点是？
+## Q2: 浅拷贝和深拷贝的区别
 
-[类的定义和继承的几种方式](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
+## Q3: 说一下图片的预加载和懒加载
 
-### Q4: js 中函数的 this 指向
+预加载:
+
+- 提前加载图片，当用户需要查看时可直接从本地缓存中渲染
+懒加载:
+- 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数
+两种技术的本质:
+- 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
+- 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
+
+## Q4: 什么是闭包, 闭包的作用？
+
+> 闭包是指有权访问另外一个函数作用域中的变量的函数
+>
+> 闭包就是函数的局部变量集合，只是这些局部变量在函数返回后会继续存在
+>
+> 闭包就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈 上分配而是在堆上分配。当在一个函数内定义另外一个函数就会产生闭包。
+
+作用:
+
+匿名自执行函数:
+
+- 我们知道所有的变量，如果不加上 `var` 关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如:
+  - 别的函数可能误 用这些变量;
+  - 造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链 上遍历的)
+- 除了每次使用变量都是用 var 关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，可以用闭包。
+结果缓存:
+  我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象， 每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函 数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
+
+## Q5: js 中函数的 this 指向
 
 [JavaScript中的this](https://juejin.cn/post/6844903488304971789)
 
-### Q5: 浅拷贝和深拷贝的区别
+[7个关于"this"面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
 
-### Q6: 事件冒泡和捕获及事件代理
+## Q6: 原型链
 
-[DOM 事件了解](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93.md)
-[你真的理解事件冒泡和事件捕获吗？](https://juejin.cn/post/6844903834075021326)
+[JavaScript深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
+
+[创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
+
+### 继承的几种方式和优缺点？
+
+- 原型链继承
+  - 特点:基于原型链，既是父类的实例，也是子类的实例
+  - 缺点:无法实现多继承
+- 构造继承
+  - 特点:可以实现多继承
+  - 缺点:只能继承父类实例的属性和方法，不能继承原型上的属性和方法。
+- 实例继承和拷贝继承
+- 组合继承
+
+[类的定义和继承的几种方式](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
+
+## Q7: JS 垃圾回收机制
+
+## Q8: 事件循环机制（Event Loop）
+
+[最后一次搞懂 Event Loop](https://juejin.cn/post/6844903827611598862)
+
+## ES6
+
+### 数据类型
+
+- 基本数据类型
+
+> 五大基本数据类型: `number`、`string`、`boolean`、`null`、`undefined`、`symbol`
+
+- 引用数据类型
+  - 对象 `Object`
+  - 数组 `Array`
+  - 函数 `Function`
+
+### symbol 简单了解
+
+### var、let、和 const 关键字
+
+- `let`关键字 【声明变量】
+特性:
+
+1. 块级作用域 【局部作用于声明的代码块中】
+2. 变量声明不会提升 【变量未声明前无法使用该变量】
+3. 暂时性死区 【该变量声明前面的区域】
+4. 不能重复声明 【同一代码块中不能重复声明同一变量】
+
+- `const` 关键字  【声明常量(一般用大写字母表示常量)】
+特性: 【在遵从 `let` 声明变量的特性上再添加如下两条特性】
+
+1. 声明时初始化    【声明的同时必须赋值】
+2. 值不可修改
+
+### 箭头函数与普通函数的区别
+
+- 箭头函数 `this 指向`声明上下文决定，普通函数 `this 指向`调用时上下文决定
+- 箭头函数没有自己的 `arguments` 对象，但是可以访问外围函数的 `arguments` 对象
+- 不能通过 `new` 关键字调用，同样也没有 `new.target` 值和原型
+
+### ES6 中的 Map 和 Set 及其区别
+
+### Promise/async/Generator
+
+[9k字 | Promise/async/Generator实现原理解析](https://juejin.cn/post/6844904096525189128)
+
+## 功能判断类型
+
+### 数组去重
+
+- `indexOf` 循环去重
+- `ES6` `Set` 去重
+  - Array.from(new Set(array))
+- `Object` 键值对去重;
+  - 把数组的值存成 `Object` 的 `key` 值，比如 `Object[value1] = true`， 在判断另一个值的时候，如果 `Object[value2]` 存在的话，就说明该值是重复的
+
+### 判断数组的几种方法
+
+- 通过原型链做判断
+
+```js | pure
+obj.__proto__ === Array.prototype;
+```
+
+- 通过 `instanceof` 做判断
+
+```js | pure
+obj instanceof Array;
+```
+
+- 通过ES6的 `Array.isArray()` 做判断
+
+```js | pure
+Array.isArray(obj);
+```
+
+- 通过 `Array.prototype.isPrototypeOf`
+
+```js | pure
+Array.prototype.isPrototypeOf(obj);
+```
+
+- 通过 `Object.prototype.toString.call()` 做判断
+
+```js | pure
+Object.prototype.toString.call(obj).slice(8, -1) === "Array"; // "[object Array]"
+```
+
+- `typeof` 只能判断是 `object`, 可以判断一下是否拥有数组的方法
+
+
+## 拓展
+
+[80% 应聘者都不及格的 JS 面试题](https://juejin.cn/post/6844903470466629640#heading-3)

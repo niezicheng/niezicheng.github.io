@@ -28,6 +28,24 @@ nav:
 
 > 根据同源策略，`cookie` 是区分端口的，但是对浏览器来说，`cookie` 是区分区域的，所以在同一 `ip` 下的多个端口的`cookie` 是共享的
 
+## Q2: JS 实现跨域
+
+> 跨域是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对 `JavaScript` 实施的安全限制，那么只要协议、域名、端口有任何一个不同，都被当作是不同的域
+>
+> 跨域原理，即是通过各种方式，避开浏览器的安全限制
+
+- 通过 `jsonp` 跨域
+- `document.domain + iframe` 跨域
+- `location.hash + iframe`
+- `window.name + iframe`跨域
+- `postMessage` 跨域
+- `WebSocket`协议跨域
+- 跨域资源共享（CORS）
+- `nginx` 代理跨域
+- `nodejs` 中间件代理跨域
+
+[前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
+
 ## Q3: 本地存储的四种方式：cookie，localStorage, sessionStorage, indexDB之间的区别
 
 [深入了解浏览器存储：对比Cookie、LocalStorage、sessionStorage与IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
@@ -64,7 +82,7 @@ nav:
 - `webStorage` 支持事件通知机制，可以将数据更新的通知发送给监听者。`api` 的接口使用更方便。
 - `indexedDB` 支持事务
 
-## Q4: 讲讲你对cookie的理解？包括SameSite属性
+## Q4: 讲讲你对 cookie 的理解？包括 SameSite 属性
 
 [预测最近面试会考 Cookie 的 SameSite 属性](https://juejin.cn/post/6844904095711494151)
 
@@ -88,3 +106,14 @@ nav:
 - `get` 请求参数会被完整保留在浏览历史记录里，而 `post` 中的参数不会被保留。
 - `GET` 和 `POST` 本质上就是 `TCP` 链接，并无差别。但是由于 `HTTP` 的规定和浏览器/服务器 的限制，导致他们在应用过程中体现出一些不同。
 - `GET` 产生一个 `TCP` 数据包; `POST` 产生两个 `TCP` 数据包。
+
+### get 请求传参长度的误区
+
+> `get` 请求参数的大小存在限制，而 `post` 请求的参数大小是无限制的
+
+为了明确这个概念，我们必须了解下面几点:
+
+- `HTTP` 协议未规定 `GET` 和 `POST` 的长度限制
+- `GET` 的最大长度显示是因为浏览器和 `web` 服务器限制了 `URI` 的长度
+- 不同的浏览器和 `WEB` 服务器，限制的最大长度不一样
+- 要支持 `IE`，则最大长度为 `2083` byte，若只支持 `Chrome`，则最大长度 `8182` byte

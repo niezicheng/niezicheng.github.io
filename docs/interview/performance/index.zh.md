@@ -12,3 +12,15 @@ nav:
 ### web 各个阶段的性能优化
 
 [React 16 加载性能优化指南](https://mp.weixin.qq.com/s/XSvhOF_N0VbuOKStwi0IYw)
+
+### Q1: 网页基本性能优化
+
+- 减少 `HTTP` 请求
+- 使用内容发布网络(CDN)
+- 添加本地缓存
+- 压缩资源文件
+- 将 `CSS` 样式表放在顶部，把 `javascript` 放在底部(浏览器的运行机制决定) 避免使用 `CSS` 表达式
+- 减少 `DNS` 查询
+- 使用外部 `javascript` 和 `CSS`
+- 避免重定向
+- 图片懒加载 `lazyLoad`
