@@ -13,6 +13,8 @@ nav:
 
 [前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)
 
+[春招季如何横扫 Javascript 面试核心考点(基础版)？](https://juejin.cn/post/6844903809215365134)
+
 ## Q1: 事件冒泡和捕获及事件委托
 
 > 事件委托是利用冒泡阶段的运行机制来实现的，就是把一个元素响应事件的函数委托到另一个元素，一般是把一组元素的事件委托到他的父元素上
@@ -28,6 +30,8 @@ nav:
 
 ## Q2: 浅拷贝和深拷贝的区别
 
+[浅拷贝与深拷贝](https://juejin.cn/post/6844904197595332622)
+
 ## Q3: 说一下图片的预加载和懒加载
 
 预加载:
@@ -38,6 +42,8 @@ nav:
 两种技术的本质:
 - 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
 - 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
+
+[懒加载和预加载](https://juejin.cn/post/6844903614138286094)
 
 ## Q4: 什么是闭包, 闭包的作用？
 
@@ -58,11 +64,13 @@ nav:
 结果缓存:
   我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象， 每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函 数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
 
+[JavaScript 深入之闭包](https://juejin.cn/post/6844903475998900237)
+
 ## Q5: js 中函数的 this 指向
 
 [JavaScript中的this](https://juejin.cn/post/6844903488304971789)
 
-[7个关于"this"面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
+[7个关于 this 面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
 
 ## Q6: 原型链
 
@@ -85,11 +93,15 @@ nav:
 
 ## Q7: JS 垃圾回收机制
 
+[V8 引擎垃圾内存回收原理解析](https://juejin.cn/post/6844903993420840967)
+
 ## Q8: 事件循环机制（Event Loop）
 
 [最后一次搞懂 Event Loop](https://juejin.cn/post/6844903827611598862)
 
 ## ES6
+
+[ECMAScript 6 入门(阮一峰)](https://es6.ruanyifeng.com/)
 
 ### 数据类型
 
@@ -103,6 +115,8 @@ nav:
   - 函数 `Function`
 
 ### symbol 简单了解
+
+[简单了解ES6/ES2015 Symbol() 方法](https://juejin.cn/post/6844903591296106510)
 
 ### var、let、和 const 关键字
 
@@ -126,7 +140,13 @@ nav:
 - 箭头函数没有自己的 `arguments` 对象，但是可以访问外围函数的 `arguments` 对象
 - 不能通过 `new` 关键字调用，同样也没有 `new.target` 值和原型
 
+[箭头函数和普通函数的区别](https://www.jianshu.com/p/73cbeb6782a0)
+
 ### ES6 中的 Map 和 Set 及其区别
+
+[Set 和 Map 数据结构](https://es6.ruanyifeng.com/#docs/set-map)
+
+[es6 Map 和 Set](https://segmentfault.com/a/1190000015960005)
 
 ### Promise/async/Generator
 

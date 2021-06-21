@@ -45,6 +45,8 @@ nav:
 
 ## TCP
 
+[(建议收藏)TCP协议灵魂之问，巩固你的网路底层基础](https://juejin.cn/post/6844904070889603085)
+
 [TCP 协议](http://47.98.159.95/my_blog/blogs/net/tcp/001.html)
 
 ## Q1 TCP 和 UDP 的区别概述

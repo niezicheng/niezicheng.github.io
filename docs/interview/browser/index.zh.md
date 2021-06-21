@@ -46,6 +46,8 @@ nav:
 
 [前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
 
+[九种跨域方式实现原理（完整版）](https://juejin.cn/post/6844903767226351623)
+
 ## Q3: 本地存储的四种方式：cookie，localStorage, sessionStorage, indexDB之间的区别
 
 [深入了解浏览器存储：对比Cookie、LocalStorage、sessionStorage与IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)

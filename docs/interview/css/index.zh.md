@@ -13,9 +13,13 @@ nav:
 
 [50 道 CSS 基础面试题](https://segmentfault.com/a/1190000013325778)
 
+[剖析一些经典的CSS布局问题，为前端开发+面试保驾护航](https://juejin.cn/post/6844903962529759239)
+
 ## CSS 模块化演变历程
 
 [前端模块化演化阶段](https://www.jianshu.com/p/f2cf62c66493)
+
+[前端模块化详解(完整版)](https://juejin.cn/post/6844903744518389768#heading-18)
 
 ## CSS3 新特性
 
