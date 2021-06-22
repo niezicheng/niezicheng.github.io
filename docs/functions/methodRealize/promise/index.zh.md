@@ -1,5 +1,5 @@
 ---
-title: Promise
+title: Promise 实现
 order: 0
 group:
   title: Method Realize

@@ -1,5 +1,5 @@
 ---
-title: new、 bind、 call、 apply
+title: new、 bind、 call、 apply 实现
 order: 0
 group:
   title: Method Realize
