@@ -1,6 +1,6 @@
 ---
 title: Accordion 手风琴
-order: 0
+order: 1
 group:
   title: Data Display
 nav:
@@ -17,7 +17,7 @@ nav:
 - 对内容进行分组和隐藏
 - 通常，一次只允许单个内容区域展开；特殊情况，多个内容区域可以同时展开
 
-## 设计思路
+## 设计思路与实现
 
 ### Accordion
 
