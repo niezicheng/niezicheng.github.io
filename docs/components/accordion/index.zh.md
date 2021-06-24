@@ -1,8 +1,6 @@
 ---
 title: Accordion 手风琴
 order: 1
-group:
-  title: Data Display
 nav:
   title: 组件
   order: 0

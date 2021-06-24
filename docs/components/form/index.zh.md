@@ -1,8 +1,6 @@
 ---
-title: Form
-order: 0
-group:
-  title: 交互组件
+title: Form 表单
+order: 6
 nav:
   title: 组件
   order: 0

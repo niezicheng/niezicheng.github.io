@@ -1,8 +1,6 @@
 ---
 title: Barcode 条形码/二维码
 order: 2
-group:
-  title: Data Display
 nav:
   title: 组件
   order: 0
@@ -22,7 +20,7 @@ nav:
 | H5   | `qrcode.react`、`jsbarcode`                                 | [qrcode](https://www.npmjs.com/package/qrcode.react)、[barcode](https://www.npmjs.com/package/jsbarcode) |
 | MP   | `canvas` 实现                                               | -                                                            |
 
-### 描述
+### 二维码中间 logo 图片处理
 
 - `h5` 或 `MP` 可以使用 `position` 设置中间 `logo` 图片展示的位置
   - 使用 `calc` 根据不同 `logoSize` 计算达到居中效果

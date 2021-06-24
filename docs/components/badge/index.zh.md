@@ -1,8 +1,6 @@
 ---
 title: Badge 徽标签
 order: 2
-group:
-  title: Data Display
 nav:
   title: 组件
   order: 0
