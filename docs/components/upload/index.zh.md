@@ -33,6 +33,8 @@ nav:
 
 解析 `File` 类型方法
 
+[拓展 FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader)
+
 ```tsx
 /**
  * 解析上传的 File 文件
@@ -41,8 +43,11 @@ nav:
  */
 const parseFile = (file: any, index: number) => {
   return new Promise((resolve, reject) => {
+    // 创建一个文件读取对象
     const reader = new FileReader();
+    // 读取文件以 URL 格式的 Base64 字符串作为结果返回
     reader.readAsDataURL(file);
+    // 文件读取操作完成事件
     reader.onload = (e) => {
       const dataURL = (e.target as any).result;
       if (!dataURL) {
@@ -59,6 +64,7 @@ const imageParsePromiseList = [];
 for (let i = 0; i < data.length; i++) {
   imageParsePromiseList.push(parseFile(data[i], i));
 }
+// imageParsePromiseList 所有文件解析完成
 Promise.all(imageParsePromiseList)
   .then((imageItems) => {
     console.log(imageItems);

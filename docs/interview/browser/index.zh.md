@@ -119,3 +119,7 @@ nav:
 - `GET` 的最大长度显示是因为浏览器和 `web` 服务器限制了 `URI` 的长度
 - 不同的浏览器和 `WEB` 服务器，限制的最大长度不一样
 - 要支持 `IE`，则最大长度为 `2083` byte，若只支持 `Chrome`，则最大长度 `8182` byte
+
+### 四种常见的 POST 提交数据方式
+
+[四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
