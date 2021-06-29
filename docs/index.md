@@ -10,6 +10,8 @@ toc: 'menu'
 - [beyondouyuan](https://beyondouyuan.github.io/)
 - [性能文章](https://www.atatech.org/articles/184680)
 - [冰山一角](http://www.cyanmaple.design/blog2/action2/weber%EF%BC%9A%E5%91%A8%E6%96%87%E5%8D%9A/DI.html#%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC)
+- [draveness](https://draveness.me/whys-the-design/)
+
 - [栅格系统框架](http://www.cyanmaple.design/)
 - [vuepress博客框架](https://www.vuepress.cn/)
 

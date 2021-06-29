@@ -35,7 +35,7 @@ nav:
 
 [拓展 FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader)
 
-```tsx
+```tsx | pure
 /**
  * 解析上传的 File 文件
  * @param file File 类型数据

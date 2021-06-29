@@ -24,3 +24,11 @@ nav:
 - 使用外部 `javascript` 和 `CSS`
 - 避免重定向
 - 图片懒加载 `lazyLoad`
+
+### Q2: MVC 和 MVVM
+
+[MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)
+
+> 不同框架对于 `MVC` 的理解是不同的，不过对于 `MVC` 三大模块确实统一认同的，而著名的 `Rails` `MVC` 框架的实现思想和 `MVVM` 是一样的
+
+[浅谈 MVC、MVP 和 MVVM 架构模式](https://draveness.me/mvx/)

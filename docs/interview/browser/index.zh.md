@@ -123,3 +123,13 @@ nav:
 ### 四种常见的 POST 提交数据方式
 
 [四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
+
+## Q8: SPA and MPA
+
+[SPA（单页面应用）和MPA（多页面应用）](https://www.jianshu.com/p/a02eb15d2d70)
+
+### 浅谈 SSR
+
+[浅谈服务端渲染(SSR)](https://www.jianshu.com/p/10b6074d772c)
+
+[服务端渲染(SSR)](https://zhuanlan.zhihu.com/p/90746589)
