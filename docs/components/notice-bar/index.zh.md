@@ -18,6 +18,7 @@ nav:
   - 获取包裹容器 `ScrollView` 宽度 `scrollViewWidth`，并设置 `horizontal` 支持横向滚动
   - 获取展示文本容器 `Animated.Text` 宽度 `textWidth`
   - 将动画属性值 `animatedTransformX` 赋值给 `Animated.Text` 样式 `translateX` 属性
+  - 添加循环动画操作（详细见下面说明）
 
 ### RN 动画实现
 
