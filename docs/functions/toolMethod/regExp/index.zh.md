@@ -2,7 +2,7 @@
 title: RegExp
 order: 1
 group:
-  title: Tool Method
+  title: 工具方法
 nav:
   title: 工具库
   order: 1

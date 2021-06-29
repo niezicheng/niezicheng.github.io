@@ -2,7 +2,7 @@
 title: 防抖和节流
 order: 0
 group:
-  title: Method Realize
+  title: 方法实现
 nav:
   title: 工具库
   order: 1

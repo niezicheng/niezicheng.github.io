@@ -2,7 +2,7 @@
 title: new、 bind、 call、 apply 实现
 order: 0
 group:
-  title: Method Realize
+  title: 方法实现
 nav:
   title: 工具库
   order: 1
