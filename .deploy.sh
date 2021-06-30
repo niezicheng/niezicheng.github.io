@@ -12,6 +12,9 @@ cd $TEMP_PATH
 git init
 cp -r ../../dist/* .
 
+# delop custom domain name
+# echo 'www.example.com' > CNAME
+
 # commit and push changes
 git add .
 git commit -m "build: deploy documentation"

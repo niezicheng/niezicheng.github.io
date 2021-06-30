@@ -5,6 +5,8 @@ export default defineConfig({
   favicon: 'https://avatars.githubusercontent.com/u/48236720?s=400&u=bdce783b4cef8916cf5732b0d5f249c573ad6b69&v=4',
   logo: 'https://avatars.githubusercontent.com/u/48236720?s=400&u=bdce783b4cef8916cf5732b0d5f249c573ad6b69&v=4',
   outputPath: 'dist',
+  // 不建议用 hash 路由，锚点会不好用，开启 exportStatic: {} 就可以保证刷新页面也能访问了
+  exportStatic: {},
   mode: 'site',
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
