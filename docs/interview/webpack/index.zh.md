@@ -21,6 +21,10 @@ nav:
 
 [webpack的代码分割（路由懒加载同理）](https://juejin.cn/post/6844904101134729229)
 
+### webpack 插件机制
+
+[揭秘webpack插件的工作原理](https://segmentfault.com/a/1190000023016347)
+
 ### webpack 与 gulp 的差别？(模块化与流的区别)
 
 - `gulp` 强调的是前端开发的工作流程，我们可以通过配置一系列的 `task`，定义 `task` 处理的事务(例如文件压缩合并、雪碧图、启动 server、版本控制等)，然后定义执行顺序， 来让 `gulp` 执行这些 `task`，从而构建项目的整个前端开发流程。
