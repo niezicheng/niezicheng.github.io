@@ -9,7 +9,15 @@ nav:
   order: 0
 ---
 
-## github
+## 命令进阶
+
+[git 命令进阶](https://juejin.cn/post/6914989128358559758)
+
+[git cherry-pick 基本使用](https://juejin.cn/post/6914106535173947399)
+
+[git rebase 基本使用](https://juejin.cn/post/6914286928011460622)
+
+## 部署
 
 [github pages](https://github.com/txp1035/blog/issues/5)
 
