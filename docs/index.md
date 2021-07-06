@@ -1,31 +1,44 @@
 ---
-title: 首页
-toc: 'menu'
+title: 清香的 orange
+order: 0
+hero:
+  title: 清香的 orange
+  desc: 📖 为组件开发场景而生的文档工具
+  actions:
+    - text: 知识了解
+      link: /interview
+features:
+  - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
+    title: 开箱即用
+    desc: 考究的默认配置和约定式的目录结构，帮助开发者零成本上手，让所有注意力都能放在文档编写和组件开发上
+  - icon: https://gw.alipayobjects.com/zos/bmw-prod/d1ee0c6f-5aed-4a45-a507-339a4bfe076c/k7bjsocq_w144_h144.png
+    title: 为组件开发而生
+    desc: 丰富的 Markdown 扩展，不止于渲染组件 demo，使得组件的文档不仅易于编写、管理，还好看、好用
+  - icon: https://gw.alipayobjects.com/zos/bmw-prod/b8570f4d-c1b1-45eb-a1da-abff53159967/kj9t990h_w144_h144.png
+    title: 主题系统
+    desc: 渐进式的自定义主题能力，小到扩展自己的 Markdown 标签，大到自定义完整主题包，全由你定
+  - icon: https://gw.alipayobjects.com/zos/bmw-prod/b3e102cd-5dad-4046-a02a-be33241d1cc7/kj9t8oji_w144_h144.png
+    title: API 自动生成
+    desc: 可基于 TypeScript 类型定义自动生成组件 API，组件永远『表里如一』
+  - icon: https://gw.alipayobjects.com/zos/bmw-prod/3863e74a-7870-4874-b1e1-00a8cdf47684/kj9t7ww3_w144_h144.png
+    title: 移动端组件库研发
+    desc: 安装主题包即可快速启用移动端组件研发能力，内置移动端高清渲染方案
+  - icon: https://gw.alipayobjects.com/zos/bmw-prod/f093e060-726e-471c-a53e-e988ed3f560c/kj9t9sk7_w144_h144.png
+    title: 资产数据化能力
+    desc: 一行命令将组件资产数据化，标准化的资产数据可与下游生产力工具串联
+footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by self
 ---
 
-### 博客收藏
+## 博客网站收藏
 
-- [ConardLi的blog](http://www.conardli.top/blog/)
-- [CHANSHIYU - 蝉時雨](https://chanshiyu.gitbook.io/blog/)
-- [beyondouyuan](https://beyondouyuan.github.io/)
-- [性能文章](https://www.atatech.org/articles/184680)
-- [冰山一角](http://www.cyanmaple.design/blog2/action2/weber%EF%BC%9A%E5%91%A8%E6%96%87%E5%8D%9A/DI.html#%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC)
-- [draveness](https://draveness.me/whys-the-design/)
+<embed src="../README.md#RE-/<table id='blog'>[^]+?[\r\n]<\/table>/"></embed>
 
-- [栅格系统框架](http://www.cyanmaple.design/)
-- [vuepress博客框架](https://www.vuepress.cn/)
+## 框架网站收藏
 
-### 技术文章
+<embed src="../README.md#RE-/<table id='frame'>[^]+?[\r\n]<\/table>/"></embed>
 
-- [美团技术团队](https://tech.meituan.com/)
+[各大集团技术团队社区-微软-阿里-腾讯-百度-美团](https://www.jianshu.com/p/84241fc14895)
 
 ### 工具库整理
 
 [lodash整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)
-
-### Icon 图标的使用
-
-[alibaba 图标库的基本使用](https://www.jianshu.com/p/00c786e8727e)
-[web icon-font 的使用方法](https://www.jianshu.com/p/68117e36c473)
-[rn icon-font 的使用方法](https://www.jianshu.com/p/c900f6a0797f)
-[小程序 icon-font 的使用方法](https://www.jianshu.com/p/0d631d3b1983)
