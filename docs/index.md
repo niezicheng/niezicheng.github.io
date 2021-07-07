@@ -33,11 +33,17 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 
 <embed src="../README.md#RE-/<table id='blog'>[^]+?[\r\n]<\/table>/"></embed>
 
+## 技术网站收藏
+
+<embed src="../README.md#RE-/<table id='technology'>[^]+?[\r\n]<\/table>/"></embed>
+
 ## 框架网站收藏
 
 <embed src="../README.md#RE-/<table id='frame'>[^]+?[\r\n]<\/table>/"></embed>
 
-[各大集团技术团队社区-微软-阿里-腾讯-百度-美团](https://www.jianshu.com/p/84241fc14895)
+## 设计体验网站
+
+<embed src="../README.md#RE-/<table id='design'>[^]+?[\r\n]<\/table>/"></embed>
 
 ### 工具库整理
 
