@@ -37,14 +37,14 @@ web workers 的几个使用场景可以参考下：
 - location 对象
   - location.href --返回或设置当前文档的 `URL`
   - location.search --返回 URL 中的查询字符串部分。例
-如: `http://www.dreamdu.com/dreamdu.php?id=5&name=nzc` 返回包括(?)后面的内 容?id=5&name=nzc
-  - location.hash --返回 `URL#`后面的内容，如果没有`#`，返回空
+如: `http://www.dreamdu.com/dreamdu.php?id=5&name=nzc` 返回包括(?)后面的内容?id=5&name=nzc
+  - location.hash --返回 `URL#`包括(#)后面的内容，如果没有`#`，返回空
   - location.host --返回 `URL` 中的域名部分。例如: `www.baidu.com`
   - location.hostname --返回 `URL` 中的主域名部分。例如: `baidu.com`
   - location.pathname --返回 `URL` 的域名后的部分。例如: `http://www.baidu.com/xhtml/`  返回`/xhtml/`
   - location.port --返回 `URL` 中的端口部分）例如: `http://www.baidu.com:8080/xhtml/`  返回 `8080`
   - location.protocol --返回 `URL` 中的协议部分。例如: `http://www.baidu.com:8080/xhtml/` 返 回(//)前面的内容 http:
-  - location.assign --设置当前文档的 `URL`）
+  - location.assign --设置当前文档的 `URL`
   - location.replace() --设置当前文档的 `URL`，并且在 `history` 对象的地址列表中移除这个 `URL`, location.replace(url);
   - location.reload() -- 重载当前页面
 - history 对象

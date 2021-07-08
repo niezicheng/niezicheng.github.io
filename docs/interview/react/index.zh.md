@@ -36,9 +36,19 @@ nav:
 
 [【React 深入】从 Mixin 到 HOC 再到 Hook](https://juejin.cn/post/6844903815762673671)
 
+### React 技巧使用解析
+
+[React 开发必须知道的 34 个技巧【近1W字】](https://juejin.cn/post/6844903993278201870)
+
+### React 事件系统原理
+
+[React 事件系统工作原理](https://juejin.cn/post/6909271104440205326)
+
 ### React 源码解析
 
 [从 React 源码分析渲染更新流程](https://juejin.cn/post/6844904200824946696#heading-10)
+
+[react-interpretation](https://github.com/niezicheng/react-interpretation)
 
 ## React Router
 
