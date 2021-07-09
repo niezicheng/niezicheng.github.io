@@ -34,4 +34,8 @@ nav:
 
 ## babel 的原理是什么？
 
+[[实践系列]Babel原理](https://juejin.cn/post/6844903760603398151)
+
 ## 如何写一个 babel 插件？
+
+[编写一个简单的babel插件](https://juejin.cn/post/6844903582613897223)

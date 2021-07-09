@@ -30,9 +30,11 @@ web workers 的几个使用场景可以参考下：
 - 拼写检查，检索的所有工作可以让 `workers` 来完成，不会阻塞 `UI`
 - 在网络不稳定情况下,使用`indexDb api`的时候，可以交给`workers`，这样不会阻塞主线 `UI`
 
-## Q3: 常用的 BOM 属性对象方法
+## Q3: BOM 和 DOM
 
-> `Bom` 是浏览器对象
+### BOM
+
+> `BOM` 是浏览器对象
 
 - location 对象
   - location.href --返回或设置当前文档的 `URL`
@@ -54,6 +56,12 @@ web workers 的几个使用场景可以参考下：
 - Navigator 对象
   - navigator.userAgent -- 返回用户代理头的字符串表示(就是包括浏览器版本信息等的字 符串)
   - navigator.cookieEnabled -- 返回浏览器是否支持(启用) `cookie`
+
+### DOM
+
+> `DOM` 文档对象模型
+
+[回到基础：什么是DOM及DOM操作？](https://juejin.cn/post/6844904023003234311)
 
 ## Q4: 说一下 HTML5 drag api
 

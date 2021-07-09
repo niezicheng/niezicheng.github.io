@@ -54,7 +54,9 @@ nav:
 
 [英文官网](https://reactrouter.com/)
 
-[中文文档](https://react-guide.github.io/react-router-cn/)
+[React Router 中文文档（v5 ）](https://juejin.cn/post/6844904093694033927)
+
+[中文文档(看起来内容比较旧了)](https://react-guide.github.io/react-router-cn/)
 
 ### react-router 里面的 Link 标签和 a 标签的区别？
 
