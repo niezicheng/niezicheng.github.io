@@ -1,6 +1,6 @@
 ---
 title: new、 bind、 call、 apply 实现
-order: 0
+order: 2
 group:
   title: 方法实现
 nav:

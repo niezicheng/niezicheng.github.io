@@ -13,6 +13,8 @@ nav:
 
 [前端知识集锦](https://juejin.cn/post/6844903567912878094)
 
+[由浅入深，66条 JavaScript 面试知识点](https://github.com/xiaodongxier/iWebs/issues/66)
+
 ### Github
 
 <table id='blog'>

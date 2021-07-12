@@ -1,6 +1,6 @@
 ---
 title: Promise 实现
-order: 0
+order: 4
 group:
   title: 方法实现
 nav:
