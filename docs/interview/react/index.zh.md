@@ -15,6 +15,8 @@ nav:
 
 [2019年17道高频 React 面试题及详解](https://juejin.cn/post/6844903922453200904)
 
+[React高频面试题梳理，看看面试怎么答？（上）](https://cloud.tencent.com/developer/article/1506220)
+
 ### Virtual DOM？
 
 [面试官问: 如何理解 Virtual DOM？](https://juejin.cn/post/6844903921442422791)

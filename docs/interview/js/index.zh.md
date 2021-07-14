@@ -68,13 +68,67 @@ nav:
 
 ## Q5: js 中函数的 this 指向
 
-[JavaScript中的this](https://juejin.cn/post/6844903488304971789)
+[JavaScript 中的 this](https://juejin.cn/post/6844903488304971789)
 
 [7个关于 this 面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
 
 ## Q6: 原型链
 
 [JavaScript深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
+
+### 对象创建的几种方式
+
+- 工厂模式
+  - 没有建立对象与类型间的关系，无法识别对象具体类型
+  - 对象相同的方法存储在不同的内存空间（内存冗余）
+- 构造函数模式
+  - 优点：创建的对象与构造函数建立起了联系，可以通过原型来识别对象类型
+  - 缺点：对象相同的方法存储在不同的内存空间（内存冗余）
+- 原型模式
+  - 优点：可以添加创建对象公用的属性和方法，解决了对象方法复用的问题
+  - 缺点：无法通过传入参数初始化值，存在引用类型如 `Array` 所有实例均共享该属性数组对象（对象间的隔离性较差）
+- 组合模式(构造函数 + 原型)
+  - 优点：通过构造函数初始化属性，通过原型实现函数方法的复用
+  - 缺点：使用了两种不同的模式，对代码的封装性不够好
+- 动态原型模式
+  - 将原型方法赋值和创建过程移动到构造函数内部，对属性对判断实现仅仅在第一次调用函数时候执行。
+  - 很好对对组合模式进行来封装
+- 寄生构造函数模式
+  - 基于一个已有类型，在实例化时对实例对象进行扩展（达到既不修改原构造函数也达到扩展对象对目的）
+  - 缺点：和工厂模式一样，无法实现对对象的识别，均为 `Object`
+
+**动态原型模式示例：**
+
+```ts
+function isProperty(object, property){
+  // hasOwnProperty 判断自身时候有该属性， 判断属性是否在 object 原型（Person.Property）中存在
+  return !object.hasOwnProperty(property) && (property in object);
+}
+
+function Person (name, age) {
+  // 初始时候运行, Person 原型中还没有 sayName 属性方法
+  if (!isProperty(this, sayName)) {
+    Person.Property = {
+      constructor: Person,
+      sayName: function () { console.log(this.name) }
+    }
+
+    return new Person(name, age);
+  }
+
+  this.name = name;
+  this.age = age;
+}
+
+let p1 = new Person('ming', 19);
+let p2 = new Person('chen', 18);
+
+p1.sayName(); // ming
+p2.sayName(); // chen
+```
+
+**解决对象相同方法的创建冗余问题：**
+> 可以在全局范围中声明一个函数，然后将引用传递给对象中的函数属性。但是这样做会导致全局函数过多，体现不了对象的封装性
 
 [创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
@@ -147,6 +201,12 @@ nav:
 [Set 和 Map 数据结构](https://es6.ruanyifeng.com/#docs/set-map)
 
 [es6 Map 和 Set](https://segmentfault.com/a/1190000015960005)
+
+#### 拓展
+
+[如何实现 JS 真正意义上的弱引用？](https://www.infoq.cn/article/lksmb2tlgh1ehg0*bbyg)
+
+[理解Java的强引用、软引用、弱引用和虚引用](https://juejin.cn/post/6844903665241686029)
 
 ### Promise/async/Generator
 

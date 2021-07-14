@@ -15,6 +15,10 @@ export default defineConfig({
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
+      title: '知识集锦',
+      path: 'https://tsejx.github.io/javascript-guidebook/',
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/niezicheng/article-dumi',
     },
