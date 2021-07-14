@@ -1,13 +1,15 @@
 ---
-title: 面式集锦
+title: 面试题闯关
 order: 12
 group:
   title: Interview Question
 toc: 'menu'
 nav:
-  title: 知识了解
+  title: 面试题集锦
   order: 0
 ---
+
+## Blog
 
 [2018春招前端面试: 闯关记(精排精校) | 掘金技术征文](https://juejin.cn/post/6844903570001625102)
 
@@ -15,7 +17,7 @@ nav:
 
 [由浅入深，66条 JavaScript 面试知识点](https://github.com/xiaodongxier/iWebs/issues/66)
 
-### Github
+## Github
 
 <table id='blog'>
   <tr>

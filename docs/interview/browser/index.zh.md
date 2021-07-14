@@ -5,7 +5,7 @@ group:
   title: Interview Question
 toc: 'menu'
 nav:
-  title: 知识了解
+  title: 面试题集锦
   order: 0
 ---
 
