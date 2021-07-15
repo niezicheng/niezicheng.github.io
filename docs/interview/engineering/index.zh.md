@@ -1,5 +1,5 @@
 ---
-title: 性能优化
+title: 前端工程化
 order: 8
 group:
   title: Interview Question
@@ -9,11 +9,11 @@ nav:
   order: 0
 ---
 
-### web 各个阶段的性能优化
+## web 各个阶段的性能优化
 
 [React 16 加载性能优化指南](https://mp.weixin.qq.com/s/XSvhOF_N0VbuOKStwi0IYw)
 
-### Q1: 网页基本性能优化
+## Q1: 网页基本性能优化
 
 - 减少 `HTTP` 请求
 - 使用内容发布网络(CDN)
@@ -25,10 +25,14 @@ nav:
 - 避免重定向
 - 图片懒加载 `lazyLoad`
 
-### Q2: MVC 和 MVVM
+## Q2: MVC 和 MVVM
 
 [MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)
 
 > 不同框架对于 `MVC` 的理解是不同的，不过对于 `MVC` 三大模块确实统一认同的，而著名的 `Rails` `MVC` 框架的实现思想和 `MVVM` 是一样的
 
 [浅谈 MVC、MVP 和 MVVM 架构模式](https://draveness.me/mvx/)
+
+## Q3: 如何规范代码提交并自动生成 CHANGELOG
+
+[前端 CHANGELOG 生成指南](https://godbasin.github.io/2019/11/10/change-log/)
