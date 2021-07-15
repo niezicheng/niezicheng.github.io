@@ -3,9 +3,9 @@ title: 清香的 orange
 order: 0
 hero:
   title: 清香的 orange
-  desc: 📖 为组件开发场景而生的文档工具
+  desc: 📖 快速了解面试、UI组件(库)和 JavaScript 等知识体系
   actions:
-    - text: 面试题集锦
+    - text: 快速开始
       link: /interview
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
@@ -47,4 +47,4 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 
 ### 工具库整理
 
-[lodash整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)
+[lodash 整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)

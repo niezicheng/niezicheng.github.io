@@ -37,9 +37,9 @@ nav:
 预加载:
 
 - 提前加载图片，当用户需要查看时可直接从本地缓存中渲染
-懒加载:
+  懒加载:
 - 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数
-两种技术的本质:
+  两种技术的本质:
 - 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
 - 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
 
@@ -61,7 +61,7 @@ nav:
   - 别的函数可能误 用这些变量;
   - 造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链 上遍历的)
 - 除了每次使用变量都是用 var 关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，可以用闭包。
-结果缓存:
+  结果缓存:
   我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象， 每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函 数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
 
 [JavaScript 深入之闭包](https://juejin.cn/post/6844903475998900237)
@@ -70,11 +70,11 @@ nav:
 
 [JavaScript 中的 this](https://juejin.cn/post/6844903488304971789)
 
-[7个关于 this 面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
+[7 个关于 this 面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
 
 ## Q6: 原型链
 
-[JavaScript深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
+[JavaScript 深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
 
 ### 对象创建的几种方式
 
@@ -100,18 +100,20 @@ nav:
 **动态原型模式示例：**
 
 ```ts
-function isProperty(object, property){
+function isProperty(object, property) {
   // hasOwnProperty 判断自身时候有该属性， 判断属性是否在 object 原型（Person.Property）中存在
-  return !object.hasOwnProperty(property) && (property in object);
+  return !object.hasOwnProperty(property) && property in object;
 }
 
-function Person (name, age) {
+function Person(name, age) {
   // 初始时候运行, Person 原型中还没有 sayName 属性方法
   if (!isProperty(this, sayName)) {
     Person.Property = {
       constructor: Person,
-      sayName: function () { console.log(this.name) }
-    }
+      sayName: function() {
+        console.log(this.name);
+      },
+    };
 
     return new Person(name, age);
   }
@@ -128,6 +130,7 @@ p2.sayName(); // chen
 ```
 
 **解决对象相同方法的创建冗余问题：**
+
 > 可以在全局范围中声明一个函数，然后将引用传递给对象中的函数属性。但是这样做会导致全局函数过多，体现不了对象的封装性
 
 [创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
@@ -170,22 +173,22 @@ p2.sayName(); // chen
 
 ### symbol 简单了解
 
-[简单了解ES6/ES2015 Symbol() 方法](https://juejin.cn/post/6844903591296106510)
+[简单了解 ES6/ES2015 Symbol() 方法](https://juejin.cn/post/6844903591296106510)
 
 ### var、let、和 const 关键字
 
 - `let`关键字 【声明变量】
-特性:
+  特性:
 
 1. 块级作用域 【局部作用于声明的代码块中】
 2. 变量声明不会提升 【变量未声明前无法使用该变量】
 3. 暂时性死区 【该变量声明前面的区域】
 4. 不能重复声明 【同一代码块中不能重复声明同一变量】
 
-- `const` 关键字  【声明常量(一般用大写字母表示常量)】
-特性: 【在遵从 `let` 声明变量的特性上再添加如下两条特性】
+- `const` 关键字 【声明常量(一般用大写字母表示常量)】
+  特性: 【在遵从 `let` 声明变量的特性上再添加如下两条特性】
 
-1. 声明时初始化    【声明的同时必须赋值】
+1. 声明时初始化 【声明的同时必须赋值】
 2. 值不可修改
 
 ### 箭头函数与普通函数的区别
@@ -196,7 +199,57 @@ p2.sayName(); // chen
 
 [箭头函数和普通函数的区别](https://www.jianshu.com/p/73cbeb6782a0)
 
-### ES6 中的 Map 和 Set 及其区别
+### Map 和 Set 及其区别
+
+> 均可以使用迭代器方法，`forEach` 方法循环遍历
+
+#### Set 类数组结构
+
+- 结构集合中的成员是唯一的，`key` 值与 `value` 值相同
+- 可用于数组对象去重处理
+
+```ts | pure
+const a = { name: 'chen' };
+const set = new Set([1, 'ming', 2, 4, 'ming', 4, 6, a]);
+
+const arr = [...set]; // [1, 'ming', 2, 4, 6, { name: 'chen' }]
+
+set.has('ming'); // true
+set.has(4); // true
+map.has(a); // true
+```
+
+#### Map 类对象结构
+
+- 键值对的集合（`Hash` 结构，die dai qi)。 键的范围不仅局限于字符串，各种类型都可以
+
+```ts | pure
+const a = { name: 'ming' };
+const map = new Map([
+  [a, 'ming'],
+  ['chen', 'chen'],
+]);
+
+map.get(a); // ming
+map.get({ name: 'ming' }); // undefined
+map.get('chen'); // chen
+```
+
+**WeakMap:**
+
+`WeakMap` 与 `Map` 的区别有两点:
+
+- `WeakMap` 只接受引用类型作为键名（`null` 除外），不接受其他类型的值作为键名。
+- `WeakMap` 的键会在不再可用后，会被垃圾回收机制处理销毁。
+
+**注意:**
+`Weak Map` 的键才是弱引用，值不是。在 `Weak Map` 的值中存储对象会阻止垃圾回收，即使该对象的其他引用已全都被移除。
+
+#### `Set(Map)` 与 `WeakSet(WeakMap)` 的区别
+
+- WeakSet(WeakMap) 值(键) 需为引用类型
+- WeakSet(WeakMap) 没有 `size` 属性并且迭代器对应方法，只有四个方法 get()、set()、has()、delete()
+- WeakSet(WeakMap) 确保额外数据在不再可用后被垃圾回收机制回收，从而能优化内存使用并规避内存泄漏。
 
 [Set 和 Map 数据结构](https://es6.ruanyifeng.com/#docs/set-map)
 
@@ -206,11 +259,11 @@ p2.sayName(); // chen
 
 [如何实现 JS 真正意义上的弱引用？](https://www.infoq.cn/article/lksmb2tlgh1ehg0*bbyg)
 
-[理解Java的强引用、软引用、弱引用和虚引用](https://juejin.cn/post/6844903665241686029)
+[理解 Java 的强引用、软引用、弱引用和虚引用](https://juejin.cn/post/6844903665241686029)
 
 ### Promise/async/Generator
 
-[9k字 | Promise/async/Generator实现原理解析](https://juejin.cn/post/6844904096525189128)
+[9k 字 | Promise/async/Generator 实现原理解析](https://juejin.cn/post/6844904096525189128)
 
 ## 功能判断类型
 
@@ -222,7 +275,7 @@ p2.sayName(); // chen
 - `Object` 键值对去重;
   - 把数组的值存成 `Object` 的 `key` 值，比如 `Object[value1] = true`， 在判断另一个值的时候，如果 `Object[value2]` 存在的话，就说明该值是重复的
 
-[JS数组去重!!!一篇不怎么靠谱的"深度"水文](https://juejin.cn/post/6844903477768896520)
+[JS 数组去重!!!一篇不怎么靠谱的"深度"水文](https://juejin.cn/post/6844903477768896520)
 
 ### 数组扁平化
 
@@ -236,10 +289,10 @@ p2.sayName(); // chen
 
 ```tsx | pure
 // 将二维数组转化为一维数组
-[].concat(...[1, 2, [3, 4]]) // [1, 2, 3, 4]
+[].concat(...[1, 2, [3, 4]]); // [1, 2, 3, 4]
 ```
 
-[JS数组专题 1️⃣ 数组扁平化](https://juejin.cn/post/6844903651689889805)
+[JS 数组专题 1️⃣ 数组扁平化](https://juejin.cn/post/6844903651689889805)
 
 ### 判断数组的几种方法
 
@@ -255,7 +308,7 @@ obj.__proto__ === Array.prototype;
 obj instanceof Array;
 ```
 
-- 通过ES6的 `Array.isArray()` 做判断
+- 通过 ES6 的 `Array.isArray()` 做判断
 
 ```js | pure
 Array.isArray(obj);
@@ -270,11 +323,10 @@ Array.prototype.isPrototypeOf(obj);
 - 通过 `Object.prototype.toString.call()` 做判断
 
 ```js | pure
-Object.prototype.toString.call(obj).slice(8, -1) === "Array"; // "[object Array]"
+Object.prototype.toString.call(obj).slice(8, -1) === 'Array'; // "[object Array]"
 ```
 
 - `typeof` 只能判断是 `object`, 可以判断一下是否拥有数组的方法
-
 
 ## 拓展
 
