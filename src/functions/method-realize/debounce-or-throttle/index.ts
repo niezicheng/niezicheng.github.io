@@ -4,13 +4,16 @@
  * @param fun 回调函数
  * @param delay 时间间隔
  */
-export const debounce = <F extends (...arg: any[]) => void>(fun: F, delay: number = 0) => {
+export const debounce = <F extends (...arg: any[]) => void>(
+  fun: F,
+  delay: number = 0,
+) => {
   let timeId: NodeJS.Timeout;
   return (...args: Parameters<F>) => {
     clearTimeout(timeId);
     timeId = setTimeout(() => fun(...args), delay);
-  }
-}
+  };
+};
 
 /**
  * 节流函数
@@ -18,7 +21,10 @@ export const debounce = <F extends (...arg: any[]) => void>(fun: F, delay: numbe
  * @param fun 回调函数
  * @param wait 时间间隔
  */
-export const throttle = <F extends (...arg: any[]) => void>(fun: F, wait: number) => {
+export const throttle = <F extends (...arg: any[]) => void>(
+  fun: F,
+  wait: number,
+) => {
   let timeId: NodeJS.Timeout;
 
   return (...args: Parameters<F>) => {
@@ -26,6 +32,6 @@ export const throttle = <F extends (...arg: any[]) => void>(fun: F, wait: number
     timeId = setTimeout(() => {
       fun(...args);
       timeId = null as any;
-    }, wait)
-  }
-}
+    }, wait);
+  };
+};

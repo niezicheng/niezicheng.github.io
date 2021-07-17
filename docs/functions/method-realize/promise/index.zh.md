@@ -26,10 +26,10 @@ nav:
 - 参数类型
 
   1. Promise 实例 【返回这个 `Promise` 对象】
-  2. thenable 对象 【`thenable` 对象指的是具有then方法的对象】
+  2. thenable 对象 【`thenable` 对象指的是具有 then 方法的对象】
   3. 其他类型或不存在 【返回一个 `fulfilled` 状态的新 `Promise` 对象】
 
-- 参数类型第2点说明:
+- 参数类型第 2 点说明:
   > `Promise.resolve` 方法会将这个 `thenable` 对象转为 `Promise` 对象,然后就立即执行这个 `thenable` 对象的 `then` 方法
 
 ##### Promise.all()
@@ -54,14 +54,14 @@ export default () => {
 
   const handleClick = () => {
     setState(state === 'fulfilled' ? 'rejected' : 'fulfilled');
-  }
+  };
 
   useEffect(() => {
     const p1 = new MyPromise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('result1');
+      setTimeout(() => {
+        resolve('result1');
       }, 300);
-    })
+    });
 
     const p2 = new MyPromise((resolve, reject) => {
       setTimeout(() => {
@@ -71,29 +71,31 @@ export default () => {
           reject('error2');
         }
       }, 100);
-    })
+    });
 
     const p3 = new MyPromise((resolve, reject) => {
       setTimeout(() => {
         resolve('result3');
       }, 200);
-    })
+    });
 
     const p = Promise.all([p1, p2, p3]);
 
-    p.then(res => setResult(res), (error) => setResult(error));
-
-  }, [state])
+    p.then(
+      res => setResult(res),
+      error => setResult(error),
+    );
+  }, [state]);
 
   return (
-   <>
-     <Button type="primary" onClick={handleClick}>
+    <>
+      <Button type="primary" onClick={handleClick}>
         {`切换为 ${state === 'fulfilled' ? 'rejected' : 'fulfilled'} 示例`}
       </Button>
       <div>{`结果: ${result}`}</div>
-   </>
-  )
-}
+    </>
+  );
+};
 ```
 
 ##### Promise.race()
@@ -125,7 +127,7 @@ export default () => {
       setTimeout(() => {
         resolve('result1');
       }, delay);
-    })
+    });
 
     const p2 = new MyPromise((resolve, reject) => {
       const delay = Math.round(Math.random() * 1000);
@@ -134,7 +136,7 @@ export default () => {
       setTimeout(() => {
         resolve('result2');
       }, delay);
-    })
+    });
 
     const p3 = new MyPromise((resolve, reject) => {
       const delay = Math.round(Math.random() * 1000);
@@ -143,16 +145,19 @@ export default () => {
       setTimeout(() => {
         resolve('result3');
       }, delay);
-    })
+    });
 
     const p = Promise.race([p1, p2, p3]);
 
-    p.then(res => setResult(res), (error) => setResult(error));
-  }, [])
+    p.then(
+      res => setResult(res),
+      error => setResult(error),
+    );
+  }, []);
 
   return (
-   <>
-     <Button type="primary" onClick={handleClick}>
+    <>
+      <Button type="primary" onClick={handleClick}>
         获取结果
       </Button>
       <div>{`结果: ${result}`}</div>
@@ -161,7 +166,7 @@ export default () => {
         <li>{`p2返回数据时间 ${delay2} ms`}</li>
         <li>{`p3返回数据时间 ${delay3} ms`}</li>
       </ul>
-   </>
-  )
-}
+    </>
+  );
+};
 ```

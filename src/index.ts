@@ -1,7 +1,15 @@
 // methodRealize
-export { debounce, throttle } from './functions/methodRealize/debounceOrThrottle';
-export { default as MyPromise } from './functions/methodRealize/promise';
-export {  MyNew, myBind, myCall, myApply } from './functions/methodRealize/functionMethods';
+export {
+  debounce,
+  throttle,
+} from './functions/method-realize/debounce-or-throttle';
+export { default as MyPromise } from './functions/method-realize/promise';
+export {
+  MyNew,
+  myBind,
+  myCall,
+  myApply,
+} from './functions/method-realize/function-methods';
 
 // toolMethod
-export { htmlTagAddPropContent } from './functions/toolMethod/regExp';
+export { htmlTagAddPropContent } from './functions/tool-method/reg-exp';

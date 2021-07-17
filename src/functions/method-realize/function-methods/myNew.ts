@@ -7,7 +7,7 @@
  * 5. 如果返回值是一个新对象，那么直接返回该对象；如果无返回值或者返回一个非对象值，那么就将步骤（1）创建的对象返回
  */
 
-export function MyNew () {
+export function MyNew() {
   let ConStructor = Array.prototype.shift.call(arguments); // 取出构造函数
   let obj: any = {}; // 创建一个新对象
 

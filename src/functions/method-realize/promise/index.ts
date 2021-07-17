@@ -39,12 +39,12 @@ class MyPromise {
         this._value = val;
 
         // 实现规范要求中 then 方法的可以链式调用
-        while(this._resolveQueue?.length) {
+        while (this._resolveQueue?.length) {
           const callback = this._resolveQueue.shift();
           callback(val);
         }
-      })
-    }
+      });
+    };
 
     let _reject = (val: any) => {
       setTimeout(() => {
@@ -55,12 +55,12 @@ class MyPromise {
         this._status = REJECTED;
         this._value = val;
 
-        while(this._rejectQueue?.length) {
+        while (this._rejectQueue?.length) {
           const callback = this._rejectQueue.shift();
-          callback(val)
+          callback(val);
         }
-      })
-    }
+      });
+    };
 
     // new Promise()时立即执行 executor,并传入 resolve 和 reject
     executor(_resolve, _reject);
@@ -73,14 +73,17 @@ class MyPromise {
    */
   then(resolveFn: any, rejectFn: any) {
     // 忽略 then 不为函数类型，保证 then 方法链式调用的执行
-    typeof resolveFn !== 'function' ? resolveFn = (value: any) => value : null;
-    typeof rejectFn !== 'function' ? rejectFn = (reason: Error) => {
-      throw new Error(reason instanceof Error ? reason.message : reason);
-    } : null;
+    typeof resolveFn !== 'function'
+      ? (resolveFn = (value: any) => value)
+      : null;
+    typeof rejectFn !== 'function'
+      ? (rejectFn = (reason: Error) => {
+          throw new Error(reason instanceof Error ? reason.message : reason);
+        })
+      : null;
 
     // 返回一个新的 Promise 对象
     return new MyPromise((resolve: any, reject: any) => {
-
       // 封装 resolveFn 方法，便于对回调不同类型返回值进行处理
       const fulfilledFn = (value: any) => {
         try {
@@ -91,16 +94,16 @@ class MyPromise {
         } catch (error) {
           reject(error);
         }
-      }
+      };
 
-      const rejectedFn  = (error: any) => {
+      const rejectedFn = (error: any) => {
         try {
-          let x = rejectFn(error)
-          x instanceof MyPromise ? x.then(resolve, reject) : resolve(x)
+          let x = rejectFn(error);
+          x instanceof MyPromise ? x.then(resolve, reject) : resolve(x);
         } catch (error) {
-          reject(error)
+          reject(error);
         }
-      }
+      };
 
       switch (this._status) {
         case PENDING:
@@ -116,8 +119,7 @@ class MyPromise {
           rejectedFn(this._value);
           break;
       }
-
-    })
+    });
   }
 
   /**
@@ -135,8 +137,11 @@ class MyPromise {
   finally(callback: any) {
     return this.then(
       (value: any) => MyPromise.resolve(callback).then(() => value, undefined),
-      (reason: any) => MyPromise.resolve(callback).then(() => { throw reason }, undefined)
-    )
+      (reason: any) =>
+        MyPromise.resolve(callback).then(() => {
+          throw reason;
+        }, undefined),
+    );
   }
 
   /**
@@ -156,7 +161,7 @@ class MyPromise {
    * @param reason
    */
   static reject(reason: any) {
-    return new MyPromise((resolve: any, reject: any) => reject(reason))
+    return new MyPromise((resolve: any, reject: any) => reject(reason));
   }
 
   /**
@@ -168,21 +173,22 @@ class MyPromise {
     let result: any[] = [];
     return new MyPromise((resolve: any, reject: any) => {
       promiseArray.forEach((p: any, i: number) => {
-        MyPromise.resolve(p).then((val: any) => {
-          index++;
-          result[i] = val;
-          // 所有 then 执行后 resolve 结果
-          if (index === promiseArray.length) {
-            resolve(result);
-          }
-
-        },
-        (error: any) => {
-          // 有一个Promise被reject时，MyPromise的状态变为reject
-          reject(error)
-        })
-      })
-    })
+        MyPromise.resolve(p).then(
+          (val: any) => {
+            index++;
+            result[i] = val;
+            // 所有 then 执行后 resolve 结果
+            if (index === promiseArray.length) {
+              resolve(result);
+            }
+          },
+          (error: any) => {
+            // 有一个Promise被reject时，MyPromise的状态变为reject
+            reject(error);
+          },
+        );
+      });
+    });
   }
 
   /**
@@ -192,13 +198,16 @@ class MyPromise {
   static race(promiseArray: any) {
     return new MyPromise((resolve: any, reject: any) => {
       for (let p of promiseArray) {
-        MyPromise.resolve(p).then((value: any) => {
-          resolve(value)
-        }, (error: any) => {
-          reject(error);
-        })
+        MyPromise.resolve(p).then(
+          (value: any) => {
+            resolve(value);
+          },
+          (error: any) => {
+            reject(error);
+          },
+        );
       }
-    })
+    });
   }
 }
 

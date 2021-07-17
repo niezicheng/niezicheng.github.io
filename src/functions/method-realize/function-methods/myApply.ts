@@ -4,7 +4,11 @@
  * @param context 函数内部 this 指向对象
  * @param args 传递给函数的参数数组
  */
-export default function (context: any = global, args: Array<any>) {
+export default function(context: any = global, args: Array<any>) {
+  if (typeof this !== 'function') {
+    throw new TypeError('type error');
+  }
+
   // 将调用该方法的 function 的 this 指向赋给 context 的 fn 属性
   context.fn = this;
 

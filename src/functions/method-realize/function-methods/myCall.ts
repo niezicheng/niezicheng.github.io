@@ -4,8 +4,12 @@
  * @param context 函数内部 this 指向对象
  * @param args 传递给函数的参数
  */
-export default function (context: any = global, ...args: any) {
- // 将调用该方法的 function 的 this 指向赋给 context 的 fn 属性
+export default function(context: any = global, ...args: any) {
+  if (typeof this !== 'function') {
+    throw new TypeError('type error');
+  }
+
+  // 将调用该方法的 function 的 this 指向赋给 context 的 fn 属性
   context.fn = this;
   let result = context.fn(...args); // 执行函数
   delete context.fn; // 删除属性，避免污染

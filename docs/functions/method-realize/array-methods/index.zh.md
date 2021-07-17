@@ -91,7 +91,7 @@ function (arr, callback, initValue) {
  * target 需要克隆的数据
  * map 存储空对象或空数据信息
  */
-function cloneDeep (target, map = new WeakMap()) {
+function cloneDeep(target, map = new WeakMap()) {
   if (typeof target === 'object') {
     let cloneTarget = Array.isArray(target) ? [] : {};
 
@@ -102,7 +102,7 @@ function cloneDeep (target, map = new WeakMap()) {
     // 将空对象或空数组存储到 map 中
     map.set(target, cloneTarget);
     // 循环遍历非空对象或数组
-    for(const key in target) {
+    for (const key in target) {
       cloneTarget[key] = cloneDeep(target[key], map);
     }
     return cloneTarget;
