@@ -1,5 +1,5 @@
 ---
-title: 防抖和节流
+title: debounce、throttle
 order: 1
 group:
   title: 方法实现

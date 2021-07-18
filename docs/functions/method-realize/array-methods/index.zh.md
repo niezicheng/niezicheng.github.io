@@ -1,5 +1,5 @@
 ---
-title: Array 方法实现
+title: Array Methods
 order: 3
 group:
   title: 方法实现

@@ -15,9 +15,19 @@ const html = `
 
 export default () => {
   // 图片添加最大宽度 100%
-  const htmlImg = htmlTagAddPropContent(html, 'img', 'style', 'max-width:100%;height:auto;');
+  const htmlImg = htmlTagAddPropContent(
+    html,
+    'img',
+    'style',
+    'max-width:100%;height:auto;',
+  );
   // 去除 p 标签默认底部外边距
-  const htmlP = htmlTagAddPropContent(htmlImg, 'p', 'style', 'margin-bottom: 0');
+  const htmlP = htmlTagAddPropContent(
+    htmlImg,
+    'p',
+    'style',
+    'margin-bottom: 0',
+  );
 
-  return <div dangerouslySetInnerHTML={{ __html: htmlP }} />
-}
+  return <div dangerouslySetInnerHTML={{ __html: htmlP }} />;
+};

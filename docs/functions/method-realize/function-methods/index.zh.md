@@ -1,5 +1,5 @@
 ---
-title: new、 bind、 call、 apply 实现
+title: new、 bind、 call、 apply
 order: 2
 group:
   title: 方法实现
