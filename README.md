@@ -116,7 +116,7 @@ $ npm run build
   <tr>
      <td width="160" align="center">
       <a target="_blank" href="http://www.cyanmaple.design/">
-        <img src="http://www.cyanmaple.design/img/logo.svg" />
+        <img src="https://terminus-paas.oss-cn-hangzhou.aliyuncs.com/pmp/attachments/file-8ef0c6cf-07db-46a9-a022-02d08cc6276c.png" height="50" />
         <br />
         <strong>栅格框架系统</strong>
       </a>
