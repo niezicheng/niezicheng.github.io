@@ -65,6 +65,13 @@ $ npm run build
         <strong>draveness</strong>
       </a>
     </td>
+     <td width="160" align="center">
+      <a target="_blank" href="https://muyiy.cn/">
+        <img src="https://terminus-paas.oss-cn-hangzhou.aliyuncs.com/pmp/attachments/file-5fea5ad1-2cef-48c1-8985-4d720154ef2c.png" height="42" />
+        <br />
+        <strong>木易杨</strong>
+      </a>
+    </td>
   </tr>
 </table>
 

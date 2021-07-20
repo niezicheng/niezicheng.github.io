@@ -36,13 +36,13 @@ nav:
 
 [React Hook 从入门应用到编写自定义 Hook](https://juejin.cn/post/6887838157874659341#heading-21)
 
+### Context 了解
+
+[Context 基本了解](https://juejin.cn/post/6916844522202726408)
+
 ### React 中的组件复用
 
 [【React 深入】从 Mixin 到 HOC 再到 Hook](https://juejin.cn/post/6844903815762673671)
-
-### React 技巧使用解析
-
-[React 开发必须知道的 34 个技巧【近 1W 字】](https://juejin.cn/post/6844903993278201870)
 
 ### React 事件系统原理
 
@@ -52,7 +52,9 @@ nav:
 
 [从 React 源码分析渲染更新流程](https://juejin.cn/post/6844904200824946696#heading-10)
 
-[react-interpretation](https://github.com/niezicheng/react-interpretation)
+### React 技巧使用解析
+
+[React 开发必须知道的 34 个技巧【近 1W 字】](https://juejin.cn/post/6844903993278201870)
 
 ## React Router
 
@@ -64,8 +66,16 @@ nav:
 
 ### react-router 里面的 Link 标签和 a 标签的区别？
 
+> 本质渲染到页面上展示的都是 `a` 标签
+
+- `Link` 中禁用了 `a` 标签的默认事件
+- `Link` 改用了 `history` 对象提供的方法进行跳转
+- `Link` 的 `跳转` 行为只会触发相匹配的 `Route` 对应的页面内容更新，而不会刷新整个页面
+
 ## Redux
 
 [英文官网](https://redux.js.org/)、[官网中文翻译](https://react-router.docschina.org/)
 
 [中文文档](https://cn.redux.js.org/)
+
+## 如何零基础搭建一个 `react` 项目框架

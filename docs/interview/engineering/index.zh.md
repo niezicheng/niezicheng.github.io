@@ -35,4 +35,4 @@ nav:
 
 ## Q3: 如何规范代码提交并自动生成 CHANGELOG
 
-[前端 CHANGELOG 生成指南](https://godbasin.github.io/2019/11/10/change-log/)
+[Git Commit 规范（Conventional Commit）](https://juejin.cn/post/6985500205554597918)
