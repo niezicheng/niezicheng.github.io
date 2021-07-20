@@ -48,5 +48,3 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 ### 工具库整理
 
 [lodash 整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)
-
-[i18n 国际化](https://docusaurus.io/zh-CN/docs/next/i18n/introduction)

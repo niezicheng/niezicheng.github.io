@@ -128,6 +128,13 @@ $ npm run build
         <strong>vuepress 博客框架</strong>
       </a>
     </td>
+    <td width="160" align="center">
+      <a target="_blank" href="https://docusaurus.io/zh-CN/">
+        <img src="https://docusaurus.io/zh-CN/img/docusaurus_keytar.svg" width="42" />
+        <br />
+        <strong>Docusaurus 文档网站</strong>
+      </a>
+    </td>
   </tr>
 </table>
 

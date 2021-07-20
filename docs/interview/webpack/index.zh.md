@@ -11,19 +11,21 @@ nav:
 
 ## webpack
 
+[官方文档](https://webpack.js.org/)
+
 ### webpack 的基础知识
 
-[带你深度解锁Webpack系列](https://juejin.cn/post/6844904079219490830)
+[带你深度解锁 Webpack 系列](https://juejin.cn/post/6844904079219490830)
 
 ### webpack 代码分割是怎么做的？
 
 > 路由懒加载和 `webpack` 异步加载模块都是这个 `import()` 语法，值得仔细看看
 
-[webpack的代码分割（路由懒加载同理）](https://juejin.cn/post/6844904101134729229)
+[webpack 的代码分割（路由懒加载同理）](https://juejin.cn/post/6844904101134729229)
 
 ### webpack 插件机制
 
-[揭秘webpack插件的工作原理](https://segmentfault.com/a/1190000023016347)
+[揭秘 webpack 插件的工作原理](https://segmentfault.com/a/1190000023016347)
 
 ### webpack 与 gulp 的差别？(模块化与流的区别)
 
@@ -32,10 +34,14 @@ nav:
 
 ## Babel
 
+[中文文档](https://www.babeljs.cn/)
+
+[英文文档](https://babeljs.io/)
+
 ## babel 的原理是什么？
 
-[[实践系列]Babel原理](https://juejin.cn/post/6844903760603398151)
+[[实践系列]Babel 原理](https://juejin.cn/post/6844903760603398151)
 
 ## 如何写一个 babel 插件？
 
-[编写一个简单的babel插件](https://juejin.cn/post/6844903582613897223)
+[编写一个简单的 babel 插件](https://juejin.cn/post/6844903582613897223)

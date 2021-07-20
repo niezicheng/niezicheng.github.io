@@ -13,9 +13,11 @@ nav:
 
 ### React 高频面试题
 
-[2019年17道高频 React 面试题及详解](https://juejin.cn/post/6844903922453200904)
+[2019 年 17 道高频 React 面试题及详解](https://juejin.cn/post/6844903922453200904)
 
-[React高频面试题梳理，看看面试怎么答？（上）](https://cloud.tencent.com/developer/article/1506220)
+[React 高频面试题梳理，看看面试怎么答？（上）](https://cloud.tencent.com/developer/article/1506220)
+
+[掘金最污的 React16.x 图文视频教程(2 万 5 千字长文-慎入)](https://juejin.cn/post/6844903870213292045)
 
 ### Virtual DOM？
 
@@ -40,7 +42,7 @@ nav:
 
 ### React 技巧使用解析
 
-[React 开发必须知道的 34 个技巧【近1W字】](https://juejin.cn/post/6844903993278201870)
+[React 开发必须知道的 34 个技巧【近 1W 字】](https://juejin.cn/post/6844903993278201870)
 
 ### React 事件系统原理
 
@@ -56,7 +58,7 @@ nav:
 
 [英文官网](https://reactrouter.com/)
 
-[React Router 中文文档（v5 ）](https://juejin.cn/post/6844904093694033927)
+[React Router 中文文档（v5 ）](https://segmentfault.com/a/1190000020812860)
 
 [中文文档(看起来内容比较旧了)](https://react-guide.github.io/react-router-cn/)
 
