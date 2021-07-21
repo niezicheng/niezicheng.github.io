@@ -1,23 +1,23 @@
 ---
-title: ImageView 图片预览
-order: 9
+title: Upload 上传
+order: 21
 nav:
   title: 组件
   order: 0
 ---
 
-## ImageView 图片预览
+## Upload 上传
 
-全屏预览单张/多张图片，多张预览可支持滑动切换图片预览，头部带有操作项，底部带有描述信息
+上传图片或视频文件
 
 ## 设计思路
 
 ### 引用三方库
 
-| 平台 | 第三方库                                                  | 说明                                                         |
-| ---- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| RN   | `react-native-image-picker`                               | [文档地址](https://www.npmjs.com/package/react-native-image-picker) |
-| H5   | `input` :  `type='file'`                                  | [文档地址](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file) |
+| 平台 | 第三方库                                                                                                                  | 说明                                                                                                                                                                                                         |
+| ---- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| RN   | `react-native-image-picker`                                                                                               | [文档地址](https://www.npmjs.com/package/react-native-image-picker)                                                                                                                                          |
+| H5   | `input` : `type='file'`                                                                                                   | [文档地址](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file)                                                                                                                             |
 | MP   | 小程序元素选择文件 API: wx: `chooseMedia`、alipay: `chooseImage`；上传文件 API: wx: `uploadFile`、 alipay: `getImageInfo` | [选择文档地址](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)、[上传文档地址](https://developers.weixin.qq.com/miniprogram/dev/api/network/upload/wx.uploadFile.html) |
 
 ### H5 input 标签实现
