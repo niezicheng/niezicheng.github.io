@@ -22,7 +22,7 @@ nav:
 
 ### RN 动画实现
 
-```tsx
+```tsx | pure
 const animation =
   // 动画循环
   Animated.loop(
@@ -49,17 +49,17 @@ const animation =
         useNativeDriver: true,
         easing: Easing.linear,
       }),
-    ])
+    ]),
   );
-  // 动画开始
-  animation.start();
+// 动画开始
+animation.start();
 ```
 
 ### 小程序动画实现(不同小程序系列 API 语法不一样)
 
 - 将动画导出值 `animationData` 赋值给元素 `animation` 属性
 
-```js
+```js | pure
 /**
  * 动画初始化
  */
@@ -140,5 +140,25 @@ destroyTimer() {
     clearTimeout(timer);
   }
 }
-
 ```
+
+**说明:**
+不同小程序平台之前 Api 使用的差异, `target` 表示相应平台
+
+- [target].createSelectorQuery()
+
+返回值 `SelectorQuery` 中阿里系小程序不含 `in` 方法, 不用更改选择器选取的范围
+
+> `SelectorQuery.in(component: Component)` 将选择器的选取范围更改为自定义组件 component 内。（初始时，选择器仅选取页面范围的节点，不会选取任何自定义组件中的节点）。
+
+- [target].createAnimation(option: { duration })
+
+返回值 `animation` 获取和更改 `option` 对象属性
+
+> - 微信: animation.option.transition.duration
+> - 阿里系: animation.config.duration
+> - 字节: animation.option.duration
+
+- [target].boundingClientRect([callback])
+
+回调函数 `callback` 阿里系小程序中没有回调函数，回调函数在 `exec` 执行函数中调用。

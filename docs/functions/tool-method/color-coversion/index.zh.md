@@ -46,13 +46,13 @@ function transferColorToRgb(color) {
 }
 ```
 
-### 3 位 16 进制转 6 位 16 进制
+**3 位 16 进制转 6 位 16 进制:**
 
 ```ts
 color.replace(/(\w)(\w)(\w)/, '$1$1$2$2$3$3'); // '#FFF' => '#FFFFFF'
 ```
 
-### rgb(a) 转 16 进制颜色值
+## rgb(a) 转 16 进制颜色值
 
 ```ts
 function transferRgbToStr(color) {

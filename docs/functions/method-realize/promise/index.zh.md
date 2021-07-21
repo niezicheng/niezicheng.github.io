@@ -43,7 +43,7 @@ nav:
   2. 若参数数组中的所有 `Promise` 实例状态为 `fulfilled` 时, 返回新的 `Promise` 实例, `then` 中成功回调函数返回结果为数组中各 `Promise` 返回结果组成的数组
   3. 若参数数组中碰到有 `Promise` 实例状态为 `rejected` 时,无需再看数组后面 `Promise` 实例状态, 直接返回新的 `Promise` 实例，`catch` 中失败回调函数返回结果为该中各 `Promise` 返回结果组成的数组
 
-```tsx
+```tsx | preview
 import React, { useState, useEffect } from 'react';
 import { MyPromise } from 'docs-dumi';
 import { Button } from 'antd';
@@ -108,7 +108,7 @@ export default () => {
   1. 将多个 `Promise` 实例,包装成一个新的 `Promise` 实例, 并返回
   2. 返回参数 `promise` 实例数组中执行返回结果最快的 `Promise` 对象信息
 
-```tsx
+```tsx | preview
 import React, { useState, useCallback } from 'react';
 import { MyPromise } from 'docs-dumi';
 import { Button } from 'antd';
