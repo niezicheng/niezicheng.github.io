@@ -67,7 +67,6 @@ for (let i = 0; i < data.length; i++) {
 // imageParsePromiseList 所有文件解析完成
 Promise.all(imageParsePromiseList)
   .then((imageItems) => {
-    console.log(imageItems);
     setImgFiles(imageItems);
   })
   .catch((error) => console.log(error));

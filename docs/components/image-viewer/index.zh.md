@@ -1,12 +1,12 @@
 ---
-title: ImageView 图片预览
+title: ImageViewer 图片预览
 order: 9
 nav:
   title: 组件
   order: 0
 ---
 
-## ImageView 图片预览
+## ImageViewer 图片预览
 
 全屏预览单张/多张图片，多张预览可支持滑动切换图片预览，头部带有操作项，底部带有描述信息
 
