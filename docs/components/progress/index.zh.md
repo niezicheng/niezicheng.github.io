@@ -10,7 +10,7 @@ nav:
 
 表明某个任务的当前进度
 
-## 设计思路
+## 设计思路与实现
 
 - 未填充的轨道
   - 获取未填充的轨道宽度 `wrapWidth`
@@ -36,5 +36,5 @@ Animated.timing(animatedWidth, {
 }).start();
 
 // 在动画元素上使用动画 value 值
-<Animated.View style={{ width: animatedWidth }} />
+<Animated.View style={{ width: animatedWidth }} />;
 ```

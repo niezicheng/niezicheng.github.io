@@ -10,15 +10,15 @@ nav:
 
 上传图片或视频文件
 
-## 设计思路
+## 设计思路与实现
 
 ### 引用三方库
 
-| 平台 | 第三方库                                                                                                                  | 说明                                                                                                                                                                                                         |
-| ---- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| RN   | `react-native-image-picker`                                                                                               | [文档地址](https://www.npmjs.com/package/react-native-image-picker)                                                                                                                                          |
-| H5   | `input` : `type='file'`                                                                                                   | [文档地址](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file)                                                                                                                             |
-| MP   | 小程序元素选择文件 API: wx: `chooseMedia`、alipay: `chooseImage`；上传文件 API: wx: `uploadFile`、 alipay: `getImageInfo` | [选择文档地址](https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html)、[上传文档地址](https://developers.weixin.qq.com/miniprogram/dev/api/network/upload/wx.uploadFile.html) |
+| 平台 | 第三方库                                                                                        | 说明                                                                                                                                                                                                         |
+| ---- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| RN   | `react-native-image-picker`                                                                     | [文档地址](https://www.npmjs.com/package/react-native-image-picker)                                                                                                                                          |
+| H5   | `input`: `type='file'`                                                                          | [文档地址](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input/file)                                                                                                                             |
+| MP   | 小程序元素选择文件 API: `chooseImage` (微信可以使用: `chooseMedia`)；上传文件 API: `uploadFile` | [选择文档地址](https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseImage.html)、[上传文档地址](https://developers.weixin.qq.com/miniprogram/dev/api/network/upload/wx.uploadFile.html) |
 
 ### H5 input 标签实现
 
@@ -72,4 +72,67 @@ Promise.all(imageParsePromiseList)
   })
   .catch((error) => console.log(error));
 }
+```
+
+### 小程序端实现
+
+```ts
+// 选择图片 API
+chooseImage({
+  count: 9, // 最多可以选择的图片数量
+  sourceType: ['album', 'camera'], // 选择图片来源相册或相机
+  sizeType: ['original'] || ['compressed'], // 所选的图片的尺寸【原图/压缩图】【字节小程序 API 没有该属性】
+  success: (res) => {
+    const {
+      tempFilePaths, // 图片的本地临时文件路径列表 (本地路径) 【Array.<string>】
+      tempFiles, // 图片的本地临时文件列表 【Array.<Object>】
+    } = res;
+
+    const {
+      path, // 本地临时文件路径 (本地路径)
+      size, // 本地临时文件大小，单位 B
+    } = tempFiles;
+  }
+});
+
+// filesList = tempFiles || tempFilePaths
+
+// 文件上传 API, 并使用 Promise 进行封装
+const promiseArr = filesList.map(({ path, size }) => {
+  return new Promise(() => {
+    uploadFile({
+      url: '', // 开发者服务器地址
+      filePath: '', // 要上传文件资源的路径 (本地路径)
+      header: , // HTTP 请求 Header，Header 中不能设置 Referer
+      formData: , // HTTP 请求中其他额外的 form data
+
+      // 微信和字节
+      name: '', // 文件对应的 key，开发者在服务端可以通过这个 key 获取文件的二进制内容
+      timeout: , // 超时时间，单位为毫秒【字节没有选项属性】
+
+      // 阿里系
+      fileName: '', // 文件对应的 key，开发者在服务端可以通过这个 key 获取文件的二进制内容
+      hideLoading: false, // 是否隐藏 loading 图
+
+      success: (res) => {
+        const {
+          data, // 返回数据信息
+          statusCode, // HTTP 状态码
+          header, // 服务器返回的 Header 【阿里系返回值内含有该属性】
+        } = res;
+
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          return reject('upload failed');
+        }
+        return resolve(res.data);
+      }
+    })
+  })
+})
+
+const resArr = Promise.all(promiseArray)
+  .then(res => res)
+  .catch(error => throw new Error(error));
+
+return resArr;
 ```

@@ -73,6 +73,15 @@ $ npm run build
       </a>
     </td>
   </tr>
+  <tr>
+     <td width="160" align="center">
+      <a target="_blank" href="https://panjiachen.gitee.io/vue-element-admin-site/zh/">
+        <img src="https://sf3-ttcdn-tos.pstatp.com/img/user-avatar/67ed0aaaf1132fd059b466f38d0af553~300x300.image" width="42" />
+        <br />
+        <strong>花裤衩</strong>
+      </a>
+    </td>
+  </tr>
 </table>
 
 ## 技术网站收藏
