@@ -114,7 +114,7 @@ importScripts('script1.js', 'script2.js');
   - location.hostname --返回 `URL` 中的主域名部分。例如: `baidu.com`
   - location.pathname --返回 `URL` 的域名后的部分。例如: `http://www.baidu.com/xhtml/` 返回`/xhtml/`
   - location.port --返回 `URL` 中的端口部分）例如: `http://www.baidu.com:8080/xhtml/` 返回 `8080`
-  - location.protocol --返回 `URL` 中的协议部分。例如: `http://www.baidu.com:8080/xhtml/` 返 回(//)前面的内容 http:
+  - location.protocol --返回 `URL` 中的协议部分。例如: `http://www.baidu.com:8080/xhtml/` 返回(//)前面的内容 http:
   - location.assign --设置当前文档的 `URL`
   - location.replace() --设置当前文档的 `URL`，并且在 `history` 对象的地址列表中移除这个 `URL`, location.replace(url);
   - location.reload() -- 重载当前页面
@@ -123,12 +123,26 @@ importScripts('script1.js', 'script2.js');
   - history.back() -- 后退一页
   - history.forward() -- 前进一页
 - Navigator 对象
-  - navigator.userAgent -- 返回用户代理头的字符串表示(就是包括浏览器版本信息等的字 符串)
+  - navigator.userAgent -- 返回用户代理头的字符串表示(就是包括浏览器版本信息等的字符串)
   - navigator.cookieEnabled -- 返回浏览器是否支持(启用) `cookie`
 
 ### DOM
 
-> `DOM` 文档对象模型
+> `DOM`(文档对象模型)是针对于 `xml` 但是扩展用于 `HTML` 的应用程序编程接口，定义了访问和操作 `HTML` 的文档的标准。
+> 代表文本节点， 代表文档节点等。
+
+#### DOM 节点与元素的区别
+
+**Node 的节点类型:**
+
+- `Node.DOCUMENT_NODE` 文档节点
+- `Node.ELEMENT_NODE` 元素节点
+- `Node.TEXT_NODE` 文本节点
+- `Node.COMMENT_NODE` 注释节点
+  ......
+
+- 元素是节点的子类型, 元素是特定类型的节点 `Node.ELEMENT_NODE`
+- 节点的构造函数是 `Node`，`HTMLElement` 是 `JavaScript DOM` 中元素的构造函数。
 
 [回到基础：什么是 DOM 及 DOM 操作？](https://juejin.cn/post/6844904023003234311)
 

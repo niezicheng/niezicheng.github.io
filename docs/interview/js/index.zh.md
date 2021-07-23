@@ -202,6 +202,10 @@ p2.sayName(); // chen
 
 [最后一次搞懂 Event Loop](https://juejin.cn/post/6844903827611598862)
 
+## Q9: 不可变状态 Immutable
+
+[理解不可变状态 Immutable.js](https://juejin.cn/post/6937481782262497288)
+
 ## ES6
 
 [ECMAScript 6 入门(阮一峰)](https://es6.ruanyifeng.com/)

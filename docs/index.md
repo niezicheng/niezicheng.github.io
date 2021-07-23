@@ -45,6 +45,8 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 
 <embed src="../README.md#RE-/<table id='design'>[^]+?[\r\n]<\/table>/"></embed>
 
+[这些互联网圈内常用的名词你了解多少](https://zhuanlan.zhihu.com/p/64649254)
+
 ### 工具库整理
 
 [lodash 整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)

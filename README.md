@@ -81,6 +81,13 @@ $ npm run build
         <strong>花裤衩</strong>
       </a>
     </td>
+    <td width="160" align="center">
+      <a target="_blank" href="https://q.shanyue.tech/">
+        <img src="https://q.shanyue.tech/assets/img/logo.b8798990.png" height="42" />
+        <br />
+        <strong>山月</strong>
+      </a>
+    </td>
   </tr>
 </table>
 
