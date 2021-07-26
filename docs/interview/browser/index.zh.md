@@ -28,26 +28,6 @@ nav:
 
 > 根据同源策略，`cookie` 是区分端口的，但是对浏览器来说，`cookie` 是区分区域的，所以在同一 `ip` 下的多个端口的`cookie` 是共享的
 
-## Q2: JS 实现跨域
-
-> 跨域是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对 `JavaScript` 实施的安全限制，那么只要`协议`、`域名`、`端口`有任何一个不同，都被当作是不同的域
->
-> 跨域原理，即是通过各种方式，避开浏览器的安全限制
-
-- 通过 `jsonp` 跨域
-- `cors` 跨域资源共享（CORS）
-- `postMessage` 跨域
-- `WebSocket`协议跨域
-- `nginx` 代理跨域
-- `nodejs` 中间件代理跨域
-- `document.domain + iframe` 跨域
-- `location.hash + iframe`
-- `window.name + iframe`跨域
-
-[前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
-
-[九种跨域方式实现原理（完整版）](https://juejin.cn/post/6844903767226351623)
-
 ## Q3: 本地存储的四种方式：cookie，localStorage, sessionStorage, indexDB 之间的区别
 
 [深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
@@ -55,7 +35,7 @@ nav:
 | **特性**       | **cookies**                                                                          | **localStorage**                                          | **sessionStorage**                                        | **indexedDB**            |
 | -------------- | :----------------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | ------------------------ |
 | 数据的生命期   | 一般有服务器生成，可设置失效时间。如果在浏览器端生成的`cookie`，默认关闭浏览器后失效 | 除非手动被清除，否则永久保存                              | 仅在当前会话下有效，关闭页面或浏览器后失效                | 永久保存                 |
-| 存放数据的大小 | `4K`左右                                                                             | PC 一般 `5M`,移动端`2.5M`                                 | PC 一般`5M`,移动端`2.5M | 一般没有上限大小                |
+| 存放数据的大小 | `4K`左右                                                                             | PC 一般 `5M`,移动端`2.5M`                                 | PC 一般`5M`,移动端`2.5M`                                  | 一般没有上限大小         |
 | 与服务器通信   | 始终在同源的`http` 请求中携带，如果使用 `cookie`保存过多会带来性能问题               | 仅在浏览器中保存，不参与和服务器通信                      | 仅在浏览器中保存，不参与和服务器通信                      | 不参与                   |
 | 易用性         | 原生的接口不太友好，需要封装下                                                       | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 比较繁琐，异步，支持事务 |
 | 同源策略       | 同源                                                                                 | 同源                                                      | 同源                                                      | 同源                     |
@@ -84,28 +64,19 @@ nav:
 - `webStorage` 支持事件通知机制，可以将数据更新的通知发送给监听者。`api` 的接口使用更方便。
 - `indexedDB` 支持事务
 
-## Q4: 讲讲你对 cookie 的理解？包括 SameSite 属性
-
-[预测最近面试会考 Cookie 的 SameSite 属性](https://juejin.cn/post/6844904095711494151)
-
-## Q5: offset/scroll/client
-
-- [offset/scroll/client 各类属性详解](https://juejin.cn/post/6940808773564891166#heading-2)
-- [client offset clientX offsetX screenX pageX scroll 区别](https://juejin.cn/post/6920410669904822279)
-
-## Q6: fetch 发送 2 次请求的原因
+## Q4: fetch 发送 2 次请求的原因
 
 `fetch` 发送 `post` 请求的时候，总是发送 `2` 次，第一次状态码是 `204`，第二次才成功?
 
 > 原因很简单，因为你用 `fetch` 的 `post` 请求的时候，导致 `fetch` 第一次发送了一个 `Options` 请求，询问服务器是否支持修改的请求头，如果服务器支持，则在第二次中发送真正的请求
 
-## Q7: GET 和 POST 的区别
+## Q5: GET 和 POST 的区别
 
 - `get` 参数通过 `url` 传递，`post` 放在 `request body`中。
 - `get` 请求在 `url` 中传递的参数是有长度限制的，而 `post` 没有。
 - `get` 比 `post` 更不安全，因为参数直接暴露在 `url` 中，所以不能用来传递敏感信息。
 - `get` 请求只能进行 `url` 编码，而 `post` 支持多种编码方式
-- `get` 请求会浏览器主动 `cache`，而 `post` 支持多种编码方式。
+- `get` 请求会浏览器主动 `cache`，而 `post` 不会。
 - `get` 请求参数会被完整保留在浏览历史记录里，而 `post` 中的参数不会被保留。
 - `GET` 和 `POST` 本质上就是 `TCP` 链接，并无差别。但是由于 `HTTP` 的规定和浏览器/服务器 的限制，导致他们在应用过程中体现出一些不同。
 - `GET` 产生一个 `TCP` 数据包; `POST` 产生两个 `TCP` 数据包。
@@ -123,13 +94,121 @@ nav:
 
 ### 四种常见的 POST 提交数据方式
 
+- `application/x-www-form-urlencoded` 默认表单数据提交类型
+- `multipart/form-data` 表单上传文件数据提交类型
+- `application/json` JSON 格式数据提交类型
+- `text/xml` XML 格式数据提交类型
+
 [四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
 
-## Q8: SPA and MPA
+## Q6: 讲讲你对 cookie 的理解？包括 SameSite 属性
+
+> `SameSite` 属性可以让 `Cookie` 在跨站请求时不会被发送，从而可以阻止跨站请求伪造攻击（CSRF）。
+
+**SameSite 可以有下面三种值：**
+
+1. `Strict` 仅允许一方请求携带 `Cookie`，即浏览器将只发送相同站点请求的 `Cookie`，即当前网页 `URL` 与请求目标 `URL` 完全一致。
+2. `Lax` 允许部分第三方请求携带 `Cookie`
+3. `None` 无论是否跨站都会发送 `Cookie`
+
+**说明：**
+
+> 之前默认是 `None` 的，`Chrome80` 后默认是 `Lax`
+
+[预测最近面试会考 Cookie 的 SameSite 属性](https://juejin.cn/post/6844904095711494151)
+
+## Q7: JS 实现跨域（九种方式）
+
+> 跨域是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对 `JavaScript` 实施的安全限制，那么只要`协议`、`域名`、`端口`有任何一个不同，都被当作是不同的域
+>
+> 跨域原理，即是通过各种方式，避开浏览器的安全限制
+
+- 通过 `jsonp` 跨域
+- `cors` 跨域资源共享（CORS）
+- `postMessage` 跨域
+- `WebSocket`协议跨域
+- `nginx` 代理跨域
+- `nodejs` 中间件代理跨域
+- `document.domain + iframe` 跨域
+- `location.hash + iframe`
+- `window.name + iframe`跨域
+
+**说明：**
+
+1. `CORS` 支持所有类型的 `HTTP` 请求，是跨域 `HTTP` 请求的根本解决方案
+2. `JSONP` 只支持 `GET` 请求，`JSONP` 的优势在于支持老式浏览器，以及可以向不支持 `CORS` 的网站请求数据。
+3. 不管是 `Node` 中间件代理还是 `nginx` 反向代理，主要是通过同源策略对服务器不加限制。
+4. 日常工作中，用得比较多的跨域方案是 `cors` 和 `nginx` 反向代理
+
+[前端常见跨域解决方案（全）](https://segmentfault.com/a/1190000011145364)
+
+[九种跨域方式实现原理（完整版）](https://juejin.cn/post/6844903767226351623)
+
+## Q8: 谈谈前端的安全知识？XSS、CSRF，以及如何防范
+
+### XSS（Cross Site Scripting）- 跨域脚本攻击
+
+**XSS 攻击方式：**
+
+- 反射型
+
+> 发出请求时，`XSS` 代码出现在 `url` 中，作为输入提交到服务器端，服务器端解析后未过滤就进行响应，`XSS` 代码随响应内容一起传回给浏览器，最后浏览器解析执行 `XSS` 代码。这个过程像一次反射，所以叫反射型 `XSS`。
+
+- 存储型
+
+> 存储型 `XSS` 和反射型 `XSS` 的差别在于:
+> 提交的代码会存储在服务器端（数据库、内存、文件系统等），下次请求目标页面时不用再提交 `XSS` 代码。
+
+- DOM 型
+
+> `DOM` 型 `XSS` 攻击，实际上就是前端 `JS` 代码不够严谨，把不可信的内容插入到了页面
+
+#### XSS 的防范措施
+
+- 进行一系列[编码处理](https://www.jianshu.com/p/599fcd03fd3b)
+- 内容安全策略（Content Security Policy）,严格的 CSP 在 XSS 的防范中起以下作用
+  - 禁止加载外域代码，防止复杂的攻击逻辑。
+  - 禁止外域提交，网站被攻击后，用户的数据不会泄露到外域。
+  - 禁止内联脚本执行（规则较严格，目前发现 GitHub 使用）。
+  - 禁止未授权的脚本执行（新特性，Google Map 移动版在使用）。
+  - 合理使用上报可以及时发现 `XSS`，利于尽快修复问题。
+- 输入内容长度控制
+- 输入内容限制
+- 其他安全措施
+  - `HTTP-only Cookie`: 禁止 `JS` 读取某些敏感 `Cookie`，攻击者完成 `XSS` 注入后也无法窃取此 `Cookie`。
+  - 验证码：防止脚本冒充用户提交危险操作。
+
+### CSRF（Cross-site request forgery）- 跨站请求伪造
+
+**要完成一次 `CSRF` 攻击, 须满足以下两点:**
+
+- 用户登录信任网站 `A`, 并在本地生成 `Cookie`。
+- 不登出信任网站 `A` 情况下访问另一网站 `B`。（利用网站 A 的漏洞将 B 嵌入进去）
+
+#### CSRF 的防范措施
+
+- `Token` 验证
+- `Referer` 验证【判断请求的来源是否是安全的】(该方法并不安全，`Referer` 本身是可以被更改)
+- `Cookie Samesite` 属性
+- 添加验证码
+
+### CSRF 和 XSS 的区别
+
+- `CSRF` 需要用户先登录网站 `A`，获取 `cookie`; `XSS` 不需要登录
+- `CSRF` 是利用网站 `A` 本身的漏洞，去请求网站 `A` 的 `api`; `XSS` 是向网站 `A` 注入 `JS` 代码，然后执行 `JS` 里的代码，篡改网站 `A` 的内容
+
+[寒冬求职之你必须要懂的 Web 安全](https://juejin.cn/post/6844903842635579405)
+
+## Q9: offset/scroll/client
+
+- [offset/scroll/client 各类属性详解](https://juejin.cn/post/6940808773564891166#heading-2)
+- [client offset clientX offsetX screenX pageX scroll 区别](https://juejin.cn/post/6920410669904822279)
+
+## Q10: SPA and MPA
 
 [SPA（单页面应用）和 MPA（多页面应用）](https://www.jianshu.com/p/a02eb15d2d70)
 
-### 浅谈 SSR
+## Q11: 浅谈 SSR
 
 [浅谈服务端渲染(SSR)](https://www.jianshu.com/p/10b6074d772c)
 
