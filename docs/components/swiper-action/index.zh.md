@@ -27,14 +27,14 @@ nav:
 > tip: `movable-area` 必须设置 `width` 和 `height` 属性，不设置默认为 `10px`
 
 - `movable-area` 作为`外层容器`宽度默认为屏幕宽度，可接受外部传入【内容超出区域隐藏】
-- `moveable-view` 作为`所有内容容器`【内容包含有: 左右两边操作按钮，中间内容（宽度与外层容器相同）】
+- `moveable-view` 作为`内容容器`【内容包含有: 左右两边操作按钮，中间内容（宽度与外层容器相同）】
 - `moveable-view` 上通过 `touch` 事件来进行滑动操作控制
 
 **以下描述变量说明：**
 
-> moveViewX： `moveable-view` 组件 `x` 属性值对应变量
-> btnWrapWidth： 按钮容器宽度(leftBtnWrapWidth、rightBtnWrapWidth)
-> diffDist：`startX - endX` 两触摸差值。 大于 `0` 左滑动，展示右按钮；小于 `0` 右滑动，展示左按钮。
+- moveViewX： `moveable-view` 组件 `x` 属性值对应变量
+- btnWrapWidth： 按钮容器宽度(leftBtnWrapWidth、rightBtnWrapWidth)
+- diffDist：`startX - endX` 两触摸点差值。 大于 `0` 左滑动，展示右按钮；小于 `0` 右滑动，展示左按钮。
 
 **`touch` 事件:**
 
@@ -44,9 +44,9 @@ nav:
 
 **逻辑思路处理：**
 
-> 组件首次渲染的时候获取 `btnWrapWidth`；结合使用 `translateX(-leftBtnWrapWidth)` 使得内容区域完全展示；后面在 `touchend` 事件中进行相应逻辑的处理
+> 组件首次渲染的时候获取 `btnWrapWidth`；结合使用 `translateX(-leftBtnWrapWidth)` 使得内容区域展示完全；后面在 `touchend` 事件中进行相应逻辑的处理
 >
-> - 通过 `diffDist` 值正/负判断左/右移动，`Math.abs(diffDist)` 与 `btnWrapWidth / 2` 比较判断时候移动。
+> - 通过 `diffDist` 值正/负判断左/右移动，`Math.abs(diffDist)` 与 `btnWrapWidth / 2` 比较判断是否移动
 > - 向左滑动展示右边按钮【设置 `moveViewX` 为 `-(leftBtnWrapWidth + rightBtnWrapWidth)`】
 > - 向右滑动展示右边按钮【设置 `moveViewX` 为 `0`】
 > - 滑动关闭按钮时【设置 `moveViewX` 为 `-leftBtnWrapWidth`】
@@ -63,7 +63,7 @@ nav:
 
 **思路描述:**
 
-> 组件最外层容器使用绝对定位，内容超出部分隐藏，宽度默认为屏幕宽度。
-> 左/右按钮使用绝对定位，两者开始时均隐藏。
-> 内容区域使用相对定位，通过 `touch` 事件判断，显示相应的按钮，设置内容区域 `left` 使得内容区域移动
-> 具体 `touch` 事件等部分处理逻辑类似上面小程序端实现处理
+> - 组件最外层容器使用绝对定位，展示层级在按钮之上，内容超出部分隐藏，宽度默认为屏幕宽度。
+> - 左/右按钮使用绝对定位，两者开始时均隐藏。
+> - 内容区域使用相对定位，通过 `touch` 事件判断，显示相应的按钮，设置内容区域定位左偏移属性 `left` 使得内容区域移动
+> - 具体 `touch` 事件等部分处理逻辑类似上面小程序端实现处理
