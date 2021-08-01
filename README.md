@@ -88,6 +88,13 @@ $ npm run build
         <strong>山月</strong>
       </a>
     </td>
+    <td width="160" align="center">
+      <a target="_blank" href="http://47.98.159.95/my_blog/">
+        <img src="http://47.98.159.95/my_blog/logo.png" width="42" />
+        <br />
+        <strong>三元</strong>
+      </a>
+    </td>
   </tr>
 </table>
 
