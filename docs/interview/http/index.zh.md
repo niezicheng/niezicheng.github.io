@@ -15,11 +15,11 @@ nav:
 
 [HTTP 协议内容相关](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/04-HTTP%E5%8D%8F%E8%AE%AE.md)
 
-## Q1: http 常见状态码
+### Q1: http 常见状态码
 
 [http 状态码](http://47.98.159.95/my_blog/blogs/net/http/004.html)
 
-### 301 和 302 的区别
+#### 301 和 302 的区别
 
 - 301 Moved Permanently 被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 `URI` 之一。如果可能，拥有链接编辑功能的客户端应 当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。
 - 302 Found 请求的资源现在临时从不同的 `URI` 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在 `Cache-Control` 或 `Expires` 中进行了指定的情况下，这个响应才是可缓存的。
@@ -27,7 +27,7 @@ nav:
 > 字面上的区别就是 `301` 是永久重定向，而 `302` 是临时重定向。
 > `301`比较常用的场景是使用域名跳转。`302` 用来做临时跳转 比如未登陆的用户访问用户 中心重定向到登录页面。
 
-## Q2: http 与 https 的区别
+### Q2: http 与 https 的区别
 
 - `http` 是一种一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。
 - `http` 工作在 `TCP` 协议的 `80` 端口，`https` 工作在 `TCP` 协议的 `443` 端口
@@ -36,13 +36,45 @@ nav:
 
 [详细解析 HTTP 与 HTTPS 的区别](https://juejin.cn/post/6844903471565504526)
 
-## Q3: 谈谈 https 的原理？为什么 https 能保证安全？
+### Q3: 谈谈 https 的原理？为什么 https 能保证安全？
 
 [谈谈 HTTPS](https://juejin.cn/post/6844903504046211079)
 
-## Q4: 讲讲 http 的缓存机制吧，强缓存，协商缓存？
+### Q4: 讲讲 http 的缓存机制吧，强缓存，协商缓存？
 
 [深入理解浏览器的缓存机制](深入理解浏览器的缓存机制)
+
+### Q5: SSL/TLS
+
+#### RSA 算法
+
+1. 浏览器发送 `client_random`（客户端生成的随机数）、`TLS` 版本、以及客户端支持的加密方法
+2. 服务器确认 `TLS` 版本和双方使用的加密方法，并给出数字证书和 `server random`（服务器生成的随机数）
+3. 浏览器确认数字证书有效，然后生成使用加密算法生产 `Premaster secret` (随机数)，并使用数字证书中的公钥加密发给服务器
+4. 服务器使用私钥解密这个被加密的 `Premaster secret` (随机数)
+5. 此刻浏览器和服务器都可以有 `client_random`、`server_random` 和 `Premaster secret` 三个随机数，通过这三个随机数计算最终的 `secret`
+
+**图解：**
+![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a28591c41cd64dfe8ceac856a9d40fa3~tplv-k3u1fbpfcp-watermark.image)
+
+#### DH 算法
+
+1. 浏览器发送 `client_random`（客户端生成的随机数）、`TLS` 版本、以及客户端支持的加密方法
+2. 服务器确认 `TLS` 版本和双方使用的加密方法，并给出数字证书，同时服务器利用私钥将 `client_random`，`server_random`，`server_params` 签名, 然后将`签名`和 `server_params` 参数也发送给客户端
+3. 浏览器确认数字证书和签名有效，并将 `client params` 参数发送给服务器
+4. 此刻浏览器和服务器都可以有 `client_random`、`server_random` 和 `pre_random` ( `server_params` 和 `client_params`) 三个随机数，通过这三个随机数计算最终的 `secret` 。
+
+**说明：**
+
+> - **pre_random** 通过 `ECDHE` 算法计算出 `pre_random` ，其中传入两个参数 `server_params` 和 `client_params`。(`ECDHE`基于`椭圆曲线离散对数`，这两个参数也称作`椭圆曲线的公钥`)
+> - **secret** 通过 `client_random`、`server_random` 和 `pre_random` 这个三个数通过一个伪随机数函数来计算出最终的`secret`
+
+**图解：**
+![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a6eee0152d64fa693667e9e40d96d0b~tplv-k3u1fbpfcp-watermark.image)
+
+[TLS 详解握手流程](https://juejin.cn/post/6895624327896432654)
+
+[图解 SSL/TLS 协议(阮)](http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html)
 
 ## TCP
 
@@ -50,11 +82,11 @@ nav:
 
 [(建议收藏)TCP 协议灵魂之问，巩固你的网路底层基础](https://juejin.cn/post/6844904070889603085)
 
-## Q1: TCP 和 UDP 的区别概述
+### Q1: TCP 和 UDP 的区别概述
 
 [TCP 和 UDP 的区别概述](http://47.98.159.95/my_blog/blogs/net/tcp/001.html)
 
-## Q2: 三次握手
+### Q2: 三次握手
 
 > 目的: 确认双方的`接收能力`和`发送能力`都正常
 
@@ -69,12 +101,12 @@ nav:
 > - 第一次滞留的客户端请求连接可能在双方断开连接后某个时间段到达服务器, 由于是两次握手, 服务端只要接收到, 然后发送相应的数据
 >   包，就默认建立连接，但是现在客户端已经断开了
 
-## Q3: 四次挥手
+### Q3: 四次挥手
 
 - 第一次挥手: 客户端向服务端断开连接请求
 - 第二次挥手: 服务端接收后告诉客户端已收到, 客户端接收到了服务端的确认
 - 第三次挥手: 服务器向客户端发送断开连接请求 (必须等到服务端所有的报文都发送完毕了, 才告诉客户端我要断开连接)
 - 第四次挥手: 客户端接收服务端断开连接消息后发送确认消息给服务端，服务端断开连接
 
-> 客户端需要等待 2 个`MSL`(Maximum Segment Lifetime，报文最大生存时间)时间,
+> 客户端需要等待 2 个`MSL`(`Maximum Segment Lifetime`，报文最大生存时间)时间,
 > 没有收到服务端的重发请求，表示确认消息已送达, 挥手结束; 否则, 客服端重新向服务端发送确认收到消息
