@@ -47,6 +47,13 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 
 [这些互联网圈内常用的名词你了解多少](https://zhuanlan.zhihu.com/p/64649254)
 
+### 工具/插件
+
+- **Smart TOC:** 显示每个网页的目录，使阅读/导航长文章、文档和在线书籍更容易（Google 插件）
+
+- **carbon:** 创建和共享源代码的精美图像 [carbon](https://carbon.now.sh/)（在线网站）
+- **Github Copilot** 代码技术预览 [Github Copilot](https://copilot.github.com/)
+
 ### 工具库整理
 
 [lodash 整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)
