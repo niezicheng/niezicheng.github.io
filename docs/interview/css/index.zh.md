@@ -13,13 +13,57 @@ nav:
 
 [50 道 CSS 基础面试题](https://segmentfault.com/a/1190000013325778)
 
-[剖析一些经典的CSS布局问题，为前端开发+面试保驾护航](https://juejin.cn/post/6844903962529759239)
+[剖析一些经典的 CSS 布局问题，为前端开发+面试保驾护航](https://juejin.cn/post/6844903962529759239)
 
 ## CSS 模块化演变历程
 
+### CommonJS 规范
+
+**优点：**
+
+- 解决了依赖、全局变量污染的问题，是 `js` 运行在服务器端的必要条件
+
+**缺点：**
+
+- `CommonJS` 是`同步加载模块`的(在服务器端，文件都是保存在硬盘上，所以同步加载没有问题)
+- `CommonJS` 是不适用于浏览器端的(在浏览器端，需要将文件从服务器端请求过来，那么同步加载就不适用了)
+
+### AMD 规范
+
+**优点：**
+
+- 适合在浏览器环境中`异步加载模块`。可以`并行加载`多个模块。
+
+**缺点：**
+
+- 提高了开发成本，必须提前加载所有的依赖，不能`按需加载`
+
+### CMD 规范
+
+**优点：**
+
+- 同样实现了浏览器端的模块化加载。可以`按需加载`，依赖就近。
+
+**缺点：**
+
+- 依赖 `SPM` 打包，模块的加载逻辑偏重
+
+### ES6 模块化
+
+`ES6` 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 `CommonJS` 和 `AMD` 规范，成为浏览器和服务器通用的模块解决方案
+
+**ES6 模块与 CommonJS 模块的差异:**
+
+- `CommonJS` 模块输出的是一个值的拷贝，`ES6` 模块输出的是值的引用。
+- `CommonJS` 模块是运行时加载，`ES6` 模块是编译时输出接口。
+
+**说明:**
+
+> 第二个差异是因为 `CommonJS` 加载的是一个对象（即 `module.exports` 属性），该对象只有在脚本运行完才会生成。而 `ES6` 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
+
 [前端模块化演化阶段](https://www.jianshu.com/p/f2cf62c66493)
 
-[前端模块化详解(完整版)](https://juejin.cn/post/6844903744518389768#heading-18)
+[前端模块化详解(完整版)](https://juejin.cn/post/6844903744518389768)
 
 ## CSS3 新特性
 
@@ -96,15 +140,15 @@ nav:
 ## Q6: 清除浮动的方法，能讲讲吗?
 
 - 使用带 `clear` 属性的空元素
-在浮动元素后使用一个空元素如: `<div class="clear"></div>`，并在 `CSS` 中赋予 `.clear{ clear:both; }` 属性即可清理浮动。亦可使用`<br class="clear" />`或`<hr class="clear" />`来进行清理。
+  在浮动元素后使用一个空元素如: `<div class="clear"></div>`，并在 `CSS` 中赋予 `.clear{ clear:both; }` 属性即可清理浮动。亦可使用`<br class="clear" />`或`<hr class="clear" />`来进行清理。
 - 使用邻接元素处理(和上一种方法原理一样)
-什么都不做，给浮动元素后面的元素添加 `clear` 属性。
+  什么都不做，给浮动元素后面的元素添加 `clear` 属性。
 - 使用 `CSS` 的 `overflow` 属性
-给浮动元素的容器添加 `overflow: hidden;`或 `overflow: auto;`可以清除浮动，另外在 `IE6` 中还需要触发 `hasLayout` ，例如为父元素设置容器宽高或设置 `zoom: 1`。在添加 `overflow` 属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动 的效果。
+  给浮动元素的容器添加 `overflow: hidden;`或 `overflow: auto;`可以清除浮动，另外在 `IE6` 中还需要触发 `hasLayout` ，例如为父元素设置容器宽高或设置 `zoom: 1`。在添加 `overflow` 属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动 的效果。
 - 使用 `CSS` 的 `:after` 伪元素
-结合 `:after` 伪元素(注意这不是伪类，而是伪元素，代表一个元素之后最近的元素)和 `IEhack` ，可以完美兼容当前主流的各大浏览器，这里的 `IEhack` 指的是触发 `hasLayout`。 给浮动元素的容器添加一个 `clearfix` 的 `class`，然后给这个 `class` 添加一个`:after` 伪元素实现元素末尾添加一个看不见的块元素(Block element)清理浮动。
+  结合 `:after` 伪元素(注意这不是伪类，而是伪元素，代表一个元素之后最近的元素)和 `IEhack` ，可以完美兼容当前主流的各大浏览器，这里的 `IEhack` 指的是触发 `hasLayout`。 给浮动元素的容器添加一个 `clearfix` 的 `class`，然后给这个 `class` 添加一个`:after` 伪元素实现元素末尾添加一个看不见的块元素(Block element)清理浮动。
 - 给浮动的元素的容器添加浮动
-给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，不推荐使用。
+  给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，不推荐使用。
 
 [清除浮动](https://www.cnblogs.com/ForEvErNoME/p/3383539.html)
 
@@ -113,8 +157,8 @@ nav:
 - `link` 属于 `html` 标签，而 `@import` 是 `css` 提供的
 - 页面被加载时，`link` 会同时被加载，而 `@import` 引用的 `css` 会等到页面加载结束后加载
 - `link` 方式样式的权重高于 @import 的
-- `link` 可以使用 js 动态引入，@import不行
-- `link` 此没有兼容性要求，而 @import IE低版本浏览器不支持
+- `link` 可以使用 js 动态引入，@import 不行
+- `link` 此没有兼容性要求，而 @import IE 低版本浏览器不支持
 
 ## Q8: transition 和 animation 的区别
 
@@ -157,15 +201,15 @@ text-overflow 属性值:
 - 多行(文本一定会溢出的情况下)
 
 ```css | pure
-div{
+div {
   width: 300px;
   position: relative;
   line-height: 1.4em;
   height: 4.2em;
   overflow: hidden;
 }
-div::after{
-  content: "...";
+div::after {
+  content: '...';
   position: absolute;
   right: 0;
   bottom: 0;
@@ -223,4 +267,4 @@ div::after{
 
 ### 媒体查询
 
-[深入浅出篇 — media媒体查询 - 响应式开发必备](https://juejin.cn/post/6844903970226307080)
+[深入浅出篇 — media 媒体查询 - 响应式开发必备](https://juejin.cn/post/6844903970226307080)

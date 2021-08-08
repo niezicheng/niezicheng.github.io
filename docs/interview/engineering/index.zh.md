@@ -36,3 +36,7 @@ nav:
 ## Q3: 如何规范代码提交并自动生成 CHANGELOG
 
 [Git Commit 规范（Conventional Commit）](https://juejin.cn/post/6985500205554597918)
+
+## Q4: TS 问题常见解答
+
+[钉钉前端面试题~TypeScript 相关问题的部分解答](https://juejin.cn/post/6988763249982308382)
