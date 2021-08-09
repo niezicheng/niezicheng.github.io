@@ -11,9 +11,11 @@ nav:
 
 ## js 收集
 
-[前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)
-
 [春招季如何横扫 Javascript 面试核心考点(基础版)？](https://juejin.cn/post/6844903809215365134)
+
+[由浅入深，66 条 JavaScript 面试知识点](https://juejin.cn/post/6844904200917221389)
+
+[前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)
 
 ## Q1: 事件冒泡和捕获及事件委托
 
@@ -24,7 +26,7 @@ nav:
 > - 减少内存消耗, 节约效率
 > - 动态绑定事件
 
-[DOM 事件了解](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93.md)
+[DOM 事件了解](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93.md)
 
 [你真的理解事件冒泡和事件捕获吗？](https://juejin.cn/post/6844903834075021326)
 
@@ -133,7 +135,7 @@ p2.sayName(); // chen
 
 > 可以在全局范围中声明一个函数，然后将引用传递给对象中的函数属性。但是这样做会导致全局函数过多，体现不了对象的封装性
 
-[创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
+[创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
 ### 继承的几种方式和优缺点？
 
@@ -146,7 +148,7 @@ p2.sayName(); // chen
 - 实例继承和拷贝继承
 - 组合继承
 
-[类的定义和继承的几种方式](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
+[类的定义和继承的几种方式](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
 
 ## Q7: JS 垃圾回收机制
 
@@ -305,7 +307,7 @@ map.get('chen'); // chen
 
 [es6 Map 和 Set](https://segmentfault.com/a/1190000015960005)
 
-#### 拓展
+#### 引用拓展
 
 [如何实现 JS 真正意义上的弱引用？](https://www.infoq.cn/article/lksmb2tlgh1ehg0*bbyg)
 

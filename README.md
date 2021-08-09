@@ -95,6 +95,13 @@ $ npm run build
         <strong>三元</strong>
       </a>
     </td>
+    <td width="160" align="center">
+      <a target="_blank" href="https://www.kancloud.cn/freya001/interview/1224405">
+        <img src="https://avatar.kancloud.cn/a9/4571b4feb59a0d5407d1da3887f78d!large" width="42" />
+        <br />
+        <strong>Freya</strong>
+      </a>
+    </td>
   </tr>
 </table>
 

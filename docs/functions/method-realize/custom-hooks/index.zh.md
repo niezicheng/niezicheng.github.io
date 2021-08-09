@@ -8,6 +8,10 @@ nav:
   order: 1
 ---
 
+## a hooks library
+
+[ahooks](https://ahooks.js.org/)
+
 ## 自定义同步 hooks
 
 > 类似于类组件 `this.setData(data, callback)` 中设置值后的回调函数 `callback`。

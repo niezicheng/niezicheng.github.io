@@ -1,6 +1,6 @@
 ---
 title: GIT
-order: 7
+order: 8
 group:
   title: Interview Question
 toc: 'menu'
@@ -19,7 +19,7 @@ nav:
 
 ## 规范
 
-[超详细的Git提交规范引入指南](https://juejin.cn/post/6844903793033756680)
+[超详细的 Git 提交规范引入指南](https://juejin.cn/post/6844903793033756680)
 
 ## 部署
 
@@ -27,4 +27,4 @@ nav:
 
 [github action](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 
-[github pages + github Action自动集成](https://www.jianshu.com/p/95359e58271f)
+[github pages + github Action 自动集成](https://www.jianshu.com/p/95359e58271f)
