@@ -130,24 +130,42 @@ nav:
 - 联系：
   - 它们都能让元素不可见
 
-## Q5: BFC
+## Q5: BFC 块级格式化上下文
 
 > BFC: 块级格式化上下文，可用于清楚浮动，防止 `margin` 重叠等
 
+只要元素满足下面任一条件即可触发 `BFC` 特性：
+
+- `body` 根元素
+- 浮动元素：`float` 除 `none` 以外的值
+- 绝对定位元素：`position` (absolute、fixed)
+- `display` 为 `inline-block`、`table-cells`、`table-caption`
+- `overflow` 除了 `visible` 以外的值 (hidden、auto、scroll)
+
 [10 分钟理解 BFC 原理](https://zhuanlan.zhihu.com/p/25321647)
+
 [BFC 应用](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/02-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
 
 ## Q6: 清除浮动的方法，能讲讲吗?
 
 - 使用带 `clear` 属性的空元素
+
   在浮动元素后使用一个空元素如: `<div class="clear"></div>`，并在 `CSS` 中赋予 `.clear{ clear:both; }` 属性即可清理浮动。亦可使用`<br class="clear" />`或`<hr class="clear" />`来进行清理。
+
 - 使用邻接元素处理(和上一种方法原理一样)
+
   什么都不做，给浮动元素后面的元素添加 `clear` 属性。
+
 - 使用 `CSS` 的 `overflow` 属性
+
   给浮动元素的容器添加 `overflow: hidden;`或 `overflow: auto;`可以清除浮动，另外在 `IE6` 中还需要触发 `hasLayout` ，例如为父元素设置容器宽高或设置 `zoom: 1`。在添加 `overflow` 属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动 的效果。
+
 - 使用 `CSS` 的 `:after` 伪元素
+
   结合 `:after` 伪元素(注意这不是伪类，而是伪元素，代表一个元素之后最近的元素)和 `IEhack` ，可以完美兼容当前主流的各大浏览器，这里的 `IEhack` 指的是触发 `hasLayout`。 给浮动元素的容器添加一个 `clearfix` 的 `class`，然后给这个 `class` 添加一个`:after` 伪元素实现元素末尾添加一个看不见的块元素(Block element)清理浮动。
+
 - 给浮动的元素的容器添加浮动
+
   给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，不推荐使用。
 
 [清除浮动](https://www.cnblogs.com/ForEvErNoME/p/3383539.html)
@@ -162,7 +180,14 @@ nav:
 
 ## Q8: transition 和 animation 的区别
 
-[CSS 动画简介](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)
+`transition` 的优点在于简单易用，但是它有几个很大的局限:
+
+- `transition` 需要事件触发，所以没法在网页加载时自动发生。
+- `transition` 是一次性的，不能重复发生，除非一再触发。
+- `transition` 只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。
+- 一条 `transition` 规则，只能定义一个属性的变化，不能涉及多个属性。
+
+[CSS 动画简介(阮)](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)
 
 ## Q9: 关于 JS 动画和 css3 动画的差异性
 
@@ -177,14 +202,16 @@ nav:
 
 ## Q10: display: table 和本身的 table 有什么区别
 
-Display:table 和本身 table 是相对应的，区别在于，display:table 的 css 声明能够让一个 html 元素和它的子节点像 table 元素一样，使用基于表格的 css 布局，是我们能够轻松定 义一个单元格的边界，背景等样式，而不会产生因为使用了 table 那样的制表标签导致 的语义化问题。
-之所以现在逐渐淘汰了 table 系表格元素，是因为用 div+css 编写出来的文件比用 table 边写出来的文件小，而且 table 必须在页面完全加载后才显示，div 则是逐行显示，table 的嵌套性太多，没有 div 简洁
+`display:table` 和本身 `table` 是相对应的，区别在于:
+
+- `display: table` 的 `css` 声明能够让一个 `html` 元素和它的子节点像 `table` 元素一样，使用基于表格的 `css` 布局，是我们能够轻松定义一个单元格的边界，背景等样式，而不会产生因为使用了 `table` 那样的制表标签导致的语义化问题。
+- 之所以现在逐渐淘汰了 `table` 系表格元素，是因为用 `div + css` 编写出来的文件比用 `table` 编写出来的文件小，而且 `table` 必须在页面完全加载后才显示，`div` 则是逐行显示，`table` 的嵌套性太多，没有 `div` 简洁.
 
 ## 实践题
 
 ### 文本溢出省略效果
 
-- 单行
+**单行：**
 
 ```css | pure
 overflow: hidden;
@@ -194,11 +221,11 @@ white-space: nowrap;
 
 text-overflow 属性值:
 
-- clip 是修剪文本;
-- ellipsis 为显示省略符号来表被修剪的文本;
-- string 为使用给定的字符串来代表被修剪的文本。
+- `clip` 是修剪文本;
+- `ellipsis` 为显示省略符号来表被修剪的文本;
+- `string` 为使用给定的字符串来代表被修剪的文本。
 
-- 多行(文本一定会溢出的情况下)
+**多行：**(文本一定会溢出的情况下)
 
 ```css | pure
 div {
@@ -222,7 +249,7 @@ div::after {
 - flex-shrink: 定义了项目的缩小比例，默认为 `1`，即如果空间不足，该项目将缩小
 - flex-basis: 定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为 `auto`，即项目的本来大小
 
-[Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+[Flex 布局教程：语法篇(阮)](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 
 ### 三栏布局
 
@@ -244,9 +271,9 @@ div::after {
 - flex 布局
   - 父级 `flex` 布局, 并设置子元素主、纵轴居中
 - position 定位布局
-  - 给父级相对定位，子级绝对定位：`left：50%;` `top：50%;` margin-left：-子级元素宽度一半；margin-top：-子级元素高度一半
-  - 给父级和子级都加绝对定位，再给子级添加 `top：calc（50% - 子级元素高度一半）`、`left：calc（50% - 子级元素宽度一半）`
-  - 给父级相对定位，子级绝对定位 `height` :百分比`x`; `x` 属于 `0~100%`; margin: auto; (定位为上下左右为 0，margin:0 可以实现脱离文档流的居中)
+  - 给父级相对定位，子级绝对定位：`left: 50%;` `top: 50%;` `margin-left：-子级元素宽度一半;` `margin-top: -子级元素高度一半`
+  - 给父级和子级都加绝对定位，再给子级添加 `top: calc（50% - 子级元素高度一半）`、`left: calc（50% - 子级元素宽度一半）`
+  - 给父级相对定位，子级绝对定位 `height: 百分比 x;` `x` 为父元素 0 ~ 100%; `margin: auto;` (定位为上下左右为 0，margin: 0 可以实现脱离文档流的居中)
 - table-cell
   - 设置父元素的 `display: table-cell`; 并且 `vertical-align: middle`，这样子元素可以实现垂直居中
 
@@ -255,7 +282,7 @@ div::after {
 ### 让图片宽度为 300px [仅添加 css 样式]
 
 ```html | pure
-<img src="1.jpg" style="width:480px!important;”>
+<img src="1.jpg" style="width:480px !important;”>
 ```
 
 方案：
