@@ -11,11 +11,19 @@ nav:
 
 ## Blog
 
-[2018 春招前端面试: 闯关记(精排精校) | 掘金技术征文](https://juejin.cn/post/6844903570001625102)
+### JS
+
+[春招季如何横扫 Javascript 面试核心考点(基础版)？](https://juejin.cn/post/6844903809215365134)
+
+[由浅入深，66 条 JavaScript 面试知识点](https://juejin.cn/post/6844904200917221389)
+
+[前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)
+
+### 集锦
 
 [前端知识集锦](https://juejin.cn/post/6844903567912878094)
 
-[由浅入深，66 条 JavaScript 面试知识点](https://github.com/xiaodongxier/iWebs/issues/66)
+[2018 春招前端面试: 闯关记(精排精校) | 掘金技术征文](https://juejin.cn/post/6844903570001625102)
 
 [2021 年前端面试必读文章【超三百篇文章/赠复习导图】](https://juejin.cn/post/6844904116339261447)
 

@@ -150,6 +150,8 @@ p2.sayName(); // chen
 
 [类的定义和继承的几种方式](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
 
+[JavaScript 继承的几种实现方式？](https://juejin.cn/post/6844904200917221389#heading-14)
+
 ## Q7: JS 垃圾回收机制
 
 > V8 把堆内存分为两部分处理 `新生代` 和 `老生代`

@@ -160,7 +160,7 @@ importScripts('script1.js', 'script2.js');
 
 > `iframe` 元素会创建包含另一个文档的内联框架
 >
-> 提示: 可以将提示文字放在 `<iframe></iframe>`之间，来提示某些不支持 iframe 的浏览器
+> 提示: 可以将提示文字放在 `<iframe></iframe>`之间，来提示某些不支持 `iframe` 的浏览器
 
 **缺点:**
 
