@@ -39,9 +39,13 @@ nav:
 预加载:
 
 - 提前加载图片，当用户需要查看时可直接从本地缓存中渲染
-  懒加载:
+
+懒加载:
+
 - 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数
-  两种技术的本质:
+
+两种技术的本质:
+
 - 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
 - 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
 
@@ -53,28 +57,47 @@ nav:
 >
 > 闭包就是函数的局部变量集合，只是这些局部变量在函数返回后会继续存在
 >
-> 闭包就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈 上分配而是在堆上分配。当在一个函数内定义另外一个函数就会产生闭包。
+> 闭包就是函数的“堆栈”在函数返回后并不释放，我们也可以理解为这些函数堆栈并不在栈上分配而是在堆上分配。当在一个函数内定义另外一个函数就会产生闭包。
 
 作用:
 
 匿名自执行函数:
 
 - 我们知道所有的变量，如果不加上 `var` 关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如:
-  - 别的函数可能误 用这些变量;
-  - 造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链 上遍历的)
-- 除了每次使用变量都是用 var 关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，可以用闭包。
-  结果缓存:
-  我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象， 每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函 数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
+  - 别的函数可能误用这些变量;
+  - 造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)
+- 除了每次使用变量都是用 `var` 关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，可以用闭包。
+
+结果缓存:
+
+我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
 
 [JavaScript 深入之闭包](https://juejin.cn/post/6844903475998900237)
 
 ## Q5: js 中函数的 this 指向
+
+- 普通函数 `this` 指向执行(运行)时决定（window 或调用该函数对象等）
+- 箭头函数 `this` 指向声明时决定（创建时上下文 `this` 指向）
+  ...
 
 [JavaScript 中的 this](https://juejin.cn/post/6844903488304971789)
 
 [7 个关于 this 面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
 
 ## Q6: 原型链
+
+![图解](https://img-blog.csdnimg.cn/img_convert/b7dca39f0ccd1c880c6356f809ae0ee7.png)
+
+**instance of：**
+
+son instance of Person 原理：son.\_\_proto\_\_ = Mother.prototype
+
+son instance of Object 原理：Mother.prototype.\_\_proto\_\_ = Object.prototype
+
+**Construct：**
+
+son.\_\_proto\_\_.constructor === Mother 为 `true`，但是 Mother.\_\_proto\_\_.constructor === Object 的为 `false`。
+所以，用 `consturctor` 判断就比用 `instance of` 判断，更为严谨。
 
 [JavaScript 深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
 
@@ -96,7 +119,7 @@ nav:
   - 将原型方法赋值和创建过程移动到构造函数内部，对属性对判断实现仅仅在第一次调用函数时候执行。
   - 很好对对组合模式进行来封装
 - 寄生构造函数模式
-  - 基于一个已有类型，在实例化时对实例对象进行扩展（达到既不修改原构造函数也达到扩展对象对目的）
+  - 基于一个已有类型，在实例化时对实例对象进行扩展（达到既不修改原构造函数也达到扩展对象目的）
   - 缺点：和工厂模式一样，无法实现对对象的识别，均为 `Object`
 
 **动态原型模式示例：**
@@ -135,18 +158,21 @@ p2.sayName(); // chen
 
 > 可以在全局范围中声明一个函数，然后将引用传递给对象中的函数属性。但是这样做会导致全局函数过多，体现不了对象的封装性
 
+[js 对象的深入理解(六)](https://www.cnblogs.com/nzcblogs/p/11197289.html)
+
 [创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
 ### 继承的几种方式和优缺点？
 
 - 原型链继承
-  - 特点:基于原型链，既是父类的实例，也是子类的实例
-  - 缺点:无法实现多继承
-- 构造继承
-  - 特点:可以实现多继承
-  - 缺点:只能继承父类实例的属性和方法，不能继承原型上的属性和方法。
-- 实例继承和拷贝继承
-- 组合继承
+  - 特点: 基于原型链，可以继承父类原型上的属性和方法
+  - 缺点: 不能继承父类实例的属性和方法；所有子类共用父类原型上的属性（注：引用类型属性 Array 等）
+- 构造（伪）继承
+  - 特点: 可以实现多继承，可以继承父类实例的属性和方法，
+  - 缺点: 不能继承原型上的属性和方法。
+- 组合继承（原型 + 伪继承）
+  - 可以继承父类实例的属性和方法，也可以继承原型上的属性和方法。
+  - 属性使用构造函数继承，方法使用原型链继承
 
 [类的定义和继承的几种方式](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
 
@@ -177,7 +203,7 @@ p2.sayName(); // chen
   - 对象不存活: 释放对象空间
 - 将 `From` 空间和 `To` 空间`角色`进行交换
 
-**新·生代晋升老生代条件:**
+**新生代晋升老生代条件:**
 
 - 已经经历过一次 `Scavenge` 算法回收
 - 对像从 `From` 空间 复制到 `To` 空间时，`To` 空间内存占用超过限制（25%）
@@ -204,6 +230,28 @@ p2.sayName(); // chen
 
 ## Q8: 事件循环机制（Event Loop）
 
+**Event Loop：**
+![图解](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/21/16a3e8964d1e54ce~tplv-t2oaga2asx-watermark.awebp)
+
+**说明：**
+
+- 所有同步任务都在主线程上执行，形成一个执行栈 (Execution Context Stack)。
+
+- 而异步任务会被放置到 `Task Table`，也就是上图中的异步处理模块，当异步任务有了运行结果，就将该函数移入任务队列。
+
+- 一旦执行栈中的所有同步任务执行完毕，引擎就会读取任务队列，然后将任务队列中的第一个任务压入执行栈中运行。
+
+主线程不断重复第三步，也就是 只要主线程空了，就会去读取任务队列，该过程不断重复，这就是所谓的 事件循环。
+
+**异步任务：**
+
+异步任务分为宏任务(macrotask)与微任务 (microtask)。宏任务会进入一个队列，而微任务会进入到另一个不同的队列，且微任务要优于宏任务执行
+
+**常见的宏任务和微任务:**
+
+宏任务： `script`(整体代码)、`setTimeout`、`setInterval`、`I/O`、`事件`、`postMessage`、 `MessageChannel`、`setImmediate` (Node.js)
+微任务： `Promise.then`、 `MutaionObserver`、`process.nextTick` (Node.js)
+
 [最后一次搞懂 Event Loop](https://juejin.cn/post/6844903827611598862)
 
 ## Q9: 不可变状态 Immutable
@@ -229,6 +277,22 @@ p2.sayName(); // chen
 
 [简单了解 ES6/ES2015 Symbol() 方法](https://juejin.cn/post/6844903591296106510)
 
+### undefined 与 null 的区别
+
+**null** 表示"没有对象"，即该处不应该有值
+
+- 作为函数的参数，表示该函数的参数是对象
+- 作为对象原型链的终点
+
+**undefined** 表示**缺少值**，就是此处应该有一个值，但是还没有定义
+
+- 变量被声明了，但没有赋值时，就等于 `undefined`
+- 调用函数时，应该提供的参数没有提供，该参数等于 `undefined`
+- 对象没有赋值的属性，该属性的值为 `undefined`
+- 函数没有返回值时，默认返回 `undefined`
+
+[undefined 与 null 的区别(阮)](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
+
 ### var、let、和 const 关键字
 
 - `let`关键字 【声明变量】
@@ -247,7 +311,7 @@ p2.sayName(); // chen
 
 ### 箭头函数与普通函数的区别
 
-- 箭头函数 `this 指向`声明上下文决定，普通函数 `this 指向`调用时上下文决定
+- 箭头函数 `this` 在声明时由上下文决定，普通函数 `this` 在调用时决定
 - 箭头函数没有自己的 `arguments` 对象，但是可以访问外围函数的 `arguments` 对象
 - 不能通过 `new` 关键字调用，同样也没有 `new.target` 值和原型
 
@@ -275,7 +339,7 @@ map.has(a); // true
 
 #### Map 类对象结构
 
-- 键值对的集合（`Hash` 结构，die dai qi)。 键的范围不仅局限于字符串，各种类型都可以
+- 键值对的集合（`Hash` 结构，迭代器对象)。 键的范围不仅局限于字符串，各种类型都可以
 
 ```ts | pure
 const a = { name: 'ming' };
@@ -294,16 +358,16 @@ map.get('chen'); // chen
 `WeakMap` 与 `Map` 的区别有两点:
 
 - `WeakMap` 只接受引用类型作为键名（`null` 除外），不接受其他类型的值作为键名。
-- `WeakMap` 的键会在不再可用后，会被垃圾回收机制处理销毁。
+- `WeakMap` 的`键`会在不再可用后，会被垃圾回收机制处理销毁。
 
 **注意:**
-`Weak Map` 的键才是弱引用，值不是。在 `Weak Map` 的值中存储对象会阻止垃圾回收，即使该对象的其他引用已全都被移除。
+`Weak Map` 的`键`才是弱引用，值不是。在 `Weak Map` 的值中存储对象会阻止垃圾回收，即使该对象的其他引用已全都被移除。
 
 #### `Set(Map)` 与 `WeakSet(WeakMap)` 的区别
 
 - WeakSet(WeakMap) 值(键) 需为引用类型
 - WeakSet(WeakMap) 没有 `size` 属性并且迭代器对应方法，只有四个方法 get()、set()、has()、delete()
-- WeakSet(WeakMap) 确保额外数据在不再可用后被垃圾回收机制回收，从而能优化内存使用并规避内存泄漏。
+- WeakSet(WeakMap) 确保额外数据在不可用后被垃圾回收机制回收，从而能优化内存使用并规避内存泄漏。
 
 [Set 和 Map 数据结构](https://es6.ruanyifeng.com/#docs/set-map)
 
@@ -317,6 +381,8 @@ map.get('chen'); // chen
 
 ### Promise/async/Generator
 
+[工具库-方法实现-Promise](https://niezicheng.github.io/functions/method-realize/promise)
+
 [9k 字 | Promise/async/Generator 实现原理解析](https://juejin.cn/post/6844904096525189128)
 
 ## 功能判断类型
@@ -326,6 +392,7 @@ map.get('chen'); // chen
 - `indexOf` 循环去重
 - `ES6` `Set` 去重
   - Array.from(new Set(array))
+  - [...new Set(array)]
 - `Object` 键值对去重;
   - 把数组的值存成 `Object` 的 `key` 值，比如 `Object[value1] = true`， 在判断另一个值的时候，如果 `Object[value2]` 存在的话，就说明该值是重复的
 
@@ -336,7 +403,7 @@ map.get('chen'); // chen
 > 所有方法总体来说还是使用递归方法调用来实现的
 
 1. 普通递归调用
-2. `toString()` 方法
+2. `toString() + split()` 方法
 3. `[].concat.apply + some` 方式
 4. `reduce` 方法
 5. `concat() + ...(扩展运算符)`
@@ -383,5 +450,7 @@ Object.prototype.toString.call(obj).slice(8, -1) === 'Array'; // "[object Array]
 - `typeof` 只能判断是 `object`, 可以判断一下是否拥有数组的方法
 
 ## 拓展
+
+[JavaScript 专题系列 20 篇正式完结！](https://juejin.cn/post/6844903506017517582)
 
 [80% 应聘者都不及格的 JS 面试题](https://juejin.cn/post/6844903470466629640#heading-3)
