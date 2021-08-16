@@ -29,7 +29,7 @@ class MyPromise {
     this._rejectQueue = [];
 
     let _resolve = (val: any) => {
-      // 使用 setTimeout 包裹，兼容 executor 同步代码情况
+      // 使用 setTimeout 包裹，兼容 executor 同步代码情况, 需保证 callback() 在 then 中收集
       setTimeout(() => {
         if (this._status !== PENDING) {
           return;

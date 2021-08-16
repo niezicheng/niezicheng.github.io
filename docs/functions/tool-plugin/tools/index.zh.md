@@ -10,10 +10,15 @@ nav:
 
 ## Image
 
-### Code 转 Image
+### 代码转 image
 
 - **carbon:** 创建和共享源代码的精美图像 [carbon](https://carbon.now.sh/)（在线网站）
 - **Github Copilot** 代码技术预览 [Github Copilot](https://copilot.github.com/)
+
+### image/video 除去水印
+
+- [水印管家](https://www.apowersoft.cn/online-watermark-remover)
+- [图片去水印其实很简单](https://zhuanlan.zhihu.com/p/36804747)
 
 ## 转换工具
 

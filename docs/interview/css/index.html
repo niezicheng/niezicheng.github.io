@@ -4,45 +4,47 @@
   <meta charset="UTF-8">
   <title>垂直居中</title>
   <style type="text/css">
-  #euro {
-  width: 150px;
-  height: 150px;
-  margin-left: -75px;
-  margin-top: -75px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background-color: red;
-  transform-style: preserve-3d;
-  animation: spin 2.5s linear infinite;
-  }
-  .back {
-    background-image: url("/uploads/160101/backeuro.png");
+    #euro {
     width: 150px;
     height: 150px;
-  }
-  .middle {
-    background-image: url("/uploads/160101/faceeuro.png");
-    width: 150px;
-    height: 150px;
-    transform: translateZ(1px);
+    margin-left: -75px;
+    margin-top: -75px;
     position: absolute;
-    top: 0;
-  }
-  .front {
-    background-image: url("/uploads/160101/faceeuro.png"); height: 150px;
-    position: absolute;
-    top: 0;
-    transform: translateZ(10px);
-    width: 150px;
-  }
+    top: 50%;
+    left: 50%;
+    background-color: red;
+    transform-style: preserve-3d;
+    animation: spin 2.5s linear infinite;
+    }
+    .back {
+      background-image: url("/uploads/160101/backeuro.png");
+      width: 150px;
+      height: 150px;
+    }
+    .middle {
+      background-image: url("/uploads/160101/faceeuro.png");
+      width: 150px;
+      height: 150px;
+      transform: translateZ(1px);
+      position: absolute;
+      top: 0;
+    }
+    .front {
+      background-image: url("/uploads/160101/faceeuro.png"); height: 150px;
+      position: absolute;
+      top: 0;
+      transform: translateZ(10px);
+      width: 150px;
+    }
 
-  @keyframes spin {
-    0% {
-    transform: rotateY(0deg); }
-    100% {
-    transform: rotateY(360deg); }
-}
+    @keyframes spin {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
   </style>
 </head>
 <body>
