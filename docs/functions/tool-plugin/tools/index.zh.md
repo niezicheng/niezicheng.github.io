@@ -20,6 +20,10 @@ nav:
 - [水印管家](https://www.apowersoft.cn/online-watermark-remover)
 - [图片去水印其实很简单](https://zhuanlan.zhihu.com/p/36804747)
 
+### 海报图片创造
+
+- [创客贴](https://www.chuangkit.com/designtools/designindex)
+
 ## 转换工具
 
 ### ES6 转 ES5 在线转换工具

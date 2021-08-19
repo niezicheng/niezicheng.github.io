@@ -13,6 +13,12 @@ nav:
 
 [最新 React Native 面试题和答案合集](http://www.srcmini.com/33329.html)
 
+## JSBridge]
+
+[初探 JSBridge](https://zhuanlan.zhihu.com/p/75543754)
+
+[React Native 之 JSBridge](http://www.alloyteam.com/2015/05/react-native-zhi-jsbridge/)
+
 ## PWA(渐进式 WEB 应用)是什么？
 
 [网站渐进式增强体验(PWA)改造：Service Worker 应用详解](https://lzw.me/a/pwa-service-worker.html)

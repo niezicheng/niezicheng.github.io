@@ -42,21 +42,13 @@ nav:
 
 [Context 基本了解](https://juejin.cn/post/6916844522202726408)
 
-### React 中的组件复用
-
-[【React 深入】从 Mixin 到 HOC 再到 Hook](https://juejin.cn/post/6844903815762673671)
-
 ### React 事件系统原理
 
 [React 事件系统工作原理](https://juejin.cn/post/6909271104440205326)
 
-### React 源码解析
+### React 中的组件复用
 
-[从 React 源码分析渲染更新流程](https://juejin.cn/post/6844904200824946696#heading-10)
-
-### React 技巧使用解析
-
-[React 开发必须知道的 34 个技巧【近 1W 字】](https://juejin.cn/post/6844903993278201870)
+[【React 深入】从 Mixin 到 HOC 再到 Hook](https://juejin.cn/post/6844903815762673671)
 
 ## React Router
 
@@ -87,3 +79,23 @@ nav:
 ## Vue
 
 [vue 面试题总汇](https://juejin.cn/post/6844903508810940429)
+
+## 源码解读
+
+[《React 源码解析》系列完结！(v15)](https://juejin.cn/post/6844903568487497741)
+
+[React 源码解析(v16)](https://react.jokcy.me/)
+
+[React Fiber 源码解析](https://juejin.cn/post/6859528127010471949)
+
+[自定义渲染器](http://hcysun.me/vue-design/zh/renderer-advanced.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B8%B2%E6%9F%93%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86)
+
+## 拓展
+
+[从 React 源码分析渲染更新流程](https://juejin.cn/post/6844904200824946696#heading-10)
+
+[前端大佬谈 React Fiber 架构](https://zhuanlan.zhihu.com/p/137234573)
+
+[React 技术揭秘](https://react.iamkasong.com/)
+
+[React 开发必须知道的 34 个技巧【近 1W 字】](https://juejin.cn/post/6844903993278201870)
