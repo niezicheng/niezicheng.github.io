@@ -46,6 +46,37 @@
       }
     }
   </style>
+  <script>
+    window.onload = function () {
+      function deepClone(obj, hash = new WeakMap()) {
+        if (obj instanceof Date) return new Date(obj);
+        if (obj instanceof RegExp) return new RegExp(obj);
+        if (typeof obj !== "object") return obj;
+
+        // 对象循环引用时如果 WeakMap 中存在则直接返回
+        if (hash.get(obj)) return hash.get(obj);
+
+        // let cloneObj = {};
+        let cloneObj = new obj.constructor();
+
+        hash.set(obj, cloneObj); // 将当前对象存入 WeakMap 中，此时 cloneObj 为 {}, 递归循环后将会赋予值
+
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            // 实现一个递归拷贝
+            cloneObj[key] = deepClone(obj[key], hash);
+          }
+        }
+        return cloneObj;
+      }
+
+      let obj = { name: 1, address: { x: 100 }, fun: () => 99 };
+      obj.o = obj; // 对象存在循环引用的情况
+      let d = deepClone(obj);
+      obj.address.x = 200;
+      console.log(d);
+    }
+  </script>
 </head>
 <body>
   <div id="euro">

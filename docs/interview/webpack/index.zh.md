@@ -13,6 +13,8 @@ nav:
 
 [官方文档](https://webpack.js.org/)
 
+[webpack4.0-demo 基础部分](https://github.com/niezicheng/webpack4.0-demo)
+
 ### webpack 的基础知识
 
 [带你深度解锁 Webpack 系列](https://juejin.cn/post/6844904079219490830)

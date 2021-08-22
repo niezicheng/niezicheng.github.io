@@ -9,7 +9,7 @@ export default function(context: any = global, args: Array<any>) {
     throw new TypeError('type error');
   }
 
-  // 将调用该方法的 function 的 this 指向赋给 context 的 fn 属性
+  // this 为将调用该方法的 function，将其赋给 context 的 fn 属性
   context.fn = this;
 
   let result;

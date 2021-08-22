@@ -21,7 +21,7 @@ nav:
 
 #### 301 和 302 的区别
 
-- 301 Moved Permanently 被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 `URI` 之一。如果可能，拥有链接编辑功能的客户端应 当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。
+- 301 Moved Permanently 被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 `URI` 之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。
 - 302 Found 请求的资源现在临时从不同的 `URI` 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在 `Cache-Control` 或 `Expires` 中进行了指定的情况下，这个响应才是可缓存的。
 
 > 字面上的区别就是 `301` 是永久重定向，而 `302` 是临时重定向。
@@ -47,7 +47,12 @@ nav:
 > **强缓存**: 不会向服务器发送请求，直接从缓存中读取资源
 
 1. **Expires**
+
+缓存过期时间，用来指定资源到期的时间，是服务器端的具体的时间点, **Expires = max-age + 请求时间**，需要和`Last-modified` 结合使用
+
 2. **Cache-Control**
+
+`Cache-Control` 可以在请求头或者响应头中设置，并且可以组合使用多种指令
 
 **二者的区别:**
 
@@ -56,10 +61,20 @@ nav:
 
 #### 协商缓存
 
-> **协商缓存**：在强制缓存失效（eg: Cache-Control: no-cache）后，浏览器携带`缓存标识`向服务器发起请求，由服务器根据缓存标识(对比最新缓存标识)决定是否使用缓存的过程
+> **协商缓存**：在强制缓存失效（eg: Cache-Control: no-cache）后，浏览器携带`缓存标识`向服务器发起请求，由服务器根据 `缓存标识` (对比最新缓存标识)决定是否使用缓存的过程
 
-1. **Last-Modified** 和 **If-Modified-Since**
-2. **ETag** 和 **If-None-Match**
+**Last-Modified** 和 **If-Modified-Since**
+
+浏览器请求，服务器返回`Last-Modified` 这个 `header`，浏览器下一次请求这个资源，浏览器检测到有 `Last-Modified` 这个 `header`，于是添加 `If-Modified-Since` 这个`header`, 值就是 `Last-Modified` 中的值, 服务器通过 `If-Modified-Since` 中的值与服务器中这个资源的最后修改时间对比, 判断是否返回新的资源文件。
+
+**Last-Modified 存在的一些弊端：**
+
+- 如果本地打开缓存文件，即使没有对文件进行修改，但还是会造成 `Last-Modified` 被修改，服务端不能命中缓存导致发送相同的资源
+- 因为 `Last-Modified` 只能以`秒`计时，如果在不可感知的时间内修改完成文件，那么服务端会认为资源还是命中了，不会返回正确的资源
+
+**ETag** 和 **If-None-Match**
+
+`Etag` 是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)，只要资源有变化，`Etag` 就会重新生成。浏览器在下一次加载资源向服务器发送请求时，会将上一次返回的 `Etag` 值放到 `request header` 里的 `If-None-Match` 里，服务器只需要比较客户端传来的 `If-None-Match` 跟自己服务器上该资源的 `ETag` 是否一致，就能很好地判断资源相对客户端而言是否被修改过了。
 
 **二者的区别:**
 
@@ -77,17 +92,17 @@ nav:
 
 1. 浏览器发送 `client_random`（客户端生成的随机数）、`TLS` 版本、以及客户端支持的加密方法
 2. 服务器确认 `TLS` 版本和双方使用的加密方法，并给出数字证书和 `server random`（服务器生成的随机数）
-3. 浏览器确认数字证书有效，然后生成使用加密算法生产 `Premaster secret` (随机数)，并使用数字证书中的公钥加密发给服务器
+3. 浏览器确认数字证书有效，然后使用加密算法生产 `Premaster secret` (随机数)，并使用数字证书中的公钥加密发给服务器
 4. 服务器使用私钥解密这个被加密的 `Premaster secret` (随机数)
 5. 此刻浏览器和服务器都可以有 `client_random`、`server_random` 和 `Premaster secret` 三个随机数，通过这三个随机数计算最终的 `secret`
 
 **图解：**
 ![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a28591c41cd64dfe8ceac856a9d40fa3~tplv-k3u1fbpfcp-watermark.image)
 
-#### DH 算法
+#### DH 算法(TSL 1.2)
 
 1. 浏览器发送 `client_random`（客户端生成的随机数）、`TLS` 版本、以及客户端支持的加密方法
-2. 服务器确认 `TLS` 版本和双方使用的加密方法，并给出数字证书，同时服务器利用私钥将 `client_random`，`server_random`，`server_params` 签名, 然后将`签名`和 `server_params` 参数也发送给客户端
+2. 服务器确认 `TLS` 版本和双方使用的加密方法，并给出数字证书，同时服务器利用私钥将 `client_random`，`server_random`，`server_params` 签名, 生成 `Signature`, 然后将`签名`和 `server_params` 参数也发送给客户端
 3. 浏览器确认数字证书和签名有效，并将 `client params` 参数发送给服务器
 4. 此刻浏览器和服务器都可以有 `client_random`、`server_random` 和 `pre_random` ( `server_params` 和 `client_params`) 三个随机数，通过这三个随机数计算最终的 `secret` 。
 
@@ -98,6 +113,15 @@ nav:
 
 **图解：**
 ![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a6eee0152d64fa693667e9e40d96d0b~tplv-k3u1fbpfcp-watermark.image)
+
+#### TSL 1.3
+
+1. 浏览器向服务器发送 `client_params`，`client_random`，`TLS` 版本和供筛选的加密套件列表。
+2. 服务器返回：`server_random`、`server_params`、`TLS` 版本、确定的加密套件方法以及证书。
+3. 浏览器接收，先验证数字证书和签名。
+4. 现在双方都有 `client_params`、`server_params`，可以根据 `ECDHE` 计算出 `pre_random`。
+
+![img](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/da49387029c240cb8b92e0fbc10e819b~tplv-k3u1fbpfcp-watermark.awebp)
 
 [TLS 详解握手流程](https://juejin.cn/post/6895624327896432654)
 
@@ -136,8 +160,7 @@ nav:
 
 > - 客户端发送连接请求, 但因连接请求报文丢失而未收到确认(可能是网络结点长时间滞留了), 客户端再重传一次连接请求
 > - 服务器收到第二次的连接请求后向客服端发送确认信息, 同意建立连接
-> - 第一次滞留的客户端请求连接可能在双方断开连接后某个时间段到达服务器, 由于是两次握手, 服务端只要接收到, 然后发送相应的数据
->   包，就默认建立连接，但是现在客户端已经断开了
+> - 第一次滞留的客户端请求连接可能在双方断开连接后某个时间段到达服务器, 由于是两次握手, 服务端只要接收到, 然后发送相应的数据包，就默认建立连接，但是现在客户端已经断开了
 
 ### Q3: 四次挥手
 

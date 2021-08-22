@@ -103,7 +103,7 @@ importScripts('script1.js', 'script2.js');
 
 ### BOM
 
-> `BOM` 是浏览器对象
+> `BOM` 是浏览器对象模型
 
 - location 对象
   - location.href --返回或设置当前文档的 `URL`
@@ -113,7 +113,7 @@ importScripts('script1.js', 'script2.js');
   - location.host --返回 `URL` 中的域名部分。例如: `www.baidu.com`
   - location.hostname --返回 `URL` 中的主域名部分。例如: `baidu.com`
   - location.pathname --返回 `URL` 的域名后的部分。例如: `http://www.baidu.com/xhtml/` 返回`/xhtml/`
-  - location.port --返回 `URL` 中的端口部分）例如: `http://www.baidu.com:8080/xhtml/` 返回 `8080`
+  - location.port --返回 `URL` 中的端口部分。例如: `http://www.baidu.com:8080/xhtml/` 返回 `8080`
   - location.protocol --返回 `URL` 中的协议部分。例如: `http://www.baidu.com:8080/xhtml/` 返回(//)前面的内容 http:
   - location.assign --设置当前文档的 `URL`
   - location.replace() --设置当前文档的 `URL`，并且在 `history` 对象的地址列表中移除这个 `URL`, location.replace(url);
@@ -122,7 +122,7 @@ importScripts('script1.js', 'script2.js');
   - history.go() -- 前进或后退指定的页面数 `history.go(num)`
   - history.back() -- 后退一页
   - history.forward() -- 前进一页
-- Navigator 对象
+- navigator 对象
   - navigator.userAgent -- 返回用户代理头的字符串表示(就是包括浏览器版本信息等的字符串)
   - navigator.cookieEnabled -- 返回浏览器是否支持(启用) `cookie`
 

@@ -28,7 +28,7 @@ nav:
 - `CommonJS` 是`同步加载模块`的(在服务器端，文件都是保存在硬盘上，所以同步加载没有问题)
 - `CommonJS` 是不适用于浏览器端的(在浏览器端，需要将文件从服务器端请求过来，那么同步加载就不适用了)
 
-### AMD 规范
+### AMD 规范(require.js)
 
 **优点：**
 
@@ -38,7 +38,7 @@ nav:
 
 - 提高了开发成本，必须提前加载所有的依赖，不能`按需加载`
 
-### CMD 规范
+### CMD 规范(sea.js)
 
 **优点：**
 
@@ -191,12 +191,12 @@ nav:
 
 ## Q9: 关于 JS 动画和 css3 动画的差异性
 
-> 渲染线程分为 `main thread` 和 `compositor thread`，如果 `css` 动画只改变 `transform` 和 `opacity`， 这时整个 `CSS` 动画得以在 `compositor thread` 完成(而 `JS` 动画则会在 `main thread` 执行，然后触发 `compositor thread` 进行下一步操作)，特别注意的是如果改变 `transform` 和 `opacity` 是不会 `layout` 或者 `paint` 的
+> 渲染线程分为 `main thread` 和 `compositor thread`(合成线程)，如果 `css` 动画只改变 `transform` 和 `opacity`， 这时整个 `CSS` 动画得以在 `compositor thread` 完成(而 `JS` 动画则会在 `main thread` 执行，然后触发 `compositor thread` 进行下一步操作)，特别注意的是如果改变 `transform` 和 `opacity` 是不会 `layout` 或者 `paint` 的
 
 区别:
 
 - 功能涵盖面: `JS` 比 `CSS` 大
-- 实现/重构难度不一: `CSS3` 比 `JS` 更加简单，性能跳优方向固定 对帧速表现不好的低版本浏览器，`css3` 可以做到自然降级
+- 实现/重构难度不一: `CSS3` 比 `JS` 更加简单，性能跳优方向固定对帧速表现不好的低版本浏览器，`css3` 可以做到自然降级
 - `css` 动画有天然事件支持
 - `css3` 有兼容性问题
 

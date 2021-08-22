@@ -73,7 +73,7 @@ function (arr, callback, initValue) {
   let value = hasInitValue ? initValue : arr[0];
 
   // 有初始值需要多循环一次， 所以 i 应从 0 开始
-  for(let i = hasInitValue ? 1 : 0; i < arr.length; i++) {
+  for(let i = hasInitValue ? 0 : 1; i < arr.length; i++) {
     // value 为每次 callback 的返回值
     value = callback(value, arr[i], i, arr);
   }
@@ -92,21 +92,25 @@ function (arr, callback, initValue) {
  * map 存储空对象或空数据信息
  */
 function cloneDeep(target, map = new WeakMap()) {
-  if (typeof target === 'object') {
-    let cloneTarget = Array.isArray(target) ? [] : {};
+  if (!target) return target;
+  if (target instanceof Date) return new Date(target);
+  if (target instanceof RegExp) return new RegExp(target);
 
-    // 后面循环存在空对象或空数组时，直接返回
-    if (map.get(target)) {
-      return target;
-    }
-    // 将空对象或空数组存储到 map 中
-    map.set(target, cloneTarget);
-    // 循环遍历非空对象或数组
-    for (const key in target) {
-      cloneTarget[key] = cloneDeep(target[key], map);
-    }
-    return cloneTarget;
+  if (typeof target !== 'object') return target;
+
+  let cloneTarget = Array.isArray(target) ? [] : {};
+
+  // 后面循环存在空对象或空数组时，直接返回
+  if (map.get(target)) return map.get(target);
+
+  // 将空对象或空数组存储到 map 中
+  map.set(target, cloneTarget);
+
+  // 循环遍历非空对象或数组
+  for (let key in target) {
+    cloneTarget[key] = cloneDeep(target[key], map);
   }
-  return target;
+
+  return cloneTarget;
 }
 ```
