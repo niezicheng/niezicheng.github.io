@@ -28,3 +28,5 @@ nav:
 ## 渲染器
 
 [自定义渲染器和异步渲染](http://hcysun.me/vue-design/zh/renderer-advanced.html)
+
+[Antelope](http://perf.alibaba-inc.com/)
