@@ -35,15 +35,23 @@ nav:
 
 **PS**：在以上过程中，`Webpack` 会在特定的时间点广播出特定的事件，插件在监听到感兴趣的事件后会执行特定的逻辑并且插件可以调用 `Webpack` 提供的 `API` 改变 `Webpack` 的运行结果。
 
+### webpack 插件机制
+
+- 读取配置的过程中会先执行 `new HelloPlugin(options)` 初始化一个 `HelloPlugin` 获得其实例。
+- 初始化 `compiler` 对象后调用 `HelloPlugin.apply(compiler)` 给插件实例传入 `compiler` 对象。
+- 插件实例在获取到 `compiler` 对象后，就可以通过 `compiler.plugin(事件名称, 回调函数)` 监听到 `Webpack` 广播出来的事件。并且可以通过 `compiler` 对象去操作 `Webpack`。
+
+[揭秘 webpack 插件的工作原理](https://segmentfault.com/a/1190000023016347)
+
+### Source Map
+
+[打破砂锅问到底：详解 Webpack 中的 sourcemap](https://segmentfault.com/a/1190000008315937)
+
 ### webpack 代码分割是怎么做的？
 
 > 路由懒加载和 `webpack` 异步加载模块都是这个 `import()` 语法，值得仔细看看
 
 [webpack 的代码分割（路由懒加载同理）](https://juejin.cn/post/6844904101134729229)
-
-### webpack 插件机制
-
-[揭秘 webpack 插件的工作原理](https://segmentfault.com/a/1190000023016347)
 
 ### webpack 与 gulp 的差别？(模块化与流的区别)
 

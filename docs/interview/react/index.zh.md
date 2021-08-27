@@ -82,6 +82,8 @@ nav:
 
 ## 源码解读
 
+[React 15 与 React 16 架构区别](https://blog.csdn.net/weixin_44135121/article/details/108753231)
+
 [《React 源码解析》系列完结！(v15)](https://juejin.cn/post/6844903568487497741)
 
 [React 源码解析(v16)](https://react.jokcy.me/)

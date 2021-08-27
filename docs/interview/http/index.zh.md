@@ -13,6 +13,8 @@ nav:
 
 [HTTP 协议](http://47.98.159.95/my_blog/blogs/net/http/001.html#%E8%B5%B7%E5%A7%8B%E8%A1%8C)
 
+[HTTP 协议几个版本的比较](https://zhuanlan.zhihu.com/p/37387316)
+
 [HTTP 协议内容相关](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/04-HTTP%E5%8D%8F%E8%AE%AE.md)
 
 ### Q1: http 常见状态码
