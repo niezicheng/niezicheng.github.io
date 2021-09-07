@@ -31,6 +31,10 @@ nav:
 - **Babel:** 在线转换(Babel) [babel](https://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015,react,stage-2&targets=&browsers=&builtIns=false&debug=false&code=)
 - **Traceur:** 在线转换(Google) [Traceur](http://google.github.io/traceur-compiler/demo/repl.html#)
 
+### ast 解析执行工具
+
+[astexplorer](https://astexplorer.net/)
+
 ## 工具库
 
 [lodash 整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)

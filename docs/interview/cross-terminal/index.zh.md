@@ -25,6 +25,8 @@ nav:
 
 [美团民宿跨端复用框架设计与实践](https://tech.meituan.com/2021/06/10/react-native-hybrid-practice-dsl-in-meituan.html)
 
+[【2 万字长文】深入浅出主流的几款小程序跨端框架原理](https://cloud.tencent.com/developer/article/1728155?from=article.detail.1740871)
+
 ## 渲染器
 
 [自定义渲染器和异步渲染](http://hcysun.me/vue-design/zh/renderer-advanced.html)
