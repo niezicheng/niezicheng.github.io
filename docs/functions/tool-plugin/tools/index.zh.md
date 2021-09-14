@@ -2,7 +2,7 @@
 title: 工具
 order: 0
 group:
-  title: 工具/插件
+  title: 工具/插件/资源
 nav:
   title: 工具库
   order: 1
