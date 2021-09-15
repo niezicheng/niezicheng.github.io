@@ -3,7 +3,7 @@ title: 前端工程化
 order: 9
 group:
   title: Interview Question
-toc: 'menu'
+# toc: 'menu'
 nav:
   title: 面试题集锦
   order: 0
@@ -69,7 +69,7 @@ nav:
 
 [浅谈 MVC、MVP 和 MVVM 架构模式](https://draveness.me/mvx/)
 
-## Q3: 如何规范代码提交并自动生成 CHANGELOG
+## Q3: 规范代码提交
 
 [Git Commit 规范（Conventional Commit）](https://juejin.cn/post/6985500205554597918)
 

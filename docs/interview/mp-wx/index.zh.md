@@ -3,7 +3,7 @@ title: MP 小程序
 order: 11
 group:
   title: Interview Question
-toc: 'menu'
+# toc: 'menu'
 nav:
   title: 面试题集锦
   order: 0

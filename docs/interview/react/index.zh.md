@@ -3,7 +3,7 @@ title: React
 order: 6
 group:
   title: Interview Question
-toc: 'menu'
+# toc: 'menu'
 nav:
   title: 面试题集锦
   order: 0
@@ -23,9 +23,9 @@ nav:
 
 ### Virtual DOM？
 
-[面试官问: 如何理解 Virtual DOM？](https://juejin.cn/post/6844903921442422791)
+> `Virtual DOM` 是否真的比操作原生 `DOM` 快？谈谈你的看法？
 
-#### Virtual DOM 真的比操作原生 DOM 快吗？谈谈你的看法？
+[面试官问: 如何理解 Virtual DOM？](https://juejin.cn/post/6844903921442422791)
 
 ### React Hooks
 
@@ -60,7 +60,9 @@ nav:
 
 [中文文档(看起来内容比较旧了)](https://react-guide.github.io/react-router-cn/)
 
-### react-router 里面的 Link 标签和 a 标签的区别？
+### Link 标签与 a 标签？
+
+**react-router 里面的 Link 标签和 a 标签的区别？**
 
 > 本质渲染到页面上展示的都是 `a` 标签
 
@@ -74,7 +76,7 @@ nav:
 
 [中文文档](https://cn.redux.js.org/)
 
-## 如何零基础搭建一个 `react` 项目框架
+## 零基础搭建 react 框架
 
 ## Vue
 
