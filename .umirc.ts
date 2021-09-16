@@ -50,4 +50,11 @@ export default defineConfig({
       path: 'https://juejin.cn/user/2946346894759319/columns',
     },
   ],
+
+  sass: {
+    implementation: require('node-sass'),
+    sassOptions: {
+      data: '@import "./.dumi/theme/styles/theme.scss";',
+    },
+  },
 });
