@@ -19,7 +19,15 @@ body,
   height: 100%;
 
   &-sider {
-    flex: 1
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none; /* firefox */
+
+    // 去除滚动条
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
   }
 
   &-content {
@@ -49,6 +57,18 @@ body,
         display: flex;
         flex: 1;
         flex-direction: column;
+        margin-right: 5px;
+
+        .ant-breadcrumb {
+          font-size: 20px;
+          padding-bottom: 20px;
+        }
+      }
+
+      &-affix {
+        margin-top: 100px;
+        min-width: 150px;
+        max-width: 200px !important;
       }
     }
   }

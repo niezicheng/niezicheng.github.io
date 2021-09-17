@@ -19,7 +19,7 @@ nav:
 ```tsx | pure
 import { useEffect, useState, useCallback } from 'react';
 
-const useSyncCallback = callback => {
+const useSyncCallback = (callback: Function) => {
   const [proxyState, setProxyState] = useState({ current: false });
 
   const Func = useCallback(() => {

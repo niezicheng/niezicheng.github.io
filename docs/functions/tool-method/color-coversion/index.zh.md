@@ -14,7 +14,7 @@ nav:
 
 ## 随机颜色生成
 
-```ts
+```js
 function randomColor() {
   var colorStr = Math.floor(Math.random() * 0xffffff)
     .toString(16)
@@ -27,7 +27,7 @@ function randomColor() {
 
 > 参数说明: 参数形式可以为带“#”号，也可以不带，实际颜色值可以为 3 位，也可以为 6 位，如： "#ffffff"、"#fff"、"ffffff"、"fff"。
 
-```ts
+```js
 function transferColorToRgb(color) {
   if (typeof color !== 'string' && !(color instanceof String))
     return console.error('请输入16进制字符串形式的颜色值');
@@ -48,13 +48,13 @@ function transferColorToRgb(color) {
 
 **3 位 16 进制转 6 位 16 进制:**
 
-```ts
+```js
 color.replace(/(\w)(\w)(\w)/, '$1$1$2$2$3$3'); // '#FFF' => '#FFFFFF'
 ```
 
 ## rgb(a) 转 16 进制颜色值
 
-```ts
+```js
 function transferRgbToStr(color) {
   if (
     (typeof color !== 'string' && !(color instanceof String)) ||

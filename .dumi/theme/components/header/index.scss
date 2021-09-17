@@ -1,6 +1,25 @@
 .layout-header {
-  height: 54px;
   background-color: #FFF;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 24px;
+
+  &-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &-title {
+    font-size: 20px;
+    margin-left: 15px;
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: row;
+  }
 }

@@ -38,16 +38,20 @@ export default defineConfig({
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
-      title: 'JavaScript',
-      path: 'https://tsejx.github.io/javascript-guidebook/',
-    },
-    {
       title: 'GitHub',
       path: 'https://github.com/niezicheng/article-dumi',
     },
     {
       title: 'JueJin',
       path: 'https://juejin.cn/user/2946346894759319/columns',
+    },
+    {
+      title: 'YuQue',
+      path: 'https://www.yuque.com/niezicheng',
+    },
+    {
+      title: 'JavaScript',
+      path: 'https://tsejx.github.io/javascript-guidebook/',
     },
   ],
 

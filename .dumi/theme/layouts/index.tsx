@@ -1,57 +1,87 @@
-import React, { useState, useRef, useReducer, useEffect } from 'react';
-import { Layout, Breadcrumb, Anchor } from 'antd';
-import Footer from '../components/footer';
+import React, { useState, useRef, useContext } from 'react';
+import { Layout, Breadcrumb, Affix } from 'antd';
+import { context } from 'dumi/theme';
 import Header from '../components/header';
-import Menu from '../components/menu';
-import AnchorList from '../components/anchor-list';
+import Footer from '../components/footer';
+import SlidMenu from '../components/slid-menu';
+import SlugList from '../components/slug-list';
 
 import './index.scss';
+import '../styles/markdown.scss';
 
 const { Content, Sider } = Layout;
-const { Link } = Anchor;
 
-export default () => {
+export default props => {
+  const {
+    children,
+    route: { routes },
+    location,
+  } = props;
+  const { config } = useContext(context);
+
   const [collapsed, setCollapsed] = useState(false);
-  const [, forceUpdate] = useReducer(x => x + 1, 0);
   let containerRef = useRef(null);
 
-  useEffect(() => {
-    forceUpdate();
-  }, []);
+  const defaultOpenKeys = [
+    location.pathname
+      .replace(/^\//, '')
+      .split('/')
+      .shift(),
+  ];
+  const defaultSelectedKeys = [location.pathname];
+
+  console.log(routes);
+
+  console.log(children, 'opopo');
+
+  const { meta } = routes.find(item => {
+    return item.path === children.props.location.pathname;
+  });
 
   const handleCollapse = collapsed => setCollapsed(collapsed);
-
-  const handleGetContainer = () => containerRef.current;
 
   return (
     <Layout>
       <Header />
       <Content>
         <Layout className="site-layout-background layout" style={{ flex: 1 }}>
-          <Sider
-            className="site-layout-background layout-sider"
-            collapsible
-            collapsed={collapsed}
-            onCollapse={handleCollapse}
-            width={300}
-          >
-            <Menu />
-          </Sider>
+          <div className="layout-sider">
+            <Sider
+              className="site-layout-background"
+              collapsible
+              collapsed={collapsed}
+              onCollapse={handleCollapse}
+              width={300}
+            >
+              <SlidMenu
+                menus={config.menus}
+                navs={config.navs}
+                defaultOpenKeys={defaultOpenKeys}
+                defaultSelectedKeys={defaultSelectedKeys}
+              />
+            </Sider>
+          </div>
+
           <Content className="layout-content">
             <div ref={containerRef} className="layout-content-container">
               <div className="layout-content-container-pageContent">
-                <Breadcrumb>
-                  <Breadcrumb.Item>Home</Breadcrumb.Item>
-                  <Breadcrumb.Item>List</Breadcrumb.Item>
-                  <Breadcrumb.Item>App</Breadcrumb.Item>
+                <Breadcrumb separator="/">
+                  {/* <Breadcrumb.Item>{config.title}</Breadcrumb.Item> */}
+                  {meta.nav?.title && (
+                    <Breadcrumb.Item>{meta.nav?.title}</Breadcrumb.Item>
+                  )}
+                  {meta.group?.title && (
+                    <Breadcrumb.Item>{meta.group?.title}</Breadcrumb.Item>
+                  )}
+                  <Breadcrumb.Item>{meta.title}</Breadcrumb.Item>
                 </Breadcrumb>
-                <div>Content</div>
+                <div>{children}</div>
               </div>
-
-              <AnchorList
-                offsetTop={30}
-                getContainer={containerRef.current && handleGetContainer}
-              />
+              <div className="layout-content-container-affix">
+                <Affix offsetTop={50} target={() => containerRef.current}>
+                  <SlugList slugs={meta?.slugs} />
+                </Affix>
+              </div>
             </div>
             <Footer />
           </Content>

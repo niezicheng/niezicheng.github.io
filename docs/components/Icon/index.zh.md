@@ -22,39 +22,43 @@ nav:
 
 1. 加载 `@font-face` 字体资源文件
 
-``` css | pure
+```css | pure
 @font-face {
-  font-family: 'iconfont';  /* Project id 2651734 */
+  font-family: 'iconfont'; /* Project id 2651734 */
   src: url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.eot?t=1625468471601'); /* IE9 */
-  src: url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.eot?t=1625468471601#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.woff2?t=1625468471601') format('woff2'),
-       url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.woff?t=1625468471601') format('woff'),
-       url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.ttf?t=1625468471601') format('truetype'),
-       url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.svg?t=1625468471601#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.eot?t=1625468471601#iefix')
+      format('embedded-opentype'), /* IE6-IE8 */
+      url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.woff2?t=1625468471601')
+      format('woff2'),
+    url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.woff?t=1625468471601')
+      format('woff'), url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.ttf?t=1625468471601')
+      format('truetype'),
+    url('//at.alicdn.com/t/font_2651734_4pmjwaeilvk.svg?t=1625468471601#iconfont')
+      format('svg');
 }
 ```
 
 2. 使用 `span` 获取解析字体图标
 
-```tsx | pure
+```jsx | pure
 // 默认 style 样式
 const style = StyleSheet.flatten({
-    fontWeight: 'normal',
-    fontStyle: 'normal',
-    fontFamily: 'iconfont',
-    alignItems: 'center',
-    // lineHeight: 1,
-  });
+  fontWeight: 'normal',
+  fontStyle: 'normal',
+  fontFamily: 'iconfont',
+  alignItems: 'center',
+  // lineHeight: 1,
+});
 
 // &#xe636; 对应图标的 unicode
-<span style={style} dangerouslySetInnerHTML={{ __html: `&#xe636;` }}></span>
+<span style={style} dangerouslySetInnerHTML={{ __html: `&#xe636;` }}></span>;
 ```
 
 #### Svg - Web
 
 1. 网站字体库中下载图标 `svg` 代码并保存到对应文件内 `svg.json`
 
-```ts | pure
+```js | pure
 // name: Array<{ d: string, fill: string }>
 {
   'delete': [{
@@ -68,7 +72,7 @@ const style = StyleSheet.flatten({
 
 2. 通过 `svg` 标签展示
 
-```tsx | pure
+```jsx | pure
 import source from 'svg.json';
 
 <svg
@@ -82,11 +86,9 @@ import source from 'svg.json';
     // 多颜色处理
     const fillColor = Array.isArray(color) ? color[index] : color;
 
-    return (
-      <path key={index} d={path.d} fill={fillColor || path.fill} />
-    )
+    return <path key={index} d={path.d} fill={fillColor || path.fill} />;
   })}
-</svg>
+</svg>;
 ```
 
 ### RN
@@ -99,26 +101,19 @@ import source from 'svg.json';
 
 - 基本用法和 `Svg - Web` 相同，主要是组件的引入使用的是第三方库 `react-native-svg`
 
-```tsx | pure
+```jsx | pure
 import Svg, { Path } from 'react-native-svg';
 
 import source from 'svg.json';
 
-<Svg
-  width={22}
-  height={22}
-  viewBox={'0 0 1024 1024'}
-  style={style}
->
+<Svg width={22} height={22} viewBox={'0 0 1024 1024'} style={style}>
   {source[type].map((path, index) => {
     // 接受外部传递的 color 参数多颜色处理
     const fillColor = Array.isArray(color) ? color[index] : color;
 
-    return (
-      <Path key={index} d={path.d} fill={fillColor || path.fill} />
-    )
+    return <Path key={index} d={path.d} fill={fillColor || path.fill} />;
   })}
-</Svg>
+</Svg>;
 ```
 
 ### MP 小程序
@@ -127,19 +122,19 @@ import source from 'svg.json';
 
 - 使用 `loadFontFace` `API` 加载字体图标
 
-```tsx | pure
+```jsx | pure
 // 加载字体资源库
 wx.loadFontFace({
   global: true,
   family: 'iconfont',
   source: `url("https://sungd.github.io/Pacifico.ttf")`,
-  complete: (res) => {
+  complete: res => {
     console.log('res:', res);
   },
-  fail: (error) => {
+  fail: error => {
     console.log('error:', error);
   },
-})
+});
 
 // &#xe635; 对应图标的 unicode 后的 e635, 将其转化为十进制
 let iconText = parseInt('e635', 16) || '';
@@ -148,14 +143,14 @@ if (typeof iconText === 'number') {
   iconText = String.formCharCode(iconText);
 }
 
-<Text>{iconText}</Text>
+<Text>{iconText}</Text>;
 ```
 
 #### Svg - MP
 
 [小程序加载 svg 图片](https://www.jianshu.com/p/1160d609eea2)
 
-```tsx | pure
+```jsx | pure
 import { Base64 } from 'js-base64';
 
 // 接受外部传递的 color 多颜色处理
@@ -172,10 +167,15 @@ const svg = `
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
   >
-    ${paths.map((path, index) => (
-      `<path d="${path.d}" fill="${Array.isArray(color) ? color[index] : color || path.fill}" id="${id}" />`
-    )).join('')}
-  </svg>`
+    ${paths
+      .map(
+        (path, index) =>
+          `<path d="${path.d}" fill="${
+            Array.isArray(color) ? color[index] : color || path.fill
+          }" id="${id}" />`,
+      )
+      .join('')}
+  </svg>`;
 
 // 将 SVG 转化成Base64
 const url = `data:image/svg+xml;base64,${Base64.encode(svg)}`;
@@ -183,7 +183,7 @@ const url = `data:image/svg+xml;base64,${Base64.encode(svg)}`;
 <Image
   style={style}
   source={url}
-  mode='aspectFit'
-  onError={(err) => console.log(err)}
-/>
+  mode="aspectFit"
+  onError={err => console.log(err)}
+/>;
 ```

@@ -1,8 +1,6 @@
 ---
 title: 常用包用法
 order: 0
-group:
-  title: npm 包使用
 nav:
   title: 工具库
   order: 1
