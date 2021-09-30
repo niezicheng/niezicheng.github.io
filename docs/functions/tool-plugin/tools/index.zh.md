@@ -35,6 +35,10 @@ nav:
 
 [astexplorer](https://astexplorer.net/)
 
+### 万能转换在线工具
+
+[veryToolZ](https://verytoolz.com/)
+
 ## 工具库
 
 [lodash 整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)

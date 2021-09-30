@@ -33,4 +33,4 @@ nav:
 
 [山月的全栈进阶之路](https://q.shanyue.tech/)
 
-[三元](http://47.98.159.95/my_blog/logo.png)
+[三元](http://47.98.159.95/my_blog)

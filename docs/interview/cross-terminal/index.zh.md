@@ -32,3 +32,9 @@ nav:
 [自定义渲染器和异步渲染](http://hcysun.me/vue-design/zh/renderer-advanced.html)
 
 [Antelope](http://perf.alibaba-inc.com/)
+
+## 拓展
+
+### hbs 模版
+
+[Handlebars 学习记录](https://www.jianshu.com/p/34c657feb06a)

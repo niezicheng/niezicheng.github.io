@@ -243,6 +243,23 @@ div::after {
 }
 ```
 
+### 隐藏滚动条
+
+```scss | pure
+.demo {
+  width: 100px;
+  height: 200px;
+  overflow-y: auto;
+
+  // 隐藏滚动条
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+}
+```
+
 ### Flex 布局
 
 - flex-grow: 定义项目的放大比例，默认为 `0`，即如果存在剩余空间，也不放大
