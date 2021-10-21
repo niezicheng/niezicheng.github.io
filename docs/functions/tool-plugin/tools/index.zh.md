@@ -39,6 +39,10 @@ nav:
 
 [veryToolZ](https://verytoolz.com/)
 
+### css cubic-bezier 函数转换
+
+[cubic-bezier](https://cubic-bezier.com/)
+
 ## 工具库
 
 [lodash 整理](https://lichangwei.github.io/2016/09/06/lodash-functions/)

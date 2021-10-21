@@ -77,3 +77,7 @@ nav:
 [从零搭建 Webpack5-react 脚手架(附源码)](https://segmentfault.com/a/1190000040427502)
 
 [如何搭建一个 REACT 全家桶框架](https://juejin.cn/post/6844903811794862087)
+
+[前端工程化学习笔记](https://www.kancloud.cn/cyyspring/webpack/1835304)
+
+[深入浅出 Webpack](https://webpack.wuhaolin.cn/)
