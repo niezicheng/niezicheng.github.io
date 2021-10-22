@@ -1,8 +1,6 @@
 ---
 title: 前端工程化
 order: 9
-group:
-  title: Interview Question
 # toc: 'menu'
 nav:
   title: 面试题集锦

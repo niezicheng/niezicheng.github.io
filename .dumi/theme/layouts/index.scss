@@ -28,6 +28,11 @@ body,
     &::-webkit-scrollbar {
       display: none; /* Chrome Safari */
     }
+
+    .ant-layout-sider {
+      height: 100%;
+      background-color: #FFF;
+    }
   }
 
   &-content {

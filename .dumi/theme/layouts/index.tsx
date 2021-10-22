@@ -30,10 +30,6 @@ export default props => {
   ];
   const defaultSelectedKeys = [location.pathname];
 
-  console.log(routes);
-
-  console.log(children, 'opopo');
-
   const { meta } = routes.find(item => {
     return item.path === children.props.location.pathname;
   });

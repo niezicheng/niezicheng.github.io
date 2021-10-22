@@ -1,10 +1,8 @@
 ---
-title: 学习资源
+title: 算法学习资源
 order: 0
-group:
-  title: 算法
 nav:
-  title: LeetCode 算法
+  title: LeetCode
   order: 1
 ---
 

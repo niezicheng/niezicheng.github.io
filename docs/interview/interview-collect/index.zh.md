@@ -1,8 +1,6 @@
 ---
 title: 面试题闯关
 order: 12
-group:
-  title: Interview Question
 # toc: 'menu'
 nav:
   title: 面试题集锦

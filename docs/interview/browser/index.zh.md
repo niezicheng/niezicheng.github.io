@@ -1,8 +1,6 @@
 ---
 title: BROWSER
 order: 5
-group:
-  title: Interview Question
 toc: 'menu'
 nav:
   title: 面试题集锦

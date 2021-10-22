@@ -1,8 +1,6 @@
 ---
 title: 数结、计网、编原
 order: 13
-group:
-  title: Interview Question
 # toc: 'menu'
 nav:
   title: 面试题集锦
