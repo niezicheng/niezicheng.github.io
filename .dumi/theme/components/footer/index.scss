@@ -1,6 +1,10 @@
+@import '../../styles//theme.scss';
+
 .footer-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 0px;
+  box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.12);
+  padding: $footer-padding-vertical 0px;
+  background-color: $footer-bg-color;
 }

@@ -1,1 +1,34 @@
+@import '../../styles/theme.scss';
 
+.ant-menu-submenu-selected {
+  color: $menu-submenu-selected-color;
+}
+
+.ant-menu-submenu {
+  &-open, &-active {
+
+    &>.ant-menu-submenu-title {
+      color: $menu-submenu-open-color;
+
+      .ant-menu-submenu-arrow {
+        color: $menu-submenu-arrow-color !important;
+      }
+    }
+  }
+}
+
+.ant-menu-item {
+  &-selected {
+    background-color: $menu-item-selected-bg-color;
+
+    &::after {
+      border-right-color: $menu-item-selected-right-color !important;
+    }
+  }
+
+  &-selected, &-active {
+    &>a {
+      color: $menu-item-selected-color !important;
+    }
+  }
+}

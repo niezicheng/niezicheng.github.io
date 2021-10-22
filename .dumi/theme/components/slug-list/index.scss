@@ -1,7 +1,17 @@
-.ant-affix {
-  max-width: 200px !important;
+@import '../../styles/theme.scss';
 
-  .ant-anchor-wrapper {
-    max-width: 200px !important;
+.ant-anchor-wrapper {
+  max-width: $slug-max-width;
+  padding-left: 0px;
+  padding: $slug-padding-vertical $slug-padding-horizontal;
+  border-radius: $slug-border-radius;
+  background-color: $slug-bg-color;
+
+  .ant-anchor-ink, .ant-anchor-ink-ball {
+    display: none;
+  }
+
+  .ant-anchor-link {
+    padding-left: 0;
   }
 }

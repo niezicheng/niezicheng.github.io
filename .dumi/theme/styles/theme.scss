@@ -1,0 +1,58 @@
+@import './veriable.scss';
+
+
+$v-spacing: 8px;
+$h_spacing: 24px;
+
+
+// header
+$header-height: 54px;
+$header-bg-color: #fff;
+
+$header-logo-size: 40px;
+$header-logo-border-radius: 50%;
+
+$header-title: $cyan;
+$header-title-font-size: 20px;
+$header-title-margin-left: 15px;
+
+$header-search-width: 200px;
+$header-search-height: 32px;
+$header-search-padding-left: 14px;
+$header-search-padding-right: 38px;
+$header-search-margin-right: 36px;
+$header-search-color: #454d64;
+$header-search-border-radius: 16px;
+
+
+// menu
+$menu-width: 300px;
+$menu-submenu-selected-color: $font-color;
+$menu-submenu-open-color: $brand-color;
+$menu-submenu-arrow-color: $brand-color;
+
+$menu-item-selected-color: $brand-color;
+$menu-item-selected-bg-color: $blue-light;
+$menu-item-selected-right-color: $brand-color;
+
+$menu-bg-color: #fff;
+
+$menu-trigger-height: 53px;
+$menu-trigger-bg-color: #002140;
+
+
+// content
+$content-bg-color: #fff;
+
+
+// slug
+$slug-max-width: 200px;
+$slug-padding-vertical: 50px;
+$slug-padding-horizontal: $h_spacing;
+$slug-border-radius: 10px;
+$slug-bg-color: $grey-light;
+
+
+// footer
+$footer-bg-color: #fff;
+$footer-padding-vertical: 15px;

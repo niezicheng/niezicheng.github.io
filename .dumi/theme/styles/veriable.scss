@@ -1,0 +1,42 @@
+// 基础颜色
+$brand-color: #1890ff;
+// $brand-color: red;
+$font-color: rgba(0, 0, 0, 0.85);
+
+// 深主题颜色
+$red: #e54d42; // 嫣红
+$orange: #f37b1d; // 桔橙
+$yellow: #fbbd08; // 明黄
+$olive: #8dc63f; // 橄榄
+$green: #39b54a; // 森绿
+$cyan: #1cbbb4; // 天青
+$blue: #0081ff; // 海蓝
+$purple: #6739b6; // 姹紫
+$mauve: #9c26b0; // 木槿
+$pink: #e03997; // 桃粉
+$brown: #a5673f; // 棕褐
+$grey: #8799a3; // 玄灰
+$gray: #aaaaaa; // 草灰
+$black: #333333; // 墨黑
+$white: #ffffff; // 雅白
+
+// 浅主题颜色
+$red-light: #fadbd9;
+$orange-light: #fde6d2;
+$yellow-light: #fef2ce;
+$olive-light: #e8f4d9;
+$green-light: #d7f0db;
+$cyan-light: #d2f1f0;
+$blue-light: #cce6ff;
+$purple-light: #e1d7f0;
+$mauve-light: #ebd4ef;
+$pink-light: #f9d7ea;
+$brown-light: #ede1d9;
+$grey-light: #e7ebed;
+
+/* 渐变色 */
+$gradual-red: linear-gradient(45deg, #f43f3b, #ec008c);
+$gradual-orange: linear-gradient(45deg, #ff9700, #ed1c24);
+$gradual-green: linear-gradient(45deg, #39b54a, #8dc63f);
+$gradual-purple: linear-gradient(45deg, #9000ff, #5e00ff);
+

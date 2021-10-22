@@ -1,3 +1,5 @@
+@import '../../styles//theme.scss';
+
 .layout-header {
   background-color: #FFF;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
@@ -5,17 +7,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 24px;
+  padding: $v-spacing $h_spacing;
 
   &-logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: $header-logo-size;
+    height: $header-logo-size;
+    border-radius: $header-logo-border-radius;
   }
 
   &-title {
-    font-size: 20px;
-    margin-left: 15px;
+    color: $header-title;
+    font-size: $header-title-font-size;
+    margin-left: $header-title-margin-left;
   }
 
   &-right {

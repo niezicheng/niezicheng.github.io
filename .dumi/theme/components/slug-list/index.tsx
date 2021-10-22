@@ -14,7 +14,7 @@ export default props => {
   });
 
   return (
-    <Anchor style={{ maxWidth: 300 }}>
+    <Anchor>
       {map(slugsList, (slug, index) => (
         <Link key={index} href={`#${slug.heading}`} title={slug?.value} />
       ))}

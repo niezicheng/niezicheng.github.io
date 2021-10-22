@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Menu } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import { Link } from 'umi';
 import { get, map, filter } from 'lodash';
+import './index.scss';
 
 const { SubMenu } = Menu;
 
