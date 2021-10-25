@@ -10,14 +10,14 @@ export default () => {
 
   return (
     <div className="layout-header">
-      <div className="layout-header-left">
+      <a href="/" className="layout-header-left">
         <img
           className="layout-header-logo"
           src={config.logo as string}
           alt="logo"
         />
         <span className="layout-header-title">{config.title}</span>
-      </div>
+      </a>
 
       <div className="layout-header-right">
         <SearchBar />

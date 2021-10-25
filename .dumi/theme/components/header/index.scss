@@ -9,6 +9,11 @@
   justify-content: space-between;
   padding: $v-spacing $h_spacing;
 
+  &-left {
+    display: flex;
+    align-items: center;
+  }
+
   &-logo {
     width: $header-logo-size;
     height: $header-logo-size;
@@ -24,5 +29,6 @@
   &-right {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
 }

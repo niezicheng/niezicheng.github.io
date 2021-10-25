@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Space } from 'antd';
-import { GithubOutlined, YuqueOutlined } from '@ant-design/icons';
 import { context } from 'dumi/theme';
 import { map, filter, get } from 'lodash';
+import Icon from '../../Icon';
 
 import './index.scss';
 
@@ -13,8 +13,10 @@ type NavItem = {
 };
 
 const mapTitleToIcon = {
-  GitHub: <GithubOutlined />,
-  YuQue: <YuqueOutlined />,
+  GitHub: <Icon svg name="github" />,
+  JueJin: <Icon svg name="blog" size={22} color="#2080ff" />,
+  YuQue: <Icon svg name="yuque" />,
+  JavaScript: <Icon svg name="js" color="#ffca26" />,
 };
 
 export default () => {

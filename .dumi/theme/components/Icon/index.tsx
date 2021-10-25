@@ -1,7 +1,20 @@
-import { createFromIconfontCN } from '@ant-design/icons';
+import React from 'react';
+import Svg from './svg';
+import Iconfont from './iconfont';
 
-const Icon = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2886868_lflfel48vp8.js', // 在 iconfont.cn 上生成
-});
+export default props => {
+  const { svg, name, type, size = 24, color, style, ...restProps } = props;
 
-export default Icon;
+  const attrs = {
+    type: type || name,
+    size,
+    color,
+    style,
+  };
+
+  if (svg) {
+    return <Svg {...restProps} {...attrs} />;
+  }
+
+  return <Iconfont {...restProps} {...attrs} family={restProps?.family} />;
+};

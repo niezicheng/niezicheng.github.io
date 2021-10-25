@@ -1,6 +1,13 @@
 @import '../../../styles/veriable.scss';
 
-.header-nav-item {
-  font-size: 18px;
-  color: $brand-color;
+.ant-space-item {
+  display: flex;
+
+  a.header-nav-item {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
 }
+
+
