@@ -6,8 +6,11 @@
 
 .ant-menu-submenu {
   &-open, &-active {
-
     &>.ant-menu-submenu-title {
+      &:active {
+        background-color: $menu-item-selected-bg-color;
+      }
+
       color: $menu-submenu-open-color;
 
       .ant-menu-submenu-arrow {

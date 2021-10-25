@@ -29,16 +29,6 @@ features:
 footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by self
 ---
 
-<!-- <center>
-  <p align="center">
-  <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-13%2F59e05c04a6ee4.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637738482&t=548113642b67d6a40dd0e6db4f03b4fe" width="75%" style="border-radius: 15px" />
-  </p>
-</center>
-
-<center>
-  <p align="center" style="font-size: 28px">清香的 Orange</p>
-</center> -->
-
 ## 博客网站收藏
 
 <embed src="../README.md#RE-/<table id='blog'>[^]+?[\r\n]<\/table>/"></embed>
