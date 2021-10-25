@@ -15,3 +15,13 @@
     padding-left: 0;
   }
 }
+
+.ant-anchor-link {
+  &>a:hover {
+    color: $brand-color;
+  }
+}
+
+.ant-anchor-link-active > .ant-anchor-link-title {
+  color: $brand-color;
+}

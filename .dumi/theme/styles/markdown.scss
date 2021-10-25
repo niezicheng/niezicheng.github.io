@@ -1,6 +1,9 @@
+@import './theme.scss';
+
 .__dumi-default-icon {
 	background: url('data:image/png');
 }
+
 .markdown {
 	color: #454d64;
 	font-size: 15px;
@@ -34,7 +37,7 @@
 	*:not(pre) {
 		code {
 			padding: 2px 5px;
-			color: #d56161;
+			color: $code-color;
 			background: #f6f7f9;
 		}
 	}
@@ -80,7 +83,7 @@
 		}
 	}
 	a {
-		color: #4569d4;
+		color: $brand-color;
 		text-decoration: none;
 		transition: opacity 0.2s;
 		outline: none;

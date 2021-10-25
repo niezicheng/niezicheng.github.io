@@ -5,6 +5,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import SlidMenu from '../components/slid-menu';
 import SlugList from '../components/slug-list';
+import Home from './home';
 
 import './index.scss';
 import '../styles/markdown.scss';
@@ -18,6 +19,7 @@ export default props => {
     location,
   } = props;
   const { config } = useContext(context);
+  const isHome = location.pathname === '/';
 
   const [collapsed, setCollapsed] = useState(false);
   let containerRef = useRef(null);
@@ -39,50 +41,56 @@ export default props => {
   return (
     <Layout>
       <Header />
-      <Content>
-        <Layout className="site-layout-background layout" style={{ flex: 1 }}>
-          <div className="layout-sider">
-            <Sider
-              className="site-layout-background"
-              collapsible
-              collapsed={collapsed}
-              onCollapse={handleCollapse}
-              width={300}
-            >
-              <SlidMenu
-                menus={config.menus}
-                navs={config.navs}
-                defaultOpenKeys={defaultOpenKeys}
-                defaultSelectedKeys={defaultSelectedKeys}
-              />
-            </Sider>
-          </div>
-
-          <Content className="layout-content">
-            <div ref={containerRef} className="layout-content-container">
-              <div className="layout-content-container-pageContent">
-                <Breadcrumb separator="/">
-                  {/* <Breadcrumb.Item>{config.title}</Breadcrumb.Item> */}
-                  {meta.nav?.title && (
-                    <Breadcrumb.Item>{meta.nav?.title}</Breadcrumb.Item>
-                  )}
-                  {meta.group?.title && (
-                    <Breadcrumb.Item>{meta.group?.title}</Breadcrumb.Item>
-                  )}
-                  <Breadcrumb.Item>{meta.title}</Breadcrumb.Item>
-                </Breadcrumb>
-                <div>{children}</div>
-              </div>
-              <div className="layout-content-container-affix">
-                <Affix offsetTop={50} target={() => containerRef.current}>
-                  <SlugList slugs={meta?.slugs} />
-                </Affix>
-              </div>
+      {isHome ? (
+        <Home meta={meta}>{children}</Home>
+      ) : (
+        <Content>
+          <Layout className="site-layout-background layout" style={{ flex: 1 }}>
+            <div className="layout-sider">
+              <Sider
+                className="site-layout-background"
+                collapsible
+                collapsed={collapsed}
+                onCollapse={handleCollapse}
+                width={300}
+              >
+                <SlidMenu
+                  menus={config.menus}
+                  navs={config.navs}
+                  defaultOpenKeys={defaultOpenKeys}
+                  defaultSelectedKeys={defaultSelectedKeys}
+                />
+              </Sider>
             </div>
-            <Footer />
-          </Content>
-        </Layout>
-      </Content>
+
+            <Content className="layout-content">
+              <div ref={containerRef} className="layout-content-container">
+                <div className="layout-content-container-pageContent">
+                  <Breadcrumb separator="/">
+                    {/* <Breadcrumb.Item>{config.title}</Breadcrumb.Item> */}
+                    {meta.nav?.title && (
+                      <Breadcrumb.Item>{meta.nav?.title}</Breadcrumb.Item>
+                    )}
+                    {meta.group?.title && (
+                      <Breadcrumb.Item>{meta.group?.title}</Breadcrumb.Item>
+                    )}
+                    {meta?.filePath !== 'docs/index.md' && (
+                      <Breadcrumb.Item>{meta.title}</Breadcrumb.Item>
+                    )}
+                  </Breadcrumb>
+                  <div>{children}</div>
+                </div>
+                <div className="layout-content-container-affix">
+                  <Affix offsetTop={50} target={() => containerRef.current}>
+                    <SlugList slugs={meta?.slugs} />
+                  </Affix>
+                </div>
+              </div>
+              <Footer />
+            </Content>
+          </Layout>
+        </Content>
+      )}
     </Layout>
   );
 };

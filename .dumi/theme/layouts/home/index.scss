@@ -1,0 +1,76 @@
+@import '../../styles/theme.scss';
+
+.home {
+  overflow-y: auto;
+  padding: 0 $h_spacing;
+  background-color: $white;
+
+  &-container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  &-hero{
+    padding: 150px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201802%2F04%2F20180204163427_toecn.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637756333&t=54dff64025f12f0bd3ae03a913e60f2c");
+
+    &-title {
+      text-align: center;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 56px;
+      color: #080e29;
+    }
+
+    a {
+      padding: 0 32px;
+      height: 44px;
+      line-height: 44px;
+      background-color: $brand-color;
+      border-radius: 22px;
+      display: inline-block;
+      color: $white;
+      font-size: 16px;
+    }
+
+    p {
+      margin: 0;
+      color: #717484;
+      text-align: center;
+    }
+  }
+
+  &-features {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 33.3%;
+      padding: $h_spacing;
+
+      &>img {
+        width: 50px;
+      }
+
+      &-title {
+        margin: $v-spacing 0;
+        font-size: 20px;
+        color: #454d64;
+
+      }
+
+      p {
+        margin: 0;
+        color: #717484;
+        text-align: center;
+      }
+    }
+  }
+}

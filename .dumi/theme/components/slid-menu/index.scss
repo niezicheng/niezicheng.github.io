@@ -18,8 +18,12 @@
 }
 
 .ant-menu-item {
-  &-selected {
+  &:active {
     background-color: $menu-item-selected-bg-color;
+  }
+
+  &-selected {
+    background-color: $menu-item-selected-bg-color !important;
 
     &::after {
       border-right-color: $menu-item-selected-right-color !important;

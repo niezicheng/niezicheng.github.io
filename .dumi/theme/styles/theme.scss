@@ -12,7 +12,7 @@ $header-bg-color: #fff;
 $header-logo-size: 40px;
 $header-logo-border-radius: 50%;
 
-$header-title: $cyan;
+$header-title-color: $brand-color;
 $header-title-font-size: 20px;
 $header-title-margin-left: 15px;
 
@@ -32,12 +32,12 @@ $menu-submenu-open-color: $brand-color;
 $menu-submenu-arrow-color: $brand-color;
 
 $menu-item-selected-color: $brand-color;
-$menu-item-selected-bg-color: $blue-light;
+$menu-item-selected-bg-color: rgba(69,105,212, 0.1);
 $menu-item-selected-right-color: $brand-color;
 
 $menu-bg-color: #fff;
 
-$menu-trigger-height: 53px;
+$menu-trigger-height: 52px;
 $menu-trigger-bg-color: #002140;
 
 
@@ -56,3 +56,6 @@ $slug-bg-color: $grey-light;
 // footer
 $footer-bg-color: #fff;
 $footer-padding-vertical: 15px;
+
+// markdown
+$code-color: #d56161

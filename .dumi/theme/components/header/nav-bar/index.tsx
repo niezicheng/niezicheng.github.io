@@ -3,7 +3,6 @@ import { Space } from 'antd';
 import { context } from 'dumi/theme';
 import { map, filter, get } from 'lodash';
 import Icon from '../../Icon';
-
 import './index.scss';
 
 type NavItem = {
