@@ -74,3 +74,51 @@
     }
   }
 }
+
+.card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &-item {
+    width: 25%;
+    padding: 15px;
+    border-radius: $radius-m;
+
+    &:hover {
+      background-color: $brand-bg-color;
+
+      .card-item-title {
+        color: $brand-color;
+      }
+    }
+
+    a>img {
+      width: 100%;
+      border-radius: $radius-m;
+    }
+
+    &-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 98px;
+      border-radius: $radius-m;
+      background-image: url('https://th.wallhaven.cc/lg/z8/z8dg9y.jpg');
+      background-size: cover;
+
+      &>img {
+        width: 50px;
+        border-radius: $radius-m;
+      }
+    }
+
+    &-title {
+      padding-top: 15px;
+      text-align: center;
+      color:rgba(0, 0, 0, 0.8);
+      font-size: 18px;
+    }
+  }
+}

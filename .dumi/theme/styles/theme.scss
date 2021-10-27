@@ -1,8 +1,14 @@
 @import './veriable.scss';
 
-
+// 间距
 $v-spacing: 8px;
 $h_spacing: 24px;
+
+
+// 圆角
+$radius-l: 12px;
+$radius-m: 8px;
+$radius-s: 3px;
 
 
 // header
@@ -32,7 +38,7 @@ $menu-submenu-open-color: $brand-color;
 $menu-submenu-arrow-color: $brand-color;
 
 $menu-item-selected-color: $brand-color;
-$menu-item-selected-bg-color: rgba(69,105,212, 0.1);
+$menu-item-selected-bg-color: $brand-bg-color;
 $menu-item-selected-right-color: $brand-color;
 
 $menu-bg-color: #fff;

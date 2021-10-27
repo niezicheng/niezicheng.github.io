@@ -29,7 +29,7 @@ features:
 footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by self
 ---
 
-## 博客网站收藏
+<!-- ## 博客网站收藏
 
 <embed src="../README.md#RE-/<table id='blog'>[^]+?[\r\n]<\/table>/"></embed>
 
@@ -43,7 +43,7 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 
 ## 设计体验网站
 
-<embed src="../README.md#RE-/<table id='design'>[^]+?[\r\n]<\/table>/"></embed>
+<embed src="../README.md#RE-/<table id='design'>[^]+?[\r\n]<\/table>/"></embed> -->
 
 ## 行业术语
 
