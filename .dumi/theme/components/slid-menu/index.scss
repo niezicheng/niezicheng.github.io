@@ -1,41 +1,51 @@
 @import '../../styles/theme.scss';
 
-.ant-menu-submenu-selected {
-  color: $menu-submenu-selected-color;
-}
+.ant-menu {
+  .ant-menu-submenu-selected {
+    color: $menu-submenu-selected-color;
+  }
 
-.ant-menu-submenu {
-  &-open, &-active {
-    &>.ant-menu-submenu-title {
-      &:active {
-        background-color: $menu-item-selected-bg-color;
-      }
+  .ant-menu-submenu {
+    .ant-menu-submenu-title {
+      display: flex;
+      align-items: center;
+    }
 
-      color: $menu-submenu-open-color;
+    &-open, &-active {
+      &>.ant-menu-submenu-title {
+        color: $menu-submenu-open-color;
 
-      .ant-menu-submenu-arrow {
-        color: $menu-submenu-arrow-color !important;
+        &:active {
+          background-color: $menu-item-selected-bg-color;
+        }
+
+        .ant-menu-submenu-arrow {
+          color: $menu-submenu-arrow-color !important;
+        }
       }
     }
   }
-}
 
-.ant-menu-item {
-  &:active {
-    background-color: $menu-item-selected-bg-color;
-  }
+  .ant-menu-item {
+    display: flex;
+    align-items: center;
 
-  &-selected {
-    background-color: $menu-item-selected-bg-color !important;
-
-    &::after {
-      border-right-color: $menu-item-selected-right-color !important;
+    &:active {
+      background-color: $menu-item-selected-bg-color;
     }
-  }
 
-  &-selected, &-active {
-    &>a {
-      color: $menu-item-selected-color !important;
+    &-selected {
+      background-color: $menu-item-selected-bg-color !important;
+
+      &::after {
+        border-right-color: $menu-item-selected-right-color !important;
+      }
+    }
+
+    &-selected, &-active {
+      &>span, a {
+        color: $menu-item-selected-color !important;
+      }
     }
   }
 }

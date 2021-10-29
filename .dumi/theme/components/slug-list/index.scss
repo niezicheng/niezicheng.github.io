@@ -1,6 +1,7 @@
 @import '../../styles/theme.scss';
 
-.ant-anchor-wrapper {
+
+.ant-layout .ant-anchor-wrapper {
   max-width: $slug-max-width;
   padding-left: 0px;
   padding: $slug-padding-vertical $slug-padding-horizontal;
@@ -13,15 +14,14 @@
 
   .ant-anchor-link {
     padding-left: 0;
-  }
-}
 
-.ant-anchor-link {
-  &>a:hover {
+    &>a:hover {
+      color: $brand-color;
+    }
+  }
+
+  .ant-anchor-link-active > .ant-anchor-link-title {
     color: $brand-color;
   }
 }
 
-.ant-anchor-link-active > .ant-anchor-link-title {
-  color: $brand-color;
-}

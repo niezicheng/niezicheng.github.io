@@ -1,8 +1,8 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { HeartFilled } from '@ant-design/icons';
 import { Link } from 'umi';
 import { get, map, filter } from 'lodash';
+import Icon from '../Icon';
 import './index.scss';
 
 const { SubMenu } = Menu;
@@ -30,7 +30,7 @@ export default props => {
       if (Array.isArray(menu?.children)) {
         return (
           <SubMenu
-            icon={<HeartFilled />}
+            icon={<Icon type="submenu" size={18} style={{ marginRight: 4 }} />}
             key={menu.path.replace(/^\//, '')}
             title={menu.title}
           >
@@ -40,7 +40,10 @@ export default props => {
       }
 
       return (
-        <Menu.Item key={menu.path}>
+        <Menu.Item
+          key={menu.path}
+          icon={<Icon type="menuitem" size={18} style={{ marginRight: 4 }} />}
+        >
           <Link to={menu.path}>{menu.title}</Link>
         </Menu.Item>
       );

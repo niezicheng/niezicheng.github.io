@@ -1,7 +1,7 @@
 @import './theme.scss';
 
 .__dumi-default-icon {
-	background: url('data:image/png');
+	background: $code-btn-bg;
 }
 
 .markdown {
