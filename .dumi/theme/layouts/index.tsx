@@ -6,6 +6,7 @@ import Footer from '../components/footer';
 import SlidMenu from '../components/slid-menu';
 import SlugList from '../components/slug-list';
 import Home from './home';
+import StartedPage from './started-page';
 
 import './index.scss';
 import '../styles/markdown.scss';
@@ -20,6 +21,7 @@ export default props => {
   } = props;
   const { config } = useContext(context);
   const isHome = location.pathname === '/';
+  const isGettingStarted = location.pathname === '/getting-started';
 
   const [collapsed, setCollapsed] = useState(false);
   let containerRef = useRef(null);
@@ -32,9 +34,9 @@ export default props => {
   ];
   const defaultSelectedKeys = [location.pathname];
 
-  const { meta } = routes.find(item => {
+  const meta = routes.find(item => {
     return item.path === children.props.location.pathname;
-  });
+  })?.meta;
 
   const handleCollapse = collapsed => setCollapsed(collapsed);
 
@@ -64,28 +66,32 @@ export default props => {
             </div>
 
             <Content className="layout-content">
-              <div ref={containerRef} className="layout-content-container">
-                <div className="layout-content-container-pageContent">
-                  <Breadcrumb separator="/">
-                    {/* <Breadcrumb.Item>{config.title}</Breadcrumb.Item> */}
-                    {meta.nav?.title && (
-                      <Breadcrumb.Item>{meta.nav?.title}</Breadcrumb.Item>
-                    )}
-                    {meta.group?.title && (
-                      <Breadcrumb.Item>{meta.group?.title}</Breadcrumb.Item>
-                    )}
-                    {meta?.filePath !== 'docs/index.md' && (
-                      <Breadcrumb.Item>{meta.title}</Breadcrumb.Item>
-                    )}
-                  </Breadcrumb>
-                  <div>{children}</div>
+              {isGettingStarted ? (
+                <StartedPage />
+              ) : (
+                <div ref={containerRef} className="layout-content-container">
+                  <div className="layout-content-container-pageContent">
+                    <Breadcrumb separator="/">
+                      {/* <Breadcrumb.Item>{config.title}</Breadcrumb.Item> */}
+                      {meta?.nav?.title && (
+                        <Breadcrumb.Item>{meta?.nav?.title}</Breadcrumb.Item>
+                      )}
+                      {meta?.group?.title && (
+                        <Breadcrumb.Item>{meta?.group?.title}</Breadcrumb.Item>
+                      )}
+                      {meta?.filePath !== 'docs/index.md' && (
+                        <Breadcrumb.Item>{meta?.title}</Breadcrumb.Item>
+                      )}
+                    </Breadcrumb>
+                    <div>{children}</div>
+                  </div>
+                  <div className="layout-content-container-affix">
+                    <Affix offsetTop={50} target={() => containerRef.current}>
+                      <SlugList slugs={meta?.slugs} />
+                    </Affix>
+                  </div>
                 </div>
-                <div className="layout-content-container-affix">
-                  <Affix offsetTop={50} target={() => containerRef.current}>
-                    <SlugList slugs={meta?.slugs} />
-                  </Affix>
-                </div>
-              </div>
+              )}
               <Footer />
             </Content>
           </Layout>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
+import { HeartFilled } from '@ant-design/icons';
 import { Link } from 'umi';
 import { get, map, filter } from 'lodash';
 import './index.scss';
@@ -30,7 +30,7 @@ export default props => {
       if (Array.isArray(menu?.children)) {
         return (
           <SubMenu
-            icon={<HeartOutlined />}
+            icon={<HeartFilled />}
             key={menu.path.replace(/^\//, '')}
             title={menu.title}
           >

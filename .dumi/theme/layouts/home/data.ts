@@ -119,6 +119,26 @@ export const technology = {
         'https://terminus-paas.oss-cn-hangzhou.aliyuncs.com/pmp/attachments/file-6a771bc0-123e-4812-9dca-17280ca54cd7.jpeg',
       href: 'http://kernel.meizu.com/',
     },
+    {
+      id: 6,
+      name: '淘系前端团队',
+      imgUrl:
+        'https://img.alicdn.com/tps/TB1Nv_wKXXXXXbmXVXXXXXXXXXX-295-195.png',
+      href: 'https://fed.taobao.org/',
+    },
+    {
+      id: 7,
+      name: '腾讯 AlloyTeam 团队',
+      imgUrl: 'http://cdn.alloyteam.com/assets/img/alloyteam-w-34df9d.svg',
+      href: 'http://www.alloyteam.com/',
+    },
+    {
+      id: 8,
+      name: '涂鸦智能技术团队',
+      imgUrl:
+        '//tuya-static-1254153901.cos.ap-shanghai.myqcloud.com/ghost/content/images/2020/05/e037216fec67072eundefined',
+      href: 'https://tech.tuya.com/',
+    },
   ],
 };
 

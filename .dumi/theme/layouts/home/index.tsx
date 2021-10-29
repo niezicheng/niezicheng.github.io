@@ -12,6 +12,7 @@ const Home = props => {
   return (
     <div className="home">
       <div className="home-container">
+        {/* 网站头部展示 */}
         <div className="home-hero">
           <div className="home-hero-title">{hero?.title}</div>
           <div dangerouslySetInnerHTML={{ __html: hero?.desc }}></div>
@@ -21,6 +22,7 @@ const Home = props => {
             </a>
           ))}
         </div>
+        {/* 自身网站特点描述 */}
         <div className="home-features">
           {map(features, (feature, key) => (
             <div key={key} className="feature-item">
@@ -30,6 +32,7 @@ const Home = props => {
             </div>
           ))}
         </div>
+        {/* blog、资源类网站展示 */}
         {map(source, ({ title, isImg = false, column = 4, data }) => (
           <>
             <h2>{title}</h2>

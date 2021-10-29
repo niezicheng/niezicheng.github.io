@@ -1,0 +1,50 @@
+@import '../../styles//theme.scss';
+
+.started-page {
+  height: 100%;
+  padding: $h_spacing;
+  overflow: auto;
+
+  &>.ant-btn.ant-btn-link {
+    padding: 0;
+    margin-bottom: $h_spacing;
+    font-size: 20px;
+    color: $brand-color;
+  }
+
+  .card {
+    padding: $h_spacing;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3), 0 0 30px rgba(0,0,0,0.1) inset;
+    border-radius: $radius-m;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $h_spacing;
+
+    &:hover {
+      box-shadow: 0 1px 10px rgba(0,0,0,0.3), 0 0 40px rgba(0,0,0,0.1) inset;
+    }
+
+    &-title {
+      font-size: 20px;
+      font-family: 500;
+    }
+
+    &-body {
+      &-item {
+        line-height: 30px;
+        font-size: 17px;
+
+        &-name {
+          .short-name {}
+          .english-name {}
+          .chinese-name {}
+        }
+
+        &-desc {
+          font-size: 15px;
+          color: $grey;
+        }
+      }
+    }
+  }
+}

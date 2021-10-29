@@ -6,7 +6,7 @@ hero:
   desc: 📖 快速了解面试、UI组件(库)和 JavaScript 等知识体系
   actions:
     - text: 快速开始
-      link: /interview
+      link: /getting-started
 features:
   - icon: https://gw.alipayobjects.com/zos/bmw-prod/881dc458-f20b-407b-947a-95104b5ec82b/k79dm8ih_w144_h144.png
     title: 开箱即用
@@ -44,16 +44,6 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 ## 设计体验网站
 
 <embed src="../README.md#RE-/<table id='design'>[^]+?[\r\n]<\/table>/"></embed> -->
-
-## 行业术语
-
-[这些互联网圈内常用的名词你了解多少](https://zhuanlan.zhihu.com/p/64649254)
-
-[腾讯 AlloyTeam 团队](http://www.alloyteam.com)
-
-[淘系前端团队（FED）](https://fed.taobao.org/?spm=taofed.homepage.header.1.64e35ac8E6rU7c)
-
-[涂鸦智能技术团队](https://tech.tuya.com/)
 
 **多端:**
 
