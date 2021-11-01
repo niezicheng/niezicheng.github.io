@@ -41,6 +41,16 @@ nav:
 
 [Github (star: 2.1k)](https://github.com/youzan/zent)
 
+### Semi - 抖音
+
+[Semi UI](https://semi.design)
+
+[Github (3.4k)](https://github.com/DouyinFE/semi-design)
+
+### arco.design - 字节
+
+[arco.design (1.7k)](https://arco.design/)
+
 ## 移动端
 
 ### Antd Mobile - 蚂蚁金服

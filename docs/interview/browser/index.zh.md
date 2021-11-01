@@ -1,5 +1,5 @@
 ---
-title: BROWSER
+title: Browser
 order: 5
 toc: 'menu'
 nav:
@@ -25,11 +25,11 @@ nav:
 
 [细说浏览器输入 URL 后发生了什么](https://juejin.cn/post/6844904054074654728)
 
-## Q2: 如何在不同的端口间共享 cookie
+## Q2: 不同端口 cookie 共享
 
 > 根据同源策略，`cookie` 是区分端口的，但是对浏览器来说，`cookie` 是区分区域的，所以在同一 `ip` 下的多个端口的`cookie` 是共享的
 
-## Q3: 本地存储的四种方式：cookie，localStorage, sessionStorage, indexDB 之间的区别
+## Q3: 本地存储的四种方式
 
 [深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
 
@@ -99,7 +99,7 @@ nav:
 
 [四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
 
-## Q6: 讲讲你对 cookie 的理解？包括 SameSite 属性
+## Q6: cookie 的理解（包括 SameSite 属性）
 
 > `SameSite` 属性可以让 `Cookie` 在跨站请求时不会被发送，从而可以阻止跨站请求伪造攻击（CSRF）。
 
@@ -115,7 +115,7 @@ nav:
 
 [预测最近面试会考 Cookie 的 SameSite 属性](https://juejin.cn/post/6844904095711494151)
 
-## Q7: JS 实现跨域（九种方式）
+## Q7: JS 实现跨域
 
 > 跨域是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对 `JavaScript` 实施的安全限制，那么只要`协议`、`域名`、`端口`有任何一个不同，都被当作是不同的域
 >
@@ -142,7 +142,7 @@ nav:
 
 [九种跨域方式实现原理（完整版）](https://juejin.cn/post/6844903767226351623)
 
-## Q8: 谈谈前端的安全知识？XSS、CSRF，以及如何防范
+## Q8: 前端安全知识(XSS、 CSRF)
 
 ### XSS（Cross Site Scripting）- 跨域脚本攻击
 

@@ -1,4 +1,6 @@
+# exit immediately if a simple command exits with a non-zero status
 set -e
+# open bash to recognize regular
 shopt -s extglob
 
 TEMP_PATH="docs/.temp"

@@ -32,7 +32,7 @@
 		font-size: 14px;
 	}
 	p {
-		margin: 16px 0;
+		margin: 4px 0;
 	}
 	*:not(pre) {
 		code {
@@ -60,7 +60,7 @@
 		margin: 16px 0;
 		padding: 0 24px;
 		color: rgba(69,77,100,0.7);
-		border-left: 4px solid #ebedf1;
+		border-left: 4px solid $brand-bg-color;
 		overflow: hidden;
 	}
 	table {
@@ -254,3 +254,10 @@
 [data-prefers-color=dark] h4 {
 	color: rgba(255,255,255,0.85);
 }
+
+.__dumi-default-code-block {
+  .token-line {
+    width: 0px;
+  }
+}
+

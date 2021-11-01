@@ -144,7 +144,7 @@ nav:
 
 [BFC 应用](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/02-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
 
-## Q6: 清除浮动的方法，能讲讲吗?
+## Q6: 清除浮动的方法
 
 - 使用带 `clear` 属性的空元素
 
@@ -168,7 +168,7 @@ nav:
 
 [清除浮动](https://www.cnblogs.com/ForEvErNoME/p/3383539.html)
 
-## Q7: link 标签和 import 标签的区别
+## Q7: link 和 import 标签
 
 - `link` 属于 `html` 标签，而 `@import` 是 `css` 提供的
 - 页面被加载时，`link` 会同时被加载，而 `@import` 引用的 `css` 会等到页面加载结束后加载
@@ -187,7 +187,7 @@ nav:
 
 [CSS 动画简介(阮)](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)
 
-## Q9: 关于 JS 动画和 css3 动画的差异性
+## Q9: JS 动画和 css3 动画的差异性
 
 > 渲染线程分为 `main thread` 和 `compositor thread`(合成线程)，如果 `css` 动画只改变 `transform` 和 `opacity`， 这时整个 `CSS` 动画得以在 `compositor thread` 完成(而 `JS` 动画则会在 `main thread` 执行，然后触发 `compositor thread` 进行下一步操作)，特别注意的是如果改变 `transform` 和 `opacity` 是不会 `layout` 或者 `paint` 的
 
@@ -198,7 +198,7 @@ nav:
 - `css` 动画有天然事件支持
 - `css3` 有兼容性问题
 
-## Q10: display: table 和本身的 table 有什么区别
+## Q10: display: table 和 table 有什么区别
 
 `display:table` 和本身 `table` 是相对应的，区别在于:
 

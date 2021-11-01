@@ -1,5 +1,5 @@
 ---
-title: GIT
+title: Git
 order: 8
 # toc: 'menu'
 nav:

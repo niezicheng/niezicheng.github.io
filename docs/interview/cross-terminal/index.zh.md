@@ -1,5 +1,5 @@
 ---
-title: CrossTerminal
+title: Cross Terminal
 order: 13
 # toc: 'menu'
 nav:

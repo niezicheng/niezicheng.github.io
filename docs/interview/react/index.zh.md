@@ -74,8 +74,6 @@ nav:
 
 [中文文档](https://cn.redux.js.org/)
 
-## 零基础搭建 react 框架
-
 ## Vue
 
 [vue 面试题总汇](https://juejin.cn/post/6844903508810940429)

@@ -16,7 +16,11 @@ export default props => {
   return (
     <Anchor>
       {map(slugsList, (slug, index) => (
-        <Link key={index} href={`#${slug.heading}`} title={slug?.value} />
+        <Link
+          key={index}
+          href={`#${slug.heading}`}
+          title={slug?.value?.toLowerCase()}
+        />
       ))}
     </Anchor>
   );

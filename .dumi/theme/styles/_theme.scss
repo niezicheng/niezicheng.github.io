@@ -1,8 +1,16 @@
 @import './veriable.scss';
 
 // 间距
+$v-spacing-s: 3px;
+$v-spacing-m: 5px;
 $v-spacing: 8px;
+$v-spacing-l: 12px;
+$v-spacing-xl: 16px;
+
+$h_spacing-s: 12px;
+$h_spacing-m: 15px;
 $h_spacing: 24px;
+$h_spacing-l: 30px;
 
 
 // 圆角
@@ -53,8 +61,8 @@ $content-bg-color: #fff;
 
 // slug
 $slug-max-width: 200px;
-$slug-padding-vertical: 50px;
-$slug-padding-horizontal: $h_spacing;
+$slug-padding-vertical: $h_spacing-l;
+$slug-padding-horizontal: $h_spacing-m;
 $slug-border-radius: 10px;
 $slug-bg-color: $grey-light;
 

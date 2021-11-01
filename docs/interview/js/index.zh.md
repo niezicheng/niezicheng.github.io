@@ -1,5 +1,5 @@
 ---
-title: JS
+title: JavaScript
 order: 3
 toc: 'menu'
 nav:
@@ -7,15 +7,7 @@ nav:
   order: 0
 ---
 
-## js 收集
-
-[春招季如何横扫 Javascript 面试核心考点(基础版)？](https://juejin.cn/post/6844903809215365134)
-
-[由浅入深，66 条 JavaScript 面试知识点](https://juejin.cn/post/6844904200917221389)
-
-[前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)
-
-## Q1: 事件冒泡和捕获及事件委托
+## Q1: DOM 事件流
 
 > 事件委托是利用冒泡阶段的运行机制来实现的，就是把一个元素响应事件的函数委托到另一个元素，一般是把一组元素的事件委托到他的父元素上
 >
@@ -28,11 +20,11 @@ nav:
 
 [你真的理解事件冒泡和事件捕获吗？](https://juejin.cn/post/6844903834075021326)
 
-## Q2: 浅拷贝和深拷贝的区别
+## Q2: 浅拷贝和深拷贝
 
 [浅拷贝与深拷贝](https://juejin.cn/post/6844904197595332622)
 
-## Q3: 说一下图片的预加载和懒加载
+## Q3: 图片的预加载和懒加载
 
 预加载:
 
@@ -49,7 +41,7 @@ nav:
 
 [懒加载和预加载](https://juejin.cn/post/6844903614138286094)
 
-## Q4: 什么是闭包, 闭包的作用？
+## Q4: 闭包及其作用
 
 > 闭包是指有权访问另外一个函数作用域中的变量的函数
 >
@@ -72,7 +64,7 @@ nav:
 
 [JavaScript 深入之闭包](https://juejin.cn/post/6844903475998900237)
 
-## Q5: js 中函数的 this 指向
+## Q5: js 中函数的 this
 
 - 普通函数 `this` 指向执行(运行)时决定（window 或调用该函数对象等）
 - 箭头函数 `this` 指向声明时决定（创建时上下文 `this` 指向）
@@ -229,7 +221,7 @@ p2.sayName(); // chen
 
 [JavaScript 中的垃圾回收和内存泄漏](https://blog.fundebug.com/2019/04/30/javascript-memory-management/)
 
-## Q8: 事件循环机制（Event Loop）
+## Q8: 事件循环机制
 
 **Event Loop：**
 ![图解](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/21/16a3e8964d1e54ce~tplv-t2oaga2asx-watermark.awebp)
@@ -455,3 +447,9 @@ Object.prototype.toString.call(obj).slice(8, -1) === 'Array'; // "[object Array]
 [JavaScript 专题系列 20 篇正式完结！](https://juejin.cn/post/6844903506017517582)
 
 [80% 应聘者都不及格的 JS 面试题](https://juejin.cn/post/6844903470466629640#heading-3)
+
+[春招季如何横扫 Javascript 面试核心考点(基础版)？](https://juejin.cn/post/6844903809215365134)
+
+[由浅入深，66 条 JavaScript 面试知识点](https://juejin.cn/post/6844904200917221389)
+
+[前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)

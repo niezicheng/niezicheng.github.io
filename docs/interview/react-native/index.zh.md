@@ -19,7 +19,7 @@ nav:
 
 [React Native 之 JSBridge](http://www.alloyteam.com/2015/05/react-native-zhi-jsbridge/)
 
-## PWA(渐进式 WEB 应用)？
+## PWA (渐进式 WEB 应用)
 
 [网站渐进式增强体验(PWA)改造：Service Worker 应用详解](https://lzw.me/a/pwa-service-worker.html)
 

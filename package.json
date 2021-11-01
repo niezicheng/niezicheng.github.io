@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@umijs/plugin-sass": "^1.1.1",
-    "antd": "^4.12.2",
+    "antd": "^4.17.0-alpha.9",
     "react": "^16.12.0"
   },
   "devDependencies": {

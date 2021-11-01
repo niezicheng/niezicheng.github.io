@@ -2,7 +2,14 @@
 
 .ant-menu {
   .ant-menu-submenu-selected {
-    color: $menu-submenu-selected-color;
+    color: $menu-submenu-selected-color !important;
+  }
+
+  // 自定义 submenu 的 icon 时需覆盖菜单折叠下的样式
+  .ant-menu-submenu.ant-menu-submenu-vertical {
+    .ant-menu-title-content {
+      opacity: 0;
+    }
   }
 
   .ant-menu-submenu {
@@ -13,7 +20,7 @@
 
     &-open, &-active {
       &>.ant-menu-submenu-title {
-        color: $menu-submenu-open-color;
+        color: $menu-submenu-open-color !important;
 
         &:active {
           background-color: $menu-item-selected-bg-color;
@@ -22,6 +29,7 @@
         .ant-menu-submenu-arrow {
           color: $menu-submenu-arrow-color !important;
         }
+
       }
     }
   }

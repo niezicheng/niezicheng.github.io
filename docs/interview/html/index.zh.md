@@ -7,16 +7,14 @@ nav:
   order: 0
 ---
 
-## Q1: html5 语义化标签
+## Q1: html5 语义化
 
 - 易于用户阅读，样式丢失的时候能让页面呈现清晰的结构
 - 利于浏览器解析和 `SEO` 搜索引擎优化, 搜索引擎根据标签来确定上下文和各个关键字的权重
 - 有利于开发和维护，语义化更具可读性，代码更好维护，与 `CSS3` 关系更和谐
 - 方便其他设备解析，如: 盲人阅读器根据语义渲染网页
 
-## Q2: 为什么要使用 web workers
-
-[Web Worker 使用教程](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
+## Q2: web workers
 
 > 因为 `js` 是单线程，如果存在大数据运算的时候会影响用户使用体验，出现卡顿的情况。
 > 使用 `web workers` 可以开启一个线程，在运算的同时，不影响用户体验。
@@ -27,6 +25,8 @@ web workers 的几个使用场景可以参考下：
 - 端对端加密的时候，要大量计算，可以使用 `workers`
 - 拼写检查，检索的所有工作可以让 `workers` 来完成，不会阻塞 `UI`
 - 在网络不稳定情况下,使用`indexDb api`的时候，可以交给`workers`，这样不会阻塞主线 `UI`
+
+[Web Worker 使用教程](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
 
 **基本使用:**
 
@@ -144,7 +144,7 @@ importScripts('script1.js', 'script2.js');
 
 [回到基础：什么是 DOM 及 DOM 操作？](https://juejin.cn/post/6844904023003234311)
 
-## Q4: 说一下 HTML5 drag api
+## Q4: HTML5 Drag API
 
 - dragstart: 当用户开始拖拽元素或选中的文本时触发，事件主体是`被拖拽元素`
 - drag: 当拖拽元素或选中的文本时触发，事件主体是`被拖拽元素`
@@ -154,7 +154,7 @@ importScripts('script1.js', 'script2.js');
 - drop: 当元素或选中的文本在可释放目标上被释放时触发，事件主体是`目标元素`
 - dragend: 当拖拽操作结束时触发 (比如松开鼠标按键或敲“Esc”键），事件主体是`被拖拽元素`
 
-## Q5: iframe 是什么? 有什么缺点?
+## Q5: iframe
 
 > `iframe` 元素会创建包含另一个文档的内联框架
 >
