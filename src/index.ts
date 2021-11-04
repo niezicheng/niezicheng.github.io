@@ -13,3 +13,6 @@ export {
 
 // toolMethod
 export { htmlTagAddPropContent } from './functions/tool-method/reg-exp';
+
+// components
+export { default as RectAngle } from './components/rect-angle';
