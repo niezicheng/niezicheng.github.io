@@ -9,6 +9,7 @@ const { Link } = Anchor;
 export default props => {
   const { slugs = [] } = props;
 
+  // 过滤出一级或二级文档标题
   const slugsList = slugs.filter(slug => {
     return slug.depth <= 2;
   });

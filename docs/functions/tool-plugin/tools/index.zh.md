@@ -39,13 +39,33 @@ nav:
 
 [veryToolZ](https://verytoolz.com/)
 
-### 万能转换在线工具
-
-[veryToolZ](https://verytoolz.com/)
-
 ### css cubic-bezier 函数转换
 
 [cubic-bezier](https://cubic-bezier.com/)
+
+## 在线编辑工具
+
+### js ,css, scss 在线编辑器
+
+[JSRun（国内）](http://jsrun.net)
+
+> 界面简洁，支持登录保存代码、多屏预览、代码自动提示、用户关注、发布效果、fork 代码
+
+[codepen （国外](http://codepen.io)
+
+> 界面黑暗色调、用户关注、发布效果、fork 代码、支持 html scss，在编辑的时候你可以任意选择和组合你想要的工具
+
+[JSFiddle（国外](http://jsfiddle.net)
+
+> 界面简洁，支持登录保存代码。但不能实时预览 ，国内打开速度比较慢
+
+[jsbin （国外](http://jsbin.com)
+
+> 可登录保存代码 fork 代码，可实时预览、支持 emmet，界面不是太友好
+
+[dabblet（国外](http://dabblet.com)
+
+> 比较简陋。但它可以实时预览和全屏预览
 
 ## 工具库
 

@@ -25,16 +25,23 @@ export default props => {
   );
 
   // TODO: 递归渲染前需对 menus 数据通过 order 排序进行
-  const renderMenus = menus => {
+  /**
+   *
+   * @param menus 菜单数据信息
+   * @param isFirstSubMenu 是否为一级 subMenu
+   * @returns 返回菜单项
+   */
+  const renderMenus = (menus, isFirstSubMenu) => {
     return map(menus, menu => {
       if (Array.isArray(menu?.children)) {
         return (
           <SubMenu
+            className={isFirstSubMenu && 'first-submenu'}
             icon={<Icon type="submenu" size={18} style={{ marginRight: 4 }} />}
             key={menu.path.replace(/^\//, '')}
             title={menu.title}
           >
-            {renderMenus(menu.children)}
+            {renderMenus(menu.children, false)}
           </SubMenu>
         );
       }
@@ -57,7 +64,7 @@ export default props => {
       defaultSelectedKeys={defaultSelectedKeys}
       style={{ height: '100%' }}
     >
-      {renderMenus(menus)}
+      {renderMenus(menus, true)}
     </Menu>
   );
 };
