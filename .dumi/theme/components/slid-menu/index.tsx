@@ -37,7 +37,7 @@ export default props => {
         return (
           <SubMenu
             className={isFirstSubMenu && 'first-submenu'}
-            icon={<Icon type="submenu" size={18} style={{ marginRight: 4 }} />}
+            icon={<Icon type="sub-menu" size={18} style={{ marginRight: 4 }} />}
             key={menu.path.replace(/^\//, '')}
             title={menu.title}
           >
@@ -49,7 +49,7 @@ export default props => {
       return (
         <Menu.Item
           key={menu.path}
-          icon={<Icon type="menuitem" size={18} style={{ marginRight: 4 }} />}
+          icon={<Icon type="menu-item" size={18} style={{ marginRight: 4 }} />}
         >
           <Link to={menu.path}>{menu.title}</Link>
         </Menu.Item>

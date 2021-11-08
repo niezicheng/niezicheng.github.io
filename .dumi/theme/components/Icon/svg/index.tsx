@@ -2,10 +2,11 @@ import React from 'react';
 import svgSource from './svg.json';
 
 const Svg = props => {
-  const { type, color, size, style } = props;
+  const { type, color, size, style, ...restProps } = props;
 
   return (
     <svg
+      {...restProps}
       width={size}
       height={size}
       viewBox={'0 0 1024 1024'}

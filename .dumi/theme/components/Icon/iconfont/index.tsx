@@ -3,7 +3,7 @@ import { defaultFontFiles, loadFont } from './load-iconfont';
 import icons from './iconfont.json';
 
 const Iconfont = props => {
-  const { type, size, color, family = 'iconfont', style } = props;
+  const { type, size, color, family = 'iconfont', style, ...restProps } = props;
 
   loadFont(defaultFontFiles);
 
@@ -20,6 +20,7 @@ const Iconfont = props => {
 
   return (
     <span
+      {...restProps}
       style={{ ...defaultStyle }}
       dangerouslySetInnerHTML={{ __html: `&#x${icons?.[type]};` }}
     ></span>

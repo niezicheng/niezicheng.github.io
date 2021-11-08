@@ -34,7 +34,6 @@ $header-search-width: 200px;
 $header-search-height: 32px;
 $header-search-padding-left: 14px;
 $header-search-padding-right: 38px;
-$header-search-margin-right: 36px;
 $header-search-color: #454d64;
 $header-search-border-radius: 16px;
 
@@ -57,6 +56,7 @@ $menu-trigger-bg-color: #002140;
 
 // content
 $content-bg-color: #fff;
+$content-container-padding-top: 40px;
 
 
 // slug
@@ -71,5 +71,47 @@ $slug-bg-color: $grey-light;
 $footer-bg-color: #fff;
 $footer-padding-vertical: 15px;
 
+
 // markdown
-$code-color: #d56161
+$code-color: #d56161;
+
+
+// 菜单展示悬浮按钮
+$handle-size: 48px;
+$handle-border-radius: 24px;
+$handle-bottom: 24px;
+$handle-right: -74px;
+$handle-bg: $white;
+$handle-border-width: 1px;
+$handle-border-color: #e5e8f1;
+
+
+// 显示屏宽度尺寸
+$x-max-screen: 1920px; // 13寸
+$max-screen: 1440px; // 13寸
+$mid-screen: 1024px; // iPad Pro
+$min-screen: 768px;  // iPad Pro
+$mobile-device: 414px; // mobile
+
+
+// media query
+@mixin responsive($width) {
+  @if $width == $x-max-screen { // 1441 ~ 1920
+    @media only screen and (min-width: $max-screen + 1) and (max-width: $x-max-screen) { @content; }
+  }
+  @else if $width == $max-screen { // 1025 ~ 1440
+    @media only screen and (min-width: $mid-screen + 1) and (max-width: $max-screen) { @content; }
+  }
+  @else if $width == $mid-screen { // 769 ~ 1024, 隐藏 slid-menu
+    @media only screen and (min-width: $min-screen + 1) and (max-width: $mid-screen) { @content; }
+  }
+  @else if $width == $min-screen { // 415 ~ 768, 隐藏 slug-list
+    @media only screen and (min-width: $mobile-device + 1) and (max-width: $min-screen) { @content; }
+  }
+  @else if $width == $mobile-device { // < 414
+    @media only screen and (max-width: $mobile-device) { @content; }
+  }
+  @else { // > 1920
+    @media only screen and (min-width: $x-max-screen) { @content; }
+  }
+}

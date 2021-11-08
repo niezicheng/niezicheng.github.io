@@ -2,7 +2,10 @@ import React, { useContext } from 'react';
 import { Space } from 'antd';
 import { context } from 'dumi/theme';
 import { map, filter, get } from 'lodash';
+import MediaQuery from 'react-responsive';
 import Icon from '../../Icon';
+import { MOBILE_DEVICE } from '../../../utils/constant';
+
 import './index.scss';
 
 type NavItem = {
@@ -14,7 +17,7 @@ type NavItem = {
 const mapTitleToIcon = {
   GitHub: <Icon svg name="github" />,
   JueJin: <Icon svg name="blog" size={22} color="#2080ff" />,
-  YuQue: <Icon svg name="yuque" />,
+  YuQue: <Icon svg name="yu-que" />,
   JavaScript: <Icon svg name="js" color="#ffca26" />,
 };
 
@@ -31,12 +34,25 @@ export default () => {
   ) as Array<NavItem>;
 
   return (
-    <Space size="middle">
-      {map(navList, (nav, index) => (
-        <a className="header-nav-item" key={index} href={nav.path}>
-          {mapTitleToIcon[nav.title] || nav.title}
-        </a>
-      ))}
-    </Space>
+    <>
+      <MediaQuery minWidth={MOBILE_DEVICE + 1}>
+        <Space size="middle">
+          {map(navList, (nav, index) => (
+            <a className="header-nav-item" key={index} href={nav.path}>
+              {mapTitleToIcon[nav.title] || nav.title}
+            </a>
+          ))}
+        </Space>
+      </MediaQuery>
+      <MediaQuery maxWidth={MOBILE_DEVICE}>
+        <Space direction="vertical" size="middle">
+          {map(navList, (nav, index) => (
+            <a className="header-nav-item" key={index} href={nav.path}>
+              {mapTitleToIcon[nav.title] || nav.title}
+            </a>
+          ))}
+        </Space>
+      </MediaQuery>
+    </>
   );
 };
