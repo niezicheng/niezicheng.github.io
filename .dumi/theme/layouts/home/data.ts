@@ -1,7 +1,8 @@
+import { cloneDeep, map } from 'lodash';
 import { SourceItemType } from './interface';
 
 // 博客网站收藏
-export const blog = {
+export const blog: SourceItemType = {
   title: '博客网站收藏',
   isImg: true,
   data: [
@@ -81,7 +82,7 @@ export const blog = {
 };
 
 // 技术网站收藏
-export const technology = {
+export const technology: SourceItemType = {
   title: '技术网站收藏',
   column: 5,
   data: [
@@ -143,7 +144,7 @@ export const technology = {
 };
 
 // 框架网站收藏
-export const frame = {
+export const frame: SourceItemType = {
   title: '框架网站收藏',
   column: 5,
   data: [
@@ -170,7 +171,7 @@ export const frame = {
 };
 
 // 设计体验网站
-export const design = {
+export const design: SourceItemType = {
   title: '设计体验网站',
   column: 5,
   data: [
@@ -199,3 +200,16 @@ export const design = {
 };
 
 export const source: Array<SourceItemType> = [blog, technology, frame, design];
+
+export const setItemColumn: (col: number) => Array<SourceItemType> = (
+  column: number,
+) => {
+  const sourceData = map(cloneDeep(source), item => ({
+    ...item,
+    column,
+  }));
+
+  return sourceData;
+};
+
+export const source_2: Array<SourceItemType> = setItemColumn(2);

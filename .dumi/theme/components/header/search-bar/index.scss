@@ -1,7 +1,6 @@
 @import '../../../styles/theme.scss';
 
 .nusi-default-search {
-  margin-right: $header-search-margin-right;
   position: relative;
   display: inline-block;
 
@@ -82,27 +81,52 @@
     }
   }
 
-  // @media only screen and (max-width: 1024px) {
-  //   margin-right: -14px;
+  @media screen and (max-width: 650px) {
+    > input:not(:focus) {
+      width: 32px;
+      padding-left: 32px;
+      padding-right: 0;
+      box-shadow: none;
+      cursor: pointer;
+      background-position: right 8px center;
 
-  //   > input:not(:focus) {
-  //     width: 32px;
-  //     padding-right: 0;
-  //     box-shadow: none;
-  //     cursor: pointer;
-  //     background-position: right 8px center;
+      + ul {
+        transition: 0.1s visibility;
+        visibility: hidden;
+      }
+    }
 
-  //     + ul {
-  //       transition: 0.1s visibility;
-  //       visibility: hidden;
-  //     }
-  //   }
-  // }
+    > input:focus {
+      padding-left: 14px;
+    }
+  }
 
-  // @media only screen and (max-width: 767px) {
-  //   position: absolute;
-  //   top: 9px;
-  //   right: 24px;
-  //   display: block !important;
-  // }
+  @include responsive($mobile-device) {
+    > input:not(:focus) {
+      width: 32px;
+      padding-left: 32px;
+      padding-right: 0;
+      box-shadow: none;
+      cursor: pointer;
+      background-position: right 8px center;
+
+      + ul {
+        transition: 0.1s visibility;
+        visibility: hidden;
+      }
+    }
+
+    > input:focus {
+      padding-left: 14px;
+    }
+
+    > input + ul {
+      width: 265px;
+      min-width: 265px
+    }
+
+    .nusi-default-search-input {
+      width: 200px;
+    }
+  }
 }

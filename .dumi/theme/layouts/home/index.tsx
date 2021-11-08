@@ -1,6 +1,9 @@
 import React from 'react';
 import { map } from 'lodash';
-import { source } from './data';
+import MediaQuery from 'react-responsive';
+import { source, source_2 } from './data';
+import { MOBILE_DEVICE } from '../../utils/constant';
+
 import './index.scss';
 
 const Home = props => {
@@ -33,31 +36,60 @@ const Home = props => {
           ))}
         </div>
         {/* blog、资源类网站展示 */}
-        {map(source, ({ title, isImg = false, column = 4, data }) => (
-          <>
-            <h2>{title}</h2>
-            <div className="card">
-              {map(data, ({ id, href, name, imgUrl }) => (
-                <div
-                  key={id}
-                  className="card-item"
-                  style={{ width: `${100 / column}%` }}
-                >
-                  <a href={href} target="_blank">
-                    {isImg ? (
-                      <img src={imgUrl} />
-                    ) : (
-                      <div className="card-item-top">
+        <MediaQuery minWidth={MOBILE_DEVICE + 1}>
+          {map(source, ({ title, isImg = false, column = 4, data }, key) => (
+            <div key={key}>
+              <h2>{title}</h2>
+              <div className="card">
+                {map(data, ({ id, href, name, imgUrl }) => (
+                  <div
+                    key={id}
+                    className="card-item"
+                    style={{ width: `${100 / column}%` }}
+                  >
+                    <a href={href} target="_blank">
+                      {isImg ? (
                         <img src={imgUrl} />
-                      </div>
-                    )}
-                    <div className="card-item-title">{name}</div>
-                  </a>
-                </div>
-              ))}
+                      ) : (
+                        <div className="card-item-top">
+                          <img src={imgUrl} />
+                        </div>
+                      )}
+                      <div className="card-item-title">{name}</div>
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
-          </>
-        ))}
+          ))}
+        </MediaQuery>
+        <MediaQuery maxWidth={MOBILE_DEVICE}>
+          {map(source_2, ({ title, isImg = false, column, data }, key) => (
+            <div key={key}>
+              <h2>{title}</h2>
+              <div className="card">
+                {map(data, ({ id, href, name, imgUrl }) => (
+                  <div
+                    key={id}
+                    className="card-item"
+                    style={{ width: `${100 / column}%` }}
+                  >
+                    <a href={href} target="_blank">
+                      {isImg ? (
+                        <img src={imgUrl} />
+                      ) : (
+                        <div className="card-item-top">
+                          <img src={imgUrl} />
+                        </div>
+                      )}
+                      <div className="card-item-title">{name}</div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </MediaQuery>
 
         {children}
       </div>

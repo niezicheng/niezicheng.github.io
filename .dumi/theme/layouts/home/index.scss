@@ -10,12 +10,13 @@
     margin: 0 auto;
   }
 
-  &-hero{
+  &-hero {
     padding: 150px 0;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201802%2F04%2F20180204163427_toecn.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637756333&t=54dff64025f12f0bd3ae03a913e60f2c");
+    background-size: 100% 100%;
 
     &-title {
       text-align: center;
@@ -106,7 +107,7 @@
       height: 98px;
       border-radius: $radius-m;
       background-image: url('https://th.wallhaven.cc/lg/z8/z8dg9y.jpg');
-      background-size: cover;
+      background-size: 100% 100%;
 
       &>img {
         width: 50px;
@@ -119,6 +120,65 @@
       text-align: center;
       color:rgba(0, 0, 0, 0.8);
       font-size: 18px;
+    }
+  }
+}
+
+@include responsive($min-screen) {
+  .home {
+    &-hero {
+      padding: 100px 0;
+    }
+  }
+
+  .card {
+    &-item {
+      &-top {
+        height: 150px;
+      }
+    }
+  }
+}
+
+
+@include responsive($mobile-device) {
+  .home {
+    &-hero {
+      padding: 24px 0;
+
+      &-title {
+        font-size: 28px;
+      }
+
+      a {
+        padding: 0 20px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 13px;
+      }
+
+      .markdown {
+        padding-bottom: 20px;
+
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+
+    &-features {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0;
+
+      .feature-item {
+        width: 100%;
+        padding: 12px 0;
+
+        .markdown {
+          padding-bottom: 0;
+        }
+      }
     }
   }
 }

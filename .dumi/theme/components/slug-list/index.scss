@@ -25,3 +25,29 @@
   }
 }
 
+@media only screen and (max-width: $min-screen) {
+  .ant-layout .ant-anchor-wrapper {
+    width: 100%;
+    max-width: none;
+    padding: 4px 7px;
+    border-radius: 0;
+    margin: 0;
+
+    // 去除滚动条
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
+
+    .ant-anchor {
+      display: flex;
+      flex-direction: row;
+
+      .ant-anchor-link {
+        padding: 8px
+      }
+    }
+  }
+}
+
