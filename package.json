@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "docs-dumi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "dumi dev",
     "clean": "rm -rf ./src/.umi && dumi dev",
