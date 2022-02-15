@@ -13,3 +13,7 @@ nav:
 ## patch-package 补丁包
 
 [手把手教你使用 patch-package 给 npm 包打补丁](https://juejin.cn/post/6962554654643191815)
+
+## package-size 查看 npm 包大小
+
+[package-size](https://www.npmjs.com/package/package-size)

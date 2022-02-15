@@ -64,3 +64,5 @@ PC 开源社区软件 [Discuz Q](https://discuz.com/)
 导航网站搭建 [oneNav](https://www.iotheme.cn/store/onenav.html)(收费，也有开源版本)
 
 后台管理系统: Github 搜索 admin 后 sort 即可找到很多相关的开源框架
+
+精品 MAC 应用 [Xclient](https://xclient.info/)

@@ -61,6 +61,8 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 - 阿里 - [Weex](https://incubator.apache.org/projects/weex.html)(Vue)
 - Apache - [Cordova](http://cordova.axuer.com/)(HTML + CSS + JS)
 - [Ionic](https://ionicframework.com/)(Angular、React、Vue)
+- 字节 - [Lynx](https://github.com/hxxft/lynx-native)(Vue)
+- 俄罗斯圣彼得堡的 JetBrains 开发团队 - [kotlin-native](https://kotlinlang.org/) [kotlin-native 中文](https://www.kotlincn.net/)
 
 **小程序端:**
 

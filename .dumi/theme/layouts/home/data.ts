@@ -140,6 +140,12 @@ export const technology: SourceItemType = {
         '//tuya-static-1254153901.cos.ap-shanghai.myqcloud.com/ghost/content/images/2020/05/e037216fec67072eundefined',
       href: 'https://tech.tuya.com/',
     },
+    {
+      id: 9,
+      name: 'DTeam 技术日志',
+      imgUrl: 'https://avatars.githubusercontent.com/u/23290304?s=200&v=4',
+      href: 'https://blog.dteam.top/',
+    },
   ],
 };
 

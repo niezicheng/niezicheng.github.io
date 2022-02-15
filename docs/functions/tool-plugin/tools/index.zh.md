@@ -39,6 +39,10 @@ nav:
 
 [veryToolZ](https://verytoolz.com/)
 
+### 万能编辑工具
+
+[JSRUN.NET](https://jsrun.net/)
+
 ### css cubic-bezier 函数转换
 
 [cubic-bezier](https://cubic-bezier.com/)
