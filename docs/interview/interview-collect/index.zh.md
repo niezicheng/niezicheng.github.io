@@ -29,6 +29,10 @@ nav:
 
 [面试分享：三年工作经验成功面试字节、阿里 P6 总结](https://juejin.cn/post/6956992439097753631)
 
+## 编程题
+
+[大厂面试中的编程题练习路线图](https://juejin.cn/post/6991657729064452126)
+
 ## 网站
 
 [面试指南](http://interview.poetries.top/)

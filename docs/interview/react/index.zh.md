@@ -74,10 +74,6 @@ nav:
 
 [中文文档](https://cn.redux.js.org/)
 
-## Vue
-
-[vue 面试题总汇](https://juejin.cn/post/6844903508810940429)
-
 ## 源码解读
 
 [React 15 与 React 16 架构区别](https://blog.csdn.net/weixin_44135121/article/details/108753231)

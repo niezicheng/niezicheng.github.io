@@ -37,7 +37,7 @@ nav:
 - 减少 `DNS` 查询
 - 使用外部 `javascript` 和 `CSS`
 - 避免重定向
-- 图片懒加载 `lazyLoad`
+- 图片懒加载 `lazyLoad` [链接](https://q.shanyue.tech/fe/html/1.html)
 
 ## Q2: MVC 和 MVVM
 

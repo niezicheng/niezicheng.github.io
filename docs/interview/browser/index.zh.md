@@ -14,7 +14,7 @@ nav:
 
 大致分为一下几步进行:
 
-- `DNS` 解析：把域名解析成 `IP` 地址（）
+- `DNS` 解析：把域名解析成 `IP` 地址
 - `TCP` 建立连接：`TCP`三次握手
 - 发送 `HTTP`请求
 - 服务器处理并响应报文
@@ -79,9 +79,20 @@ nav:
 - **幂等性**: `GET` 是幂等的，而 `POST` 不是。(幂等表示执行相同的操作，结果也是相同的)
 - **TCP 角度**: `GET` 请求会把请求报文一次性发出去，而 `POST` 会分为两个 TCP 数据包(首先发 header 部分，如果服务器响应 100(continue)， 然后发 body 部分)。(火狐浏览器除外，它的 POST 请求只发一个 TCP 包)
 
-### get 请求传参长度的误区
+### GET 和 POST 报文上的区别误区
 
-> `get` 请求参数的大小存在限制，而 `post` 请求的参数大小是无限制的
+> 结论: `GET` 和 `POST` 方法没有实质区别
+
+**说明：**
+
+`GET` 和 `POST` 只是 `HTTP` 协议中两种请求方式，而 `HTTP` 协议是基于 `TCP/IP` 的应用层协议，无论 `GET` 还是 `POST`，用的都是同一个传输层协议，所以在传输上，没有实质上的区别
+
+- 按照规范带参数的报文一般 `GET` 会放在 `URL` 中，而 `POST` 会放在请求体中
+- 不按规范来也是可以的, 我们可以在 `URL` 上写参数，然后方法使用 `POST`；也可以在 `Body` 写参数，然后方法使用 `GET`。当然，这需要服务端支持
+
+### GET 请求传参长度的误区
+
+> `GET` 请求参数的大小存在限制，而 `POST` 请求的参数大小是无限制的
 
 为了明确这个概念，我们必须了解下面几点:
 
@@ -89,6 +100,22 @@ nav:
 - `GET` 的最大长度显示是因为浏览器和 `web` 服务器限制了 `URI` 的长度
 - 不同的浏览器和 `WEB` 服务器，限制的最大长度不一样
 - 要支持 `IE`，则最大长度为 `2083` byte，若只支持 `Chrome`，则最大长度 `8182` byte
+
+### POST 方法会产生两个 TCP 数据包误区
+
+- `HTTP` 协议中没有明确说明 `POST` 会产生两个 `TCP` 数据包，而且实际测试(Chrome)发现，`header` 和 `body` 不会分开发送；所以，`header` 和 `body` 分开发送是部分浏览器或框架的请求方法，不属于 `post` 必然行为
+- `RFC` 里描述：`100 continue` 只有在请求里带了 `Expect: 100-continue` 请求头的时候才有意义
+
+> When the request contains an Expect header field that includes a 100-continue expectation, the 100 response indicates that the server wishes to receive the request payload body, as described in Section 5.1.1. The client ought to continue sending the request and discard the 100 response. If the request did not contain an Expect header field containing the 100-continue expectation, the client can simply discard this interim response.
+
+**结论：** 因而部分描述：对于 `POST`，浏览器先发送 `header`，服务器响应 `100 continue`，浏览器再发送 `data`，服务器响应 `200 ok`（返回数据）其实是不严谨的
+
+### POST 方法比 GET 方法安全？
+
+- 从表面上来看，`POST` 比 `GET` 安全，因为 `POST` 数据在地址栏上不可见
+- 从传输的角度来说，他们都是不安全的，因为 `HTTP` 在网络上是明文传输的，只要在网络节点上捉包，就能完整地获取数据报文；要想安全传输，就只有加密，也就是 `HTTPS`
+
+[都 9102 年了，还问 GET 和 POST 的区别](https://segmentfault.com/a/1190000018129846)
 
 ### 四种常见的 POST 提交数据方式
 
