@@ -442,6 +442,51 @@ Object.prototype.toString.call(obj).slice(8, -1) === 'Array'; // "[object Array]
 
 - `typeof` 只能判断是 `object`, 可以判断一下是否拥有数组的方法
 
+### Js 生成随机字符串
+
+[Js 生成随机字符串的 5 种方法](https://segmentfault.com/a/1190000022718482)
+
+### 生成随机数组
+
+1. `sort` 结合 `Math.random`
+
+```js
+arr.sort(() => Math.random() - 0.5);
+```
+
+**说明：**
+
+- `v8` 在处理 `sort` 方法时，使用了插入排序和快排两种方案。 当目标数组长度小于 `10` 时，使用**插入排序**；反之，使用**快速排序**
+- 所以，严格意义上来讲：这种方式并不是真正意思上的乱序，一些元素并没有机会相互比较， 最终数组元素停留位置的概率并不是完全随机的。
+
+2. 改造 `sort` 和 `Math.random()` 的结合方式
+
+```js
+function shuffle(arr) {
+  let newArr = arr.map(item => ({ val: item, ram: Math.random() }));
+  newArr.sort((a, b) => a.ram - b.ram);
+  arr.splice(0, arr.length, ...newArr.map(i => i.val));
+  return arr;
+}
+```
+
+3. Fisher–Yates (洗牌算法)
+
+**思想：**将数组从后向前遍历，然后将当前元素与其前面随机位置的元素进行交换【过程中各元素之间均有相同概率的交换可能】
+
+```js
+function shuffle(arr) {
+  let m = arr.length;
+  while (m > 1) {
+    let index = Math.floor(Math.random() * m--);
+    [arr[m], arr[index]] = [arr[index], arr[m]];
+  }
+  return arr;
+}
+```
+
+[「前端进阶」数组乱序](https://juejin.cn/post/6844903863812620296)
+
 ## 拓展
 
 [JavaScript 专题系列 20 篇正式完结！](https://juejin.cn/post/6844903506017517582)
