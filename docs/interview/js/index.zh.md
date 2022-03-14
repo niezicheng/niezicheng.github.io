@@ -374,9 +374,16 @@ map.get('chen'); // chen
 
 ### Promise/async/Generator
 
+`Generator` 函数是 `ES6` 提供的一种异步编程解决方案；可以控制函数的执行, 一般结合 [co 库](https://www.npmjs.com/package/co) 使用。拓展：[co 函数库的含义和用法](https://www.ruanyifeng.com/blog/2015/05/co.html)、[Thunk 函数的含义和用法](https://www.ruanyifeng.com/blog/2015/05/thunk.html)
+
+- 可暂停函数, `yield` 可暂停，`next` 方法可启动，每次返回的是 `yield` 后的表达式结果
+- `yield` 表达式本身没有返回值，或者说总是返回 `undefined`。`next` 方法可以带一个参数，该参数就会被当作**上一个** `yield` 表达式的返回值
+
 [工具库-方法实现-Promise](https://niezicheng.github.io/functions/method-realize/promise)
 
 [9k 字 | Promise/async/Generator 实现原理解析](https://juejin.cn/post/6844904096525189128)
+
+[JS 异步编程六种方案](https://juejin.cn/post/6844903760280420366)
 
 ## 功能判断类型
 
@@ -488,6 +495,8 @@ function shuffle(arr) {
 [「前端进阶」数组乱序](https://juejin.cn/post/6844903863812620296)
 
 ## 拓展
+
+[ES6、ES7、ES8、ES9、ES10 新特性一览](https://juejin.cn/post/6844903811622912014)
 
 [JavaScript 专题系列 20 篇正式完结！](https://juejin.cn/post/6844903506017517582)
 
