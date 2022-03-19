@@ -1,6 +1,6 @@
 ---
 title: Vue
-order: 6
+order: 7
 # toc: 'menu'
 nav:
   title: 面试题集锦

@@ -247,6 +247,8 @@ p2.sayName(); // chen
 
 [最后一次搞懂 Event Loop](https://juejin.cn/post/6844903827611598862)
 
+[浏览器与 Node 的事件循环(Event Loop)有何区别?](https://juejin.cn/post/6844903761949753352)
+
 ## Q9: 不可变状态 Immutable
 
 [理解不可变状态 Immutable.js](https://juejin.cn/post/6937481782262497288)

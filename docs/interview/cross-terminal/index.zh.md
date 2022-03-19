@@ -19,6 +19,8 @@ nav:
 
 [Remax](https://remaxjs.org/guide/implementation-notes)
 
+[小程序没有 DOM 接口，原因竟然是……？](https://developers.weixin.qq.com/community/develop/article/doc/000462336ccf080229a9eb37c59413)
+
 ## 跨端框架
 
 [美团民宿跨端复用框架设计与实践](https://tech.meituan.com/2021/06/10/react-native-hybrid-practice-dsl-in-meituan.html)

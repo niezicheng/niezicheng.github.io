@@ -13,8 +13,6 @@ nav:
 
 [2019 年 17 道高频 React 面试题及详解](https://juejin.cn/post/6844903922453200904)
 
-[必须要会的 50 个 React 面试题](https://juejin.cn/post/6844903806715559943)
-
 [React 高频面试题梳理，看看面试怎么答？（上）](https://cloud.tencent.com/developer/article/1506220)
 
 [掘金最污的 React16.x 图文视频教程(2 万 5 千字长文-慎入)](https://juejin.cn/post/6844903870213292045)
@@ -43,6 +41,8 @@ nav:
 ### React 事件系统原理
 
 [React 事件系统工作原理](https://juejin.cn/post/6909271104440205326)
+
+[深入 React 合成事件机制原理](https://segmentfault.com/a/1190000039108951)
 
 ### React 中的组件复用
 
@@ -95,3 +95,31 @@ nav:
 [React 技术揭秘](https://react.iamkasong.com/)
 
 [React 开发必须知道的 34 个技巧【近 1W 字】](https://juejin.cn/post/6844903993278201870)
+
+## React 17、18
+
+### React 17
+
+- 渐进式升级: 支持逐步的 `React` 升级，让不同版本的 `React` 相互嵌套变得更加容易【对于一些比较老的项目可以选择：升级整个应用程序、迁移一部分到最新的版本】
+- 对事件委派的更改: 由原来在 document 上的附加事件处理程序改为到 `root DOM` 上【这样的话在单个应用中使用多个 react 版本】
+- 全新的 `jsx` 转换【无需引入 `React`, 编译器会自动引入 `react/jsx-runtime` 入口处理 `jsx`】
+- 其他重大更改【部分事件对标浏览器、去除事件池、副作用清理时间】
+
+[React v17.0](https://reactjs.org/blog/2020/10/20/react-v17.html)
+
+### React 18
+
+- 自动批处理会在 `原生事件处理函数`、`Promise` 链和 `异步代码` 自动完成【之前这些类型中是不会进行批处理的】(批处理：多个 setState 是否一同更新处理)
+- 允许组件渲染 `undefined` 【之前只允许渲染 `jsx` 元素或 `null`】
+- Suspense & SuspenseList
+  - `Suspense` 支持 `SSR`
+  - 未捕获的 `Suspense` 处理【没有捕获到相应的 `Suspense` 不会抛出错误，`17` 是会抛出错误的】
+  - `null` 或者 `undefined` 的 `Suspense fallback`【仍会使用当前 `Suspense`, `17` 会使用下一个最近的 `Suspense`】
+  - `SuspenseList`【`revealOrder` 属性：可以控制内部 `Suspense` 的渲染顺序、`tail` 属性：如何渲染 `fallback`(多个、一个或隐藏)】
+- 并发功能特性
+- `startTransition` 过渡更新【紧急更新（例如：点击）、过渡更新（例如：搜索查询，功能有点类似于节流操作）】
+- `Hydration`（滋润）【Hydration: 页面通过 `SSR` 渲染，将前端 `js` 交互应用逻辑添加到 `html` 的过程】
+
+[[译] React 18 新特性概览](https://juejin.cn/post/7014683796821770247)
+
+[React 18 新特性（二）: Suspense & SuspenseList](https://blog.csdn.net/zgd826237710/article/details/119568026)
