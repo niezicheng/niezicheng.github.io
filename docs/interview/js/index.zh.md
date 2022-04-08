@@ -22,6 +22,35 @@ nav:
 
 ## Q2: 浅拷贝和深拷贝
 
+```ts
+const cloneDeep = (obj, map = new WeekMap()) => {
+  // 基本数据类型、function
+  if (obj === null || typeof obj !== 'object') return obj;
+  // Date
+  if (obj instanceof Date) return new Date(obj);
+  // RegExp
+  if (obj instanceof RegExp) return new RegExp(obj);
+
+  // 判断该对象是否存在 map 中，用于处理对象循环调用（存在的话直接从 map 中获取哦）
+  if (map.get(obj)) return map.get(obj);
+
+  // 与 obj 对象同一构造函数创建的实例对象
+  const cloneObj = new obj.constructor();
+
+  // 存储克隆的对象到 map 中
+  map.set(obj, cloneObj);
+
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      // 递归调用拷贝
+      cloneObj[key] = cloneDeep(obj[key]);
+    }
+  }
+
+  return cloneObj;
+};
+```
+
 [浅拷贝与深拷贝](https://juejin.cn/post/6844904197595332622)
 
 ## Q3: 图片的预加载和懒加载
@@ -199,7 +228,7 @@ p2.sayName(); // chen
 **新生代晋升老生代条件:**
 
 - 已经经历过一次 `Scavenge` 算法回收
-- 对像从 `From` 空间 复制到 `To` 空间时，`To` 空间内存占用超过限制（25%）
+- 对象从 `From` 空间 复制到 `To` 空间时，`To` 空间内存占用超过限制（25%）
 
 > 设置限制 `25%` 占比原因: 算法结束后，两空间角色进行交换，如果 `To` 空间内存过小的话，会影响后续的内存分配。
 
@@ -243,6 +272,7 @@ p2.sayName(); // chen
 **常见的宏任务和微任务:**
 
 宏任务： `script`(整体代码)、`setTimeout`、`setInterval`、`I/O`、`事件`、`postMessage`、 `MessageChannel`、`setImmediate` (Node.js)
+
 微任务： `Promise.then`、 `MutaionObserver`、`process.nextTick` (Node.js)
 
 [最后一次搞懂 Event Loop](https://juejin.cn/post/6844903827611598862)
@@ -481,7 +511,7 @@ function shuffle(arr) {
 
 3. Fisher–Yates (洗牌算法)
 
-**思想：**将数组从后向前遍历，然后将当前元素与其前面随机位置的元素进行交换【过程中各元素之间均有相同概率的交换可能】
+**思想**：将数组从后向前遍历，然后将当前元素与其前面随机位置的元素进行交换【过程中各元素之间均有相同概率的交换可能】
 
 ```js
 function shuffle(arr) {

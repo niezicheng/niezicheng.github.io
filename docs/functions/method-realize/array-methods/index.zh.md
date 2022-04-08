@@ -114,3 +114,80 @@ function cloneDeep(target, map = new WeakMap()) {
   return cloneTarget;
 }
 ```
+
+### 数据格式转换
+
+**数据格式**
+
+```ts
+[
+  {
+    name: '一级目录',
+
+    children: [
+      {
+        name: '二级目录',
+
+        tagList: [
+          {
+            name: '标签',
+
+            tagValueList: [
+              {
+                name: '标签值111',
+              },
+              {
+                name: '标签值222',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+][
+  // 转换后
+  (['一级目录', '二级目录', '标签', '标签值111'],
+  ['一级目录', '二级目录', '标签', '标签值222'])
+];
+```
+
+```ts
+/**
+ * 获取搜索数据信息
+ * @param data 原数据
+ * @param parent 父节点数据信息
+ * @returns 平铺的二维数组
+ */
+export const fetchSearchData = (data, parent?: any): any[][] => {
+  let newData = [];
+  data?.forEach(item => {
+    // 处理多级分类
+    if (Array.isArray(item?.children) && item.children?.length > 0) {
+      const temp = fetchSearchData(item?.children, item)?.map(val =>
+        parent ? [parent, ...val] : val,
+      );
+      newData.push(...temp);
+      // 处理标签
+    } else if (Array.isArray(item?.tagList) && item.tagList?.length > 0) {
+      const temp = fetchSearchData(item?.tagList, item)?.map(val =>
+        parent ? [parent, ...val] : val,
+      );
+      newData.push(...temp);
+      // 处理标签值
+    } else if (
+      Array.isArray(item?.tagValueList) &&
+      item.tagValueList?.length > 0
+    ) {
+      const temp = fetchSearchData(item?.tagValueList, item)?.map(val =>
+        parent ? [parent, ...val] : val,
+      );
+      newData.push(...temp);
+    } else {
+      newData.push([parent, item]);
+    }
+  });
+
+  return newData;
+};
+```

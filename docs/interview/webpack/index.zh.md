@@ -56,6 +56,12 @@ nav:
 - `gulp` 强调的是前端开发的工作流程，我们可以通过配置一系列的 `task`，定义 `task` 处理的事务(例如文件压缩合并、雪碧图、启动 server、版本控制等)，然后定义执行顺序， 来让 `gulp` 执行这些 `task`，从而构建项目的整个前端开发流程。
 - `webpack` 是一个前端模块化方案，更侧重模块打包，我们可以把开发中的所有资源(图片、js 文件、css 文件等)都看成模块，通过 `loader`(加载器)和 `plugins`(插件)对资源进行处理，打包成符合生产环境部署的前端资源。
 
+### webpack 自定义 loader
+
+[webpack 中如何自定义 loader](https://juejin.cn/post/6891649726656020493)
+
+[webpack 如何自定义一个 loader？](https://segmentfault.com/a/1190000023921193)
+
 ## Babel
 
 [中文文档](https://www.babeljs.cn/)

@@ -61,7 +61,7 @@ export function MyNew() {
 
   obj.__proto__ = ConStructor.prototype; // 对象原型指向构造函数的 prototype
 
-  let result = ConStructor.apply(obj, arguments); // 执行函数中的代码
+  let result = ConStructor.apply(obj, arguments); // 执行构造函数中的代码
 
   return typeof result === 'object' ? result : obj; // 返回值须为对象
 }

@@ -142,7 +142,7 @@ nav:
 
 [10 分钟理解 BFC 原理](https://zhuanlan.zhihu.com/p/25321647)
 
-[BFC 应用](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/02-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
+[BFC 应用](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/02-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
 
 ## Q6: 清除浮动的方法
 
@@ -281,7 +281,7 @@ div::after {
 - grid 布局
   - 父级容器 `display: grid;` 并设置一行三列: `grid-template-rows: 100px;` `grid-template-columns: 300px auto 300px;`;
 
-[三栏布局五种实现方式](https://github.com/qianguyihao/Web/blob/master/14-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/01-%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80.md)
+[三栏布局五种实现方式](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/01-%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80.md)
 
 ### 左右垂直居中布局
 
