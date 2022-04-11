@@ -46,6 +46,10 @@ export default defineConfig({
       path: 'https://juejin.cn/user/2946346894759319/posts',
     },
     {
+      title: 'CNBlogs',
+      path: 'https://www.cnblogs.com/nzcblogs',
+    },
+    {
       title: 'YuQue',
       path: 'https://www.yuque.com/niezicheng',
     },

@@ -3,7 +3,7 @@ title: 前端工程化
 order: 9
 # toc: 'menu'
 nav:
-  title: 面试题集锦
+  title: 知识集锦
   order: 0
 ---
 

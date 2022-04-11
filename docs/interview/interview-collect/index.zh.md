@@ -3,7 +3,7 @@ title: 面试题闯关
 order: 12
 # toc: 'menu'
 nav:
-  title: 面试题集锦
+  title: 知识集锦
   order: 0
 ---
 

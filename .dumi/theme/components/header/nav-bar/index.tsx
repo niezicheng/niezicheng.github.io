@@ -16,7 +16,8 @@ type NavItem = {
 
 const mapTitleToIcon = {
   GitHub: <Icon svg name="github" />,
-  JueJin: <Icon svg name="blog" size={22} color="#2080ff" />,
+  JueJin: <Icon svg name="jue-jin" size={22} color="#2080ff" />,
+  CNBlogs: <Icon svg name="bo-ke-yuan-logo" size={22} color="#1296db" />,
   YuQue: <Icon svg name="yu-que" />,
   JavaScript: <Icon svg name="js" color="#ffca26" />,
 };

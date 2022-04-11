@@ -3,7 +3,7 @@ title: Cross Terminal
 order: 13
 # toc: 'menu'
 nav:
-  title: 面试题集锦
+  title: 知识集锦
   order: 0
 ---
 

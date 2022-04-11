@@ -19,7 +19,7 @@ export const defaultFontFiles = `
 @font-face {
   font-family: 'iconfont';  /* Project id 2886868 */
   src:
-    url('//at.alicdn.com/t/font_2886868_hrhd1ixbmyt.woff2?t=1636342577164') format('woff2'),
-    url('//at.alicdn.com/t/font_2886868_hrhd1ixbmyt.woff?t=1636342577164') format('woff'),
-    url('//at.alicdn.com/t/font_2886868_hrhd1ixbmyt.ttf?t=1636342577164') format('truetype');
+    url('//at.alicdn.com/t/font_2886868_0flbyhs46fpr.woff2?t=1649644290732') format('woff2'),
+    url('//at.alicdn.com/t/font_2886868_0flbyhs46fpr.woff?t=1649644290732') format('woff'),
+    url('//at.alicdn.com/t/font_2886868_0flbyhs46fpr.ttf?t=1649644290732') format('truetype');
 }`;
