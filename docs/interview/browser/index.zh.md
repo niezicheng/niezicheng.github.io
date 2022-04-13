@@ -31,8 +31,6 @@ nav:
 
 ## Q3: 本地存储的四种方式
 
-[深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
-
 | **特性**       | **cookies**                                                                          | **localStorage**                                          | **sessionStorage**                                        | **indexedDB**            |
 | -------------- | :----------------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | ------------------------ |
 | 数据的生命期   | 一般由服务器生成，可设置失效时间。如果在浏览器端生成的`cookie`，默认关闭浏览器后失效 | 除非手动被清除，否则永久保存                              | 仅在当前会话下有效，关闭页面或浏览器后失效                | 永久保存                 |
@@ -65,6 +63,8 @@ nav:
 - `webStorage` 支持事件通知机制，可以将数据更新的通知发送给监听者。`api` 的接口使用更方便。
 - `indexedDB` 支持事务
 
+[深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
+
 ## Q4: fetch 发送 2 次请求的原因
 
 `fetch` 发送 `post` 请求的时候，总是发送 `2` 次，第一次状态码是 `204`，第二次才成功?
@@ -73,9 +73,10 @@ nav:
 
 ## Q5: GET 和 POST 的区别
 
+- 浏览器在回退时，`GET` 不会重新请求，但是 `POST` 会重新请求
+- **缓存**: `GET` 请求会被浏览器主动缓存下来，请求参数会被完整保留在浏览历史记录里，而 `POST` 默认不会。
 - **参数**: `GET` 一般明文放在 `URL` 中，因此不安全，`POST` 放在请求体中，更适合传输敏感信息; `GET` 请求在 `URL` 中传递的参数是有长度限制的，而 `POST` 没有。
 - **编码**: `GET` 只能进行 `URL` 编码，只能接收 `ASCII` 字符，而 `POST` 没有限制。
-- **缓存**: `GET` 请求会被浏览器主动缓存下来，请求参数会被完整保留在浏览历史记录里，而 `POST` 默认不会。
 - **幂等性**: `GET` 是幂等的，而 `POST` 不是。(幂等表示执行相同的操作，结果也是相同的)
 - **TCP 角度**: `GET` 请求会把请求报文一次性发出去，而 `POST` 会分为两个 TCP 数据包(首先发 header 部分，如果服务器响应 100(continue)， 然后发 body 部分)。(火狐浏览器除外，它的 POST 请求只发一个 TCP 包)
 
@@ -126,6 +127,17 @@ nav:
 
 [四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
 
+### 为什么要禁止除 GET 和 POST 之外的 HTTP 方法？
+
+- 除 `GET`、`POST` 之外的其它 `HTTP` 方法，其刚性应用场景较少，且禁止它们的方法简单，即实施成本低
+- 一旦让低权限用户可以访问这些方法，他们就能够以此向服务器实施有效攻击，即威胁影响大
+
+1. `OPTIONS` 方法，将会造成服务器信息暴露，如中间件版本、支持的 `HTTP` 方法等【允许客户端查看服务器信息】
+2. `PUT` 方法，由于 `PUT` 方法自身不带验证机制，利用 `PUT` 方法即可快捷简单地入侵服务器，上传 `Webshell` 或其他恶意文件，从而获取敏感数据或服务器权限【从客户端向服务器传送的数据取代指定文档内容】
+3. `DELETE` 方法，利用 `DELETE` 方法可以删除服务器上特定的资源文件，造成恶意攻击【请求服务器删除指定资源】
+
+[为什么要禁止除 GET 和 POST 之外的 HTTP 方法？](https://www.freebuf.com/articles/web/172695.html)
+
 ## Q6: cookie 的理解（包括 SameSite 属性）
 
 > `SameSite` 属性可以让 `Cookie` 在跨站请求时不会被发送，从而可以阻止跨站请求伪造攻击（CSRF）。
@@ -148,15 +160,15 @@ nav:
 >
 > 跨域原理，即是通过各种方式，避开浏览器的安全限制
 
-- `jsonp` 跨域
-- `cors` 跨域资源共享（CORS）
-- `postMessage` 跨域
-- `WebSocket`协议跨域
-- `nginx` 代理跨域
-- `nodejs` 中间件代理跨域
-- `document.domain + iframe` 跨域
-- `location.hash + iframe`
-- `window.name + iframe`跨域
+- `jsonp` 跨域 【`callback` 方法】
+- `cors` 跨域资源共享（CORS）【后端设置允许源头部信息 `Access-Control-Allow-Origin`】
+- `postMessage` 跨域 【允许跨域操作的 `window` 属性方法】
+- `nginx` 代理跨域 【同源策略对服务器不加限制，反向代理】
+- `nodejs` 中间件代理跨域 【同源策略对服务器不加限制，反向代理】
+- `WebSocket`协议跨域 【允许跨域】
+- `document.domain + iframe` 跨域 【主域相同，子域不同的跨域】
+- `location.hash + iframe` 跨域 【`iframe` 的 `location.hash` 可以在不同域**单向**通信】
+- `window.name + iframe`跨域 【`name` 属性可跨域存在，大小可达 2M】
 
 **说明：**
 
@@ -191,7 +203,7 @@ nav:
 #### XSS 的防范措施
 
 - 进行一系列[编码处理](https://www.jianshu.com/p/599fcd03fd3b)，使注入的脚本代码以编码后的格式输出而不会执行。
-- 内容安全策略（Content Security Policy）,严格的 CSP 在 XSS 的防范中起以下作用
+- 内容安全策略（Content Security Policy）,严格的 `CSP` 在 `XSS` 的防范中起以下作用
   - 禁止加载外域代码，防止复杂的攻击逻辑。
   - 禁止外域提交，网站被攻击后，用户的数据不会泄露到外域。
   - 禁止内联脚本执行（规则较严格，目前发现 GitHub 使用）。

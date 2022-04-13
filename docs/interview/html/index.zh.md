@@ -105,16 +105,16 @@ importScripts('script1.js', 'script2.js');
 
 - location 对象
   - location.href --返回或设置当前文档的 `URL`
-  - location.search --返回 URL 中的查询字符串部分。例
-    如: `http://www.dreamdu.com/dreamdu.php?id=5&name=nzc` 返回包括(?)后面的内容?id=5&name=nzc
+  - location.search --返回 `URL` 中的查询字符串部分。例
+    如: `http://www.dreamdu.com/dreamdu.php?id=5&name=nzc` 返回包括(?)后面的内容 `?id=5&name=nzc`
   - location.hash --返回 `URL#`包括(#)后面的内容，如果没有`#`，返回空
   - location.host --返回 `URL` 中的域名部分。例如: `www.baidu.com`
   - location.hostname --返回 `URL` 中的主域名部分。例如: `baidu.com`
   - location.pathname --返回 `URL` 的域名后的部分。例如: `http://www.baidu.com/xhtml/` 返回`/xhtml/`
   - location.port --返回 `URL` 中的端口部分。例如: `http://www.baidu.com:8080/xhtml/` 返回 `8080`
-  - location.protocol --返回 `URL` 中的协议部分。例如: `http://www.baidu.com:8080/xhtml/` 返回(//)前面的内容 http:
+  - location.protocol --返回 `URL` 中的协议部分。例如: `http://www.baidu.com:8080/xhtml/` 返回(//)前面的内容 `http:`
   - location.assign --设置当前文档的 `URL`
-  - location.replace() --设置当前文档的 `URL`，并且在 `history` 对象的地址列表中移除这个 `URL`, location.replace(url);
+  - location.replace() --设置当前文档的 `URL`，并且在 `history` 对象的地址列表中移除这个 `URL`。**location.replace(url)**
   - location.reload() -- 重载当前页面
 - history 对象
   - history.go() -- 前进或后退指定的页面数 `history.go(num)`
@@ -166,4 +166,4 @@ importScripts('script1.js', 'script2.js');
 - 搜索引擎无法解读这种页面，不利于 `SEO`
 - `iframe` 和主页面共享连接池，而浏览器对相同区域有限制所以会影响性能
 
-**连接池(拓展):**
+[iframe,我们来谈一谈](https://segmentfault.com/a/1190000004502619)

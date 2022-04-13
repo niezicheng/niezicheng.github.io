@@ -44,7 +44,7 @@ nav:
 
 **缺点：**
 
-- 依赖 `SPM`（Swift Package Manager 包管理工具） 打包，模块的加载逻辑偏重
+- 依赖 [SPM](https://www.jianshu.com/p/a4ecf762f1be) 打包，模块的加载逻辑偏重
 
 ### ES6 模块化
 
@@ -58,6 +58,7 @@ nav:
 **说明:**
 
 > 第二个差异是因为 `CommonJS` 加载的是一个对象（即 `module.exports` 属性），该对象只有在脚本运行完才会生成。而 `ES6` 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
+> `ES6` 模块的运行机制与 `CommonJS` 不一样。`ES6` 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块
 
 [前端模块化演化阶段](https://www.jianshu.com/p/f2cf62c66493)
 
@@ -123,7 +124,7 @@ nav:
   - visibility: hidden: 是继承属性，子孙节点消失由于继承了 `hidden`，通过设置 `visibility: visible` 可以让子孙节点显式。
 - 性能：
   - display: none: 修改元素会造成文档回流,读屏器不会读取 `display: none` 元素内容，性能消耗较大
-  - visibility: hidden: 修改元素只会造成本元素的重绘,性能消耗较少读屏器读取 `visibility: hidden` 元素内容
+  - visibility: hidden: 修改元素只会造成本元素的重绘，性能消耗较少，读屏器读取 `visibility: hidden` 元素内容
   - opacity: 0: 修改元素会造成重绘，性能消耗较少
 - 联系：
   - 它们都能让元素不可见
