@@ -9,12 +9,37 @@ nav:
 
 ## Q1: DOM 事件流
 
-> 事件委托是利用冒泡阶段的运行机制来实现的，就是把一个元素响应事件的函数委托到另一个元素，一般是把一组元素的事件委托到他的父元素上
->
-> 委托的优点:
->
-> - 减少内存消耗, 节约效率
-> - 动态绑定事件
+### 事件委托
+
+事件委托是利用冒泡阶段的运行机制来实现的，就是把一个元素响应事件的函数委托到另一个元素，一般是把一组元素的事件委托到他的父元素上
+
+- event.currentTarget: 当前所绑定的事件对象。在事件委托中，指的是【父元素】
+- event.target: 当前被点击的元素。在事件委托中，指的是【子元素】
+
+**委托的优点:**
+
+- 减少内存消耗, 节约效率
+- 动态绑定事件
+
+### 自定义事件
+
+**基本使用:**
+
+```ts
+// 创建事件对象
+const myEvent = new Event('click');
+
+// 监听事件
+element.addEventListener('click', function() {
+  console.log('');
+});
+
+// 结合其他事件使用。【延迟 1s 注册元素 element 的点击事件】
+setTimeout(function() {
+  // 元素注册事件【注册事件后，元素的事件监听才有用】
+  element.dispatchEvent(myEvent);
+}, 1000);
+```
 
 [DOM 事件了解](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93.md)
 
@@ -22,10 +47,40 @@ nav:
 
 ## Q2: 浅拷贝和深拷贝
 
+#### 浅拷贝方式
+
+- Object.assign()
+- lodash 的 \_.clone()
+- ... 扩展运算符
+- Array.prototype.concat()
+- Array.prototype.slice()
+
+#### 深拷贝方式
+
+- JSON.Stringify()
+- lodash 的 \_.cloneDeep()
+- jQuery 的 extend()
+
+**JSON.Stringify() 说明:**
+
+- `JSON.Stringify()` 虽然可以实现数组或对象深拷贝,但不能处理函数和正则
+- `JSON.parse()` 解析后；函数 => null、正则 => {}
+
+**jQuery 的 extend() 使用:**
+
+```js
+$.extend(deepCopy, target, obj, [objectN]); // 第一个参数为 true, 就是深拷贝
+
+const obj = { a: 1 };
+const cloneObj = $.extend(true, {}, obj);
+```
+
+#### 自定义深拷贝
+
 ```ts
 const cloneDeep = (obj, map = new WeekMap()) => {
   // 基本数据类型、function
-  if (obj === null || typeof obj !== 'object') return obj;
+  if (!obj || obj === null || typeof obj !== 'object') return obj;
   // Date
   if (obj instanceof Date) return new Date(obj);
   // RegExp
@@ -43,7 +98,7 @@ const cloneDeep = (obj, map = new WeekMap()) => {
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       // 递归调用拷贝
-      cloneObj[key] = cloneDeep(obj[key]);
+      cloneObj[key] = cloneDeep(obj[key], map);
     }
   }
 
@@ -189,14 +244,41 @@ p2.sayName(); // chen
   - 特点: 基于原型链，可以继承父类原型上的属性和方法
   - 缺点: 不能继承父类实例的属性和方法；所有子类共用父类原型上的属性（注：引用类型属性 Array 等）
 - 构造（伪）继承
-  - 子类构造函数哪调用父类构造函数改变并父类构造函数中 `this` 指向
+  - 子类构造函数中调用父类构造函数改变并父类构造函数中 `this` 指向
   - 特点: 可以实现多继承，可以继承父类实例的属性和方法，
   - 缺点: 不能继承原型上的属性和方法。
 - 组合继承（原型 + 伪继承）
   - 可以继承父类实例的属性和方法，也可以继承原型上的属性和方法。
   - 属性使用构造函数继承，方法使用原型链继承
 
-[类的定义和继承的几种方式](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-02.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.md)
+**组合继承示例:**
+
+```ts
+function Parent(name) {
+  this.name = name;
+  this.arr = [1, 2, 3];
+}
+
+function Child(name, age) {
+  // 继承父类实例属性【构造函数中的属性】
+  Parent.call(this, name); // 改变父类构造函数内的 this 指向
+  this.age = age;
+}
+
+// 父类原型属性
+Parent.prototype.sayName = function() {
+  console.log(this.name);
+};
+
+// 继承父类原型【属性、方法】
+Child.prototype = new Parent(); // 子类构造函数的原型指向父类的实例
+Child.prototype.constructor = Child; // 父类的实例构造函数指向子类构造函数
+
+let child = new Child('orange', 18); // { name: 'orange', arr: [1, 2, 3], age: 18 }
+child.sayName(); // 'orange'
+```
+
+[js 继承](https://www.cnblogs.com/nzcblogs/p/11210652.html)
 
 [JavaScript 继承的几种实现方式？](https://juejin.cn/post/6844904200917221389#heading-14)
 
@@ -236,8 +318,8 @@ p2.sayName(); // chen
 
 > 垃圾回收策略
 >
-> - 标记清除: 遍历堆空间所有对象，对它们做上标记，然后对代码中使用的变量及被[强引用](https://www.infoq.cn/article/lksmb2tlgh1ehg0*bbyg)的变量取消标记，随后在 `清除阶段` 对剩余标记变量进行空间回收。
-> - 内存碎片整理: 在清除阶段结束后，将存活的对象向一端靠拢（移动对象使存活对象在堆内存储是连续的，比较耗时）
+> - 标记清除: 遍历堆空间所有对象，对它们做上标记，然后对代码中使用的变量及被[强引用](https://www.infoq.cn/article/lksmb2tlgh1ehg0*bbyg)的变量【存活变量】取消标记，随后在 `清除阶段` 对标记变量【不存活变量】进行空间回收。
+> - 内存碎片整理: 在清除阶段结束后，将存活的对象向一端靠拢（移动对象使存活对象在堆内存储是连续的【减少空间占用】，比较耗时）
 
 **增量标记:**
 
@@ -280,6 +362,28 @@ p2.sayName(); // chen
 [浏览器与 Node 的事件循环(Event Loop)有何区别?](https://juejin.cn/post/6844903761949753352)
 
 ## Q9: 不可变状态 Immutable
+
+不使用深拷贝处理**引用类型**修改问题【修改后不影响原引用类型数据】
+
+- 子节点被修改，那么父节点，或者父父节点被重新创建
+- 兄弟节点或者其他与修改节点无关的节点被复用，不会重新创建
+
+```ts
+const { produce } = require('immer');
+
+let baseState = {
+  home: { name: '小明', arr: [1] },
+  b: {},
+};
+
+let nextState = produce(baseState, draft => {
+  draft.home.name = '小红';
+});
+
+console.log(baseState.home === nextState.home); // false
+console.log(baseState.home.arr === nextState.home.arr); // true
+console.log(baseState.b === nextState.b); // true
+```
 
 [理解不可变状态 Immutable.js](https://juejin.cn/post/6937481782262497288)
 
@@ -325,7 +429,7 @@ p2.sayName(); // chen
 
 1. 块级作用域 【局部作用于声明的代码块中】
 2. 变量声明不会提升 【变量未声明前无法使用该变量】
-3. 暂时性死区 【该变量声明前面的区域】
+3. 暂时性死区 【该变量声明前面的区域无法访问该变量】
 4. 不能重复声明 【同一代码块中不能重复声明同一变量】
 
 - `const` 关键字 【声明常量(一般用大写字母表示常量)】
@@ -371,7 +475,7 @@ const a = { name: 'ming' };
 const map = new Map([
   [a, 'ming'],
   ['chen', 'chen'],
-]);
+]); // { key => value }
 
 map.get(a); // ming
 map.get({ name: 'ming' }); // undefined
@@ -410,6 +514,23 @@ map.get('chen'); // chen
 
 - 可暂停函数, `yield` 可暂停，`next` 方法可启动，每次返回的是 `yield` 后的表达式结果
 - `yield` 表达式本身没有返回值，或者说总是返回 `undefined`。`next` 方法可以带一个参数，该参数就会被当作**上一个** `yield` 表达式的返回值
+
+```ts
+function* foo(x) {
+  5;
+  let y = 2 * (yield x + 1);
+  let z = yield y / 3;
+  return x + y + z;
+}
+let it = foo(5);
+
+// yield (5 + 1)
+console.log(it.next()); // { value: 6, done: false }
+// yield (x + 1) = 12
+console.log(it.next(12)); // { value: 8, done: false }
+// yield (y / 3) = 13; yield (x + 1) = 12; x = 5, y = 24, z = 13
+console.log(it.next(13)); // { value: 42, done: true }
+```
 
 [工具库-方法实现-Promise](https://niezicheng.github.io/functions/method-realize/promise)
 
