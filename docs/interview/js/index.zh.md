@@ -446,6 +446,38 @@ console.log(baseState.b === nextState.b); // true
 
 [箭头函数和普通函数的区别](https://www.jianshu.com/p/73cbeb6782a0)
 
+### for...in 和 for...of 的区别
+
+- `for...in` 遍历对象属性 `key` 值（包含原型上属性值）
+- `for...of` 遍历迭代器对象【包括 Array、Map、Set、String、TypedArray、arguments、Object.entries(obj)等】
+
+```ts
+const obj = { a: 1, b: 2 };
+const arr = [1, 2];
+
+// for...in
+for (const key in obj) {
+  // 对象
+  console.log(key); // 'a'、'b'
+}
+
+for (const key in arr) {
+  // 数组
+  console.log(key); // '0'、'1'
+}
+
+// for...of
+for (const val of arr) {
+  // 数组
+  console.log(val); // 1、2
+}
+
+for (const [key, val] of Object.entries(obj)) {
+  // 对象
+  console.log(`${key}-${value}`); // 'a-1'、'b-2'
+}
+```
+
 ### Map 和 Set 及其区别
 
 > 均可以使用迭代器方法，`forEach` 方法循环遍历
