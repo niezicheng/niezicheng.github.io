@@ -74,3 +74,7 @@ nav:
 ## Q4: TS 问题常见解答
 
 [钉钉前端面试题~TypeScript 相关问题的部分解答](https://juejin.cn/post/6988763249982308382)
+
+## 拓展
+
+[聊聊 package.json 文件中的 module 字段](https://loveky.github.io/2018/02/26/tree-shaking-and-pkg.module/)

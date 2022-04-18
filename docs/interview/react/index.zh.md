@@ -27,14 +27,20 @@ nav:
 
 - 常用的有哪些？都有什么作用？
 - 如何使用 `hook` 在依赖改变的时候重新发送请求？
-- 写过自定义 `hook` 吗？解决了哪些问题。
-- 讲讲 `React Hooks` 的闭包陷阱，你是怎么解决的？
+- 写过自定义 `hook` 吗？解决了哪些问题。【useSyncCallback、useState、WithCallback】
+- 讲讲 `React Hooks` 的闭包陷阱，你是怎么解决的？【缺少依赖导致函数内对应变量值不变，添加 hooks 依赖提示插件配置】
 
 [useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
 
 [React Hook 从入门应用到编写自定义 Hook](https://juejin.cn/post/6887838157874659341#heading-21)
 
-### Context 了解
+### useState 和 setState
+
+[react setState 核心实现原理](https://zhuanlan.zhihu.com/p/44537887)
+
+[useState 的原理及模拟实现 —— React Hooks 系列（一）](https://www.jianshu.com/p/f828ec70e710?ivk_sa=1024320u)
+
+### Context
 
 [Context 基本了解](https://juejin.cn/post/6916844522202726408)
 
