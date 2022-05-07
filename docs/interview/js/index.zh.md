@@ -110,18 +110,21 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 
 ## Q3: 图片的预加载和懒加载
 
-预加载:
+**预加载:**
 
 - 提前加载图片，当用户需要查看时可直接从本地缓存中渲染
 
-懒加载:
+**懒加载:**
 
 - 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数
 
-两种技术的本质:
+**两种技术的本质:**
 
 - 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
 - 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
+
+**懒加载优化：**
+监听列表向上滚动事件，对**上一次最后进入可视窗口加载的图片**后的所有图片循环监听判断是否加载【去除对已加载的图片再循环处理】
 
 [懒加载和预加载](https://juejin.cn/post/6844903614138286094)
 
@@ -278,9 +281,27 @@ let child = new Child('orange', 18); // { name: 'orange', arr: [1, 2, 3], age: 1
 child.sayName(); // 'orange'
 ```
 
+**instanceof 实现:**
+
+```ts
+// 实现思想【实例的 __proto__ 是否递归指向函数的 prototype 属性】
+const myInstanceof = (a, b) => {
+  if (!a.__proto__) return false;
+  if (fn === Object || a.__proto === b.prototype) return true;
+  return myInstanceof(a.__proto__, b);
+};
+```
+
 [js 继承](https://www.cnblogs.com/nzcblogs/p/11210652.html)
 
 [JavaScript 继承的几种实现方式？](https://juejin.cn/post/6844904200917221389#heading-14)
+
+### 原型链与作用域区别
+
+**区别：**
+
+- 作用域链是相对于变量而言，原型是相对于属性而言【依次向原型中寻找】
+- 作用域链最顶层是 `window`，原型链最顶层是 `Object`(null)【依次向上级作用中寻找】
 
 ## Q7: JS 垃圾回收机制
 

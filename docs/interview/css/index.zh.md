@@ -96,6 +96,8 @@ nav:
 - 使用 `css text`,`className` 一次性改变属性
 - 使用 `fragment` 对于多次重排的元素，比如说动画。使用绝对定位脱离文档流，使其不影响其他元素
 
+[CSS 什么情况下引起回流/重绘](https://blog.csdn.net/weixin_42301080/article/details/119368348)
+
 ## Q3: 渐进增强和优雅降级
 
 - 渐进增强（progressive enhancement）

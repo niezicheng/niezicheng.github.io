@@ -170,6 +170,9 @@ nav:
 - `location.hash + iframe` 跨域 【`iframe` 的 `location.hash` 可以在不同域**单向**通信】
 - `window.name + iframe`跨域 【`name` 属性可跨域存在，大小可达 2M】
 
+**跨域请求发出去了吗？**
+跨域请求发送出去了，服务器也会响应，但是浏览器做了相应的拦截，不会接受响应数据
+
 **说明：**
 
 1. `CORS` 支持所有类型的 `HTTP` 请求，是跨域 `HTTP` 请求的根本解决方案
@@ -265,3 +268,72 @@ nav:
 [浅谈服务端渲染(SSR)](https://www.jianshu.com/p/10b6074d772c)
 
 [服务端渲染(SSR)](https://zhuanlan.zhihu.com/p/90746589)
+
+## 实践
+
+### URL 编码
+
+```ts
+// 编码
+encodeURI('https://google.com/search?q=你好吗'); // https://google.com/search?q=%E4%BD%A0%E5%A5%BD%E5%90%97
+
+// 解码
+decodeURI('https://google.com/search?q=%E4%BD%A0%E5%A5%BD%E5%90%97');
+// https://google.com/search?q=你好吗
+```
+
+**encodeURI VS encodeURIComponent:**
+
+- encodeURI: 只对查询字符串即 `?` 后面的值进行编码
+- encodeURIComponent: 对整个参数字符窜进行编码
+
+### 解析 URL 查询字符窜
+
+#### 用 URL 对象来解析
+
+```ts
+let urlStr = 'https://google.com/search?q=hello&name=leo';
+
+let url = new URL(urlStr);
+
+console.log(url.protocol); // "https:"
+console.log(url.host); // "google.com"
+console.log(url.pathname); // "/search"
+
+console.log(url.search); // "?q=hello&name=leo"
+
+url.search
+  .slice(1)
+  .split('&')
+  .map(item => item.split('=')); // [['q', 'hello'], ['name', 'leo']]
+```
+
+#### URL searchParams 参数
+
+**searchParams 方法:**
+
+```ts
+get(name); // 按照 name 获取参数
+set(name, value); // set/replace 参数
+delete name; // 按照 name 移除参数
+has(name); // 按照 name 检查参数是否存在
+append(name, value); // 按照 name 添加参数
+getAll(name); // 获取相同 name 的所有参数（这是可行的，例如 ?name=Leo&name=Lucy）
+```
+
+```ts
+let urlStr = 'https://google.com/search?q=hello&name=leo';
+let url = new URL(urlStr);
+
+urlStr.searchParams.get('q'); // hello
+
+// url.searchParams 为迭代器对象
+for (let [key, value] of url.searchParams) {
+  console.log(key, value);
+}
+
+// 数组方式
+url.searchParams.forEach((v, k) => {
+  console.log(k, v);
+}); //注意这里的参数的key和value的顺序
+```

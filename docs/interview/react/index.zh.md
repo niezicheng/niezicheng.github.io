@@ -23,6 +23,17 @@ nav:
 
 [面试官问: 如何理解 Virtual DOM？](https://juejin.cn/post/6844903921442422791)
 
+### React 类组件和函数组件的本质区别
+
+- 类组件有生命周期【业务逻辑散落在生命周期中】，函数组件没有
+- 类组件有实例化 `this`, 可以基于 `this` 做各种操作；函数组件没有
+- 类组件内部定义并维护 `state`，函数组件【无状态组件】没有
+- 类组件需要继承 `class`，函数组件不用
+
+> 函数式组件捕获了渲染时所使用的值，这是这两种组件最大的不同；闭包捕获的值优于 `this` 的模糊性，捕获的值永远是确定且安全的
+
+[React 类组件和函数组件的本质区别](https://github.com/jappp/Blog/issues/12)
+
 ### React Hooks
 
 - 常用的有哪些？都有什么作用？
@@ -30,15 +41,41 @@ nav:
 - 写过自定义 `hook` 吗？解决了哪些问题。【useSyncCallback、useState、WithCallback】
 - 讲讲 `React Hooks` 的闭包陷阱，你是怎么解决的？【缺少依赖导致函数内对应变量值不变，添加 hooks 依赖提示插件配置】
 
+**React Hooks 问答**
+Q：为什么只能在函数最外层调用 `Hook`？为什么不要在循环、条件判断或者子函数中调用？
+A：`memoizedState` 数组是按 `hook` 定义的顺序来放置数据的，如果 `hook` 顺序变化，`memoizedState` 并不会感知到。
+
+Q：自定义的 `Hook` 是如何影响使用它的函数组件的？
+A：共享同一个 `memoizedState`，共享同一个顺序。
+
+Q："Capture Value" 特性是如何产生的？
+A：每一次 `ReRender` 的时候，都是重新去执行函数组件了，对于之前已经执行过的函数组件，并不会做任何操作。
+
+[五分钟搞懂 React Hooks 工作原理](https://blog.csdn.net/LuckyWinty/article/details/103740283)
+
 [useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
 
 [React Hook 从入门应用到编写自定义 Hook](https://juejin.cn/post/6887838157874659341#heading-21)
 
 ### useState 和 setState
 
-[react setState 核心实现原理](https://zhuanlan.zhihu.com/p/44537887)
+```tsx
+const [state, setState] = useState(() => {
+  const initState = calcInitState();
+  return initState;
+});
+```
+
+**说明：**
+
+- `setState` 回调函数与原来的值是递归浅比较【Object.is()】
+- 当 `setState` 设置值和原来一样【值或址相同】时，不会触发组件的重新渲染【引用类型 state 值可能发生改变，但是组件未重新渲染，展示的还是旧 state】
+
+[React hooks 依赖项数组中的比较方式](https://zhuanlan.zhihu.com/p/461898776)
 
 [useState 的原理及模拟实现 —— React Hooks 系列（一）](https://www.jianshu.com/p/f828ec70e710?ivk_sa=1024320u)
+
+[react setState 核心实现原理](https://zhuanlan.zhihu.com/p/44537887)
 
 ### Context
 
@@ -82,6 +119,16 @@ nav:
 
 ## 源码解读
 
+### React Hooks 基本工作原理
+
+1. 为什么 useEffect 第二个参数是空数组，就相当于 ComponentDidMount ，只会执行一次？
+
+2. 为什么只能在函数的最外层调用 Hook，不能在循环、条件判断或者子函数中调用？
+
+3. 自定义的 Hook 是如何影响使用它的函数组件的？
+
+4. Capture Value 特性是如何产生的？
+
 [React 15 与 React 16 架构区别](https://blog.csdn.net/weixin_44135121/article/details/108753231)
 
 [《React 源码解析》系列完结！(v15)](https://juejin.cn/post/6844903568487497741)
@@ -107,7 +154,7 @@ nav:
 ### React 17
 
 - 渐进式升级: 支持逐步的 `React` 升级，让不同版本的 `React` 相互嵌套变得更加容易【对于一些比较老的项目可以选择：升级整个应用程序、迁移一部分到最新的版本】
-- 对事件委派的更改: 由原来在 document 上的附加事件处理程序改为到 `root DOM` 上【这样的话在单个应用中使用多个 react 版本】
+- 对事件委派的更改: 由原来在 `document` 上的附加事件处理程序改为到 `root DOM` 上【这样的话在单个应用中使用多个 react 版本】
 - 全新的 `jsx` 转换【无需引入 `React`, 编译器会自动引入 `react/jsx-runtime` 入口处理 `jsx`】
 - 其他重大更改【部分事件对标浏览器、去除事件池、副作用清理时间】
 
