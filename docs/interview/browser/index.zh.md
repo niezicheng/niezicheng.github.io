@@ -138,6 +138,14 @@ nav:
 
 [为什么要禁止除 GET 和 POST 之外的 HTTP 方法？](https://www.freebuf.com/articles/web/172695.html)
 
+### 公司规定所有接口都用 post 请求，这是为什么？
+
+- `POST` 不会误用缓存
+- `POST` 不受 `URL` 长度限制
+- `POST` 能够用来获取也可以用来修改
+
+[公司规定所有接口都用 post 请求，这是为什么？](https://www.zhihu.com/question/336797348)
+
 ## Q6: cookie 的理解（包括 SameSite 属性）
 
 > `SameSite` 属性可以让 `Cookie` 在跨站请求时不会被发送，从而可以阻止跨站请求伪造攻击（CSRF）。

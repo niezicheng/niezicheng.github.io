@@ -39,6 +39,10 @@ nav:
 - 避免重定向
 - 图片懒加载 `lazyLoad` [链接](https://q.shanyue.tech/fe/html/1.html)
 
+[聊一聊前端性能优化](https://juejin.cn/post/6911472693405548557)
+
+[写给中高级前端关于性能优化的 9 大策略和 6 大指标 | 网易四年实践](https://juejin.cn/post/6981673766178783262)
+
 ## Q2: MVC 和 MVVM
 
 **MVC:**

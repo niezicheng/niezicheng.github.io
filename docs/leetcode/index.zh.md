@@ -42,10 +42,6 @@ nav:
 
 [95% 的算法都是基于这 6 种算法思想](https://zhuanlan.zhihu.com/p/428479862)
 
-### 排序算法
-
-[十大经典排序算法基本思想和图解（冒泡、插入、选择、快速、希尔、堆、归并）](https://www.cxymm.net/article/qq_34801169/81459448)
-
 ### 图解算法网站
 
 [VisuAlgo](https://visualgo.net/zh)
