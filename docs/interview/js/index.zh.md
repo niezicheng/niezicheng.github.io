@@ -7,7 +7,7 @@ nav:
   order: 0
 ---
 
-## Q1: DOM 事件流
+## DOM 事件流
 
 ### 事件委托
 
@@ -45,9 +45,9 @@ setTimeout(function() {
 
 [你真的理解事件冒泡和事件捕获吗？](https://juejin.cn/post/6844903834075021326)
 
-## Q2: 浅拷贝和深拷贝
+## 浅拷贝和深拷贝
 
-#### 浅拷贝方式
+### 浅拷贝方式
 
 - Object.assign()
 - lodash 的 \_.clone()
@@ -55,7 +55,7 @@ setTimeout(function() {
 - Array.prototype.concat()
 - Array.prototype.slice()
 
-#### 深拷贝方式
+### 深拷贝方式
 
 - JSON.Stringify()
 - lodash 的 \_.cloneDeep()
@@ -108,7 +108,7 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 
 [浅拷贝与深拷贝](https://juejin.cn/post/6844904197595332622)
 
-## Q3: 图片的预加载和懒加载
+## 图片的预加载和懒加载
 
 **预加载:**
 
@@ -124,11 +124,11 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 - 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
 
 **懒加载优化：**
-监听列表向上滚动事件，对**上一次最后进入可视窗口加载的图片**后的所有图片循环监听判断是否加载【去除对已加载的图片再循环处理】
+监听列表向上滚动事件，只对**上一次最后进入可视窗口加载的图片**后的所有图片进行循环监听判断是否加载【去除对已加载的图片再循环处理】
 
 [懒加载和预加载](https://juejin.cn/post/6844903614138286094)
 
-## Q4: 闭包及其作用
+## 闭包及其作用
 
 > 闭包是指有权访问另外一个函数作用域中的变量的函数
 >
@@ -151,7 +151,7 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 
 [JavaScript 深入之闭包](https://juejin.cn/post/6844903475998900237)
 
-## Q5: js 中函数的 this
+## js 中函数的 this
 
 - 普通函数 `this` 指向执行(运行)时决定（window 或调用该函数对象等）
 - 箭头函数 `this` 指向声明时决定（创建时上下文 `this` 指向）
@@ -162,7 +162,7 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 
 [7 个关于 this 面试题，你能回答上来吗？](https://juejin.cn/post/6938400016067198989)
 
-## Q6: 原型链
+## 原型链
 
 ![图解](https://img-blog.csdnimg.cn/img_convert/b7dca39f0ccd1c880c6356f809ae0ee7.png)
 
@@ -303,7 +303,7 @@ const myInstanceof = (a, b) => {
 - 作用域链是相对于变量而言，原型是相对于属性而言【依次向原型中寻找】
 - 作用域链最顶层是 `window`，原型链最顶层是 `Object`(null)【依次向上级作用中寻找】
 
-## Q7: JS 垃圾回收机制
+## JS 垃圾回收机制
 
 > V8 把堆内存分为两部分处理 `新生代` 和 `老生代`
 >
@@ -353,7 +353,7 @@ const myInstanceof = (a, b) => {
 
 [JavaScript 中的垃圾回收和内存泄漏](https://blog.fundebug.com/2019/04/30/javascript-memory-management/)
 
-## Q8: 事件循环机制
+## 事件循环机制
 
 **Event Loop：**
 ![图解](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/21/16a3e8964d1e54ce~tplv-t2oaga2asx-watermark.awebp)
@@ -382,7 +382,7 @@ const myInstanceof = (a, b) => {
 
 [浏览器与 Node 的事件循环(Event Loop)有何区别?](https://juejin.cn/post/6844903761949753352)
 
-## Q9: 不可变状态 Immutable
+## 不可变状态 Immutable
 
 不使用深拷贝处理**引用类型**修改问题【修改后不影响原引用类型数据】
 
@@ -706,10 +706,10 @@ function shuffle(arr) {
 
 [JavaScript 专题系列 20 篇正式完结！](https://juejin.cn/post/6844903506017517582)
 
-[80% 应聘者都不及格的 JS 面试题](https://juejin.cn/post/6844903470466629640#heading-3)
+[由浅入深，66 条 JavaScript 面试知识点](https://juejin.cn/post/6844904200917221389)
+
+[80% 应聘者都不及格的 JS 面试题](https://juejin.cn/post/6844903470466629640)
 
 [春招季如何横扫 Javascript 面试核心考点(基础版)？](https://juejin.cn/post/6844903809215365134)
-
-[由浅入深，66 条 JavaScript 面试知识点](https://juejin.cn/post/6844904200917221389)
 
 [前端 js 收藏集锦](https://zhuanlan.zhihu.com/p/27198172)

@@ -7,12 +7,6 @@ nav:
   order: 0
 ---
 
-## CSS 基础面试题
-
-[50 道 CSS 基础面试题](https://segmentfault.com/a/1190000013325778)
-
-[剖析一些经典的 CSS 布局问题，为前端开发+面试保驾护航](https://juejin.cn/post/6844903962529759239)
-
 ## CSS 模块化演变历程
 
 ### CommonJS 规范
@@ -64,11 +58,7 @@ nav:
 
 [前端模块化详解(完整版)](https://juejin.cn/post/6844903744518389768)
 
-## CSS3 新特性
-
-[前端面试之 CSS3 新特性](https://juejin.cn/post/6844903486618861575)
-
-## Q1: 盒模型
+## 盒模型
 
 > 内容的宽高 = `content` 宽/高
 > 盒子的宽/高 = `content` 宽/高 + `padding` 水平/垂直边距 + `border` 左右/上下
@@ -83,7 +73,7 @@ nav:
 - box-sizing: border-box; IE 盒模型
 - box-sizing: inherit; 继承父元素的盒模型，
 
-## Q2: 重绘和回流
+## 重绘和回流
 
 > 回流必将引起重绘，而重绘不一定会引起回流
 
@@ -98,7 +88,7 @@ nav:
 
 [CSS 什么情况下引起回流/重绘](https://blog.csdn.net/weixin_42301080/article/details/119368348)
 
-## Q3: 渐进增强和优雅降级
+## 渐进增强和优雅降级
 
 - 渐进增强（progressive enhancement）
 
@@ -115,7 +105,7 @@ nav:
 
 [你能描述一下渐进增强和优雅降级之间的不同吗?](https://www.cnblogs.com/iceflorence/archive/2017/03/27/6625466.html)
 
-## Q4: display、opacity、visibility 的区别
+## display、opacity、visibility 的区别
 
 - 结构：
   - display: none: 会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击，
@@ -131,7 +121,7 @@ nav:
 - 联系：
   - 它们都能让元素不可见
 
-## Q5: BFC 块级格式化上下文
+## BFC 块级格式化上下文
 
 > BFC: 块级格式化上下文，可用于清楚浮动，防止 `margin` 重叠等
 
@@ -147,7 +137,7 @@ nav:
 
 [BFC 应用](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/02-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
 
-## Q6: 清除浮动的方法
+## 清除浮动的方法
 
 - 使用带 `clear` 属性的空元素
 
@@ -171,7 +161,7 @@ nav:
 
 [清除浮动](https://www.cnblogs.com/ForEvErNoME/p/3383539.html)
 
-## Q7: link 和 import 标签
+## link 和 import 标签
 
 - `link` 属于 `html` 标签，而 `@import` 是 `css` 提供的
 - 页面被加载时，`link` 会同时被加载，而 `@import` 引用的 `css` 会等到页面加载结束后加载
@@ -179,7 +169,7 @@ nav:
 - `link` 可以使用 js 动态引入，@import 不行
 - `link` 此没有兼容性要求，而 @import IE 低版本浏览器不支持
 
-## Q8: transition 和 animation 的区别
+## transition 和 animation 的区别
 
 `transition` 的优点在于简单易用，但是它有几个很大的局限:
 
@@ -190,7 +180,7 @@ nav:
 
 [CSS 动画简介(阮)](http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)
 
-## Q9: JS 动画和 css3 动画的差异性
+## JS 动画和 css3 动画的差异性
 
 > 渲染线程分为 `main thread` 和 `compositor thread`(合成线程)，如果 `css` 动画只改变 `transform` 和 `opacity`， 这时整个 `CSS` 动画得以在 `compositor thread` 完成(而 `JS` 动画则会在 `main thread` 执行，然后触发 `compositor thread` 进行下一步操作)，特别注意的是如果改变 `transform` 和 `opacity` 是不会 `layout` 或者 `paint` 的
 
@@ -201,7 +191,7 @@ nav:
 - `css` 动画有天然事件支持
 - `css3` 有兼容性问题
 
-## Q10: display: table 和 table 有什么区别
+## display: table 和 table 有什么区别
 
 `display:table` 和本身 `table` 是相对应的，区别在于:
 
@@ -315,3 +305,11 @@ div::after {
 ### 媒体查询
 
 [深入浅出篇 — media 媒体查询 - 响应式开发必备](https://juejin.cn/post/6844903970226307080)
+
+## 拓展
+
+[前端面试之 CSS3 新特性](https://juejin.cn/post/6844903486618861575)
+
+[50 道 CSS 基础面试题](https://segmentfault.com/a/1190000013325778)
+
+[剖析一些经典的 CSS 布局问题，为前端开发+面试保驾护航](https://juejin.cn/post/6844903962529759239)

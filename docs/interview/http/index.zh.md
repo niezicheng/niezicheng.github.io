@@ -1,6 +1,6 @@
 ---
 title: HTTP
-order: 4
+order: 5
 toc: 'menu'
 nav:
   title: 知识集锦
@@ -9,17 +9,9 @@ nav:
 
 ## HTTP
 
-[HTTP 协议](http://47.98.159.95/my_blog/blogs/net/http/001.html#%E8%B5%B7%E5%A7%8B%E8%A1%8C)
-
-[HTTP 协议内容相关](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/04-HTTP%E5%8D%8F%E8%AE%AE.md)
-
 [20 分钟助你拿下 HTTP 和 HTTPS，巩固你的 HTTP 知识体系](https://juejin.cn/post/6994629873985650696)
 
-### Q1: http 常见状态码
-
-[http 状态码](http://47.98.159.95/my_blog/blogs/net/http/004.html)
-
-#### 301 和 302 的区别
+### 301 和 302 的区别
 
 - 301 Moved Permanently(永久重定向)
 
@@ -33,7 +25,7 @@ nav:
 >
 > `301`比较常用的场景是使用域名跳转。`302` 用来做临时跳转，比如：未登陆的用户访问用户中心重定向到登录页面。
 
-#### 401 授权问题
+### 401 授权问题
 
 考虑下面两种情况：
 
@@ -42,7 +34,82 @@ nav:
 
 如：`iOS9.0` 之后, 就统一规定, 对于 `http` 请求, 只有经过苹果认可的证书且是 `https://` 才可以直接通过访问, 如果还是 `http://` 或者不是苹果认可的证书的 `https` 都是不可以直接访问的。所以,通常情况下, 解决这类问题需要事先在 `info.plist` 文件中添加相应的 `ATS` 配置信息。
 
-### Q2: http 与 https 的区别
+### GET 和 POST 的区别
+
+- 浏览器在回退时，`GET` 不会重新请求，但是 `POST` 会重新请求
+- **缓存**: `GET` 请求会被浏览器主动缓存下来，请求参数会被完整保留在浏览历史记录里，而 `POST` 默认不会。
+- **参数**: `GET` 一般明文放在 `URL` 中，因此不安全，`POST` 放在请求体中，更适合传输敏感信息; `GET` 请求在 `URL` 中传递的参数是有长度限制的，而 `POST` 没有。
+- **编码**: `GET` 只能进行 `URL` 编码，只能接收 `ASCII` 字符，而 `POST` 没有限制。
+- **幂等性**: `GET` 是幂等的，而 `POST` 不是。(幂等表示执行相同的操作，结果也是相同的)
+- **TCP 角度**: `GET` 请求会把请求报文一次性发出去，而 `POST` 会分为两个 TCP 数据包(首先发 header 部分，如果服务器响应 100(continue)， 然后发 body 部分)。(火狐浏览器除外，它的 POST 请求只发一个 TCP 包)
+
+#### GET 和 POST 报文上的区别误区
+
+> 结论: `GET` 和 `POST` 方法没有实质区别
+
+**说明：**
+
+`GET` 和 `POST` 只是 `HTTP` 协议中两种请求方式，而 `HTTP` 协议是基于 `TCP/IP` 的应用层协议，无论 `GET` 还是 `POST`，用的都是同一个传输层协议，所以在传输上，没有实质上的区别
+
+- 按照规范带参数的报文一般 `GET` 会放在 `URL` 中，而 `POST` 会放在请求体中
+- 不按规范来也是可以的, 我们可以在 `URL` 上写参数，然后方法使用 `POST`；也可以在 `Body` 写参数，然后方法使用 `GET`。当然，这需要服务端支持
+
+#### GET 请求传参长度的误区
+
+> `GET` 请求参数的大小存在限制，而 `POST` 请求的参数大小是无限制的
+
+为了明确这个概念，我们必须了解下面几点:
+
+- `HTTP` 协议未规定 `GET` 和 `POST` 的长度限制
+- `GET` 的最大长度显示是因为浏览器和 `web` 服务器限制了 `URI` 的长度
+- 不同的浏览器和 `WEB` 服务器，限制的最大长度不一样
+- 要支持 `IE`，则最大长度为 `2083` byte，若只支持 `Chrome`，则最大长度 `8182` byte
+
+#### POST 方法会产生两个 TCP 数据包误区
+
+- `HTTP` 协议中没有明确说明 `POST` 会产生两个 `TCP` 数据包，而且实际测试(Chrome)发现，`header` 和 `body` 不会分开发送；所以，`header` 和 `body` 分开发送是部分浏览器或框架的请求方法，不属于 `post` 必然行为
+- `RFC` 里描述：`100 continue` 只有在请求里带了 `Expect: 100-continue` 请求头的时候才有意义
+
+> When the request contains an Expect header field that includes a 100-continue expectation, the 100 response indicates that the server wishes to receive the request payload body, as described in Section 5.1.1. The client ought to continue sending the request and discard the 100 response. If the request did not contain an Expect header field containing the 100-continue expectation, the client can simply discard this interim response.
+
+**结论：** 因而部分描述：对于 `POST`，浏览器先发送了一个 `Options` 请求，询问服务器是否支持修改的请求头。如果服务器支持，服务器响应 `100 continue`， 不支持服务器响应 `204`；浏览器再发送 `data`，服务器响应 `200 ok`（返回数据）其实是不严谨的
+
+#### POST 方法比 GET 方法安全？
+
+- 从表面上来看，`POST` 比 `GET` 安全，因为 `POST` 数据在地址栏上不可见
+- 从传输的角度来说，他们都是不安全的，因为 `HTTP` 在网络上是明文传输的，只要在网络节点上捉包，就能完整地获取数据报文；要想安全传输，就只有加密，也就是 `HTTPS`
+
+[都 9102 年了，还问 GET 和 POST 的区别](https://segmentfault.com/a/1190000018129846)
+
+### 四种常见的 POST 提交数据方式
+
+- `application/x-www-form-urlencoded` 默认表单数据提交类型
+- `multipart/form-data` 表单上传文件数据提交类型
+- `application/json` JSON 格式数据提交类型
+- `text/xml` XML 格式数据提交类型
+
+[四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
+
+### 为什么要禁止除 GET 和 POST 之外的 HTTP 方法？
+
+- 除 `GET`、`POST` 之外的其它 `HTTP` 方法，其刚性应用场景较少，且禁止它们的方法简单，即实施成本低
+- 一旦让低权限用户可以访问这些方法，他们就能够以此向服务器实施有效攻击，即威胁影响大
+
+1. `OPTIONS` 方法，将会造成服务器信息暴露，如中间件版本、支持的 `HTTP` 方法等【允许客户端查看服务器信息】
+2. `PUT` 方法，由于 `PUT` 方法自身不带验证机制，利用 `PUT` 方法即可快捷简单地入侵服务器，上传 `Webshell` 或其他恶意文件，从而获取敏感数据或服务器权限【从客户端向服务器传送的数据取代指定文档内容】
+3. `DELETE` 方法，利用 `DELETE` 方法可以删除服务器上特定的资源文件，造成恶意攻击【请求服务器删除指定资源】
+
+[为什么要禁止除 GET 和 POST 之外的 HTTP 方法？](https://www.freebuf.com/articles/web/172695.html)
+
+### 公司规定所有接口都用 post 请求，这是为什么？
+
+- `POST` 不会误用缓存
+- `POST` 不受 `URL` 长度限制
+- `POST` 能够用来获取也可以用来修改
+
+[公司规定所有接口都用 post 请求，这是为什么？](https://www.zhihu.com/question/336797348)
+
+### http 与 https 的区别
 
 - `http` 是一种广泛使用的网络协议，是一个客户端和服务器请求和应答的标准。
 - `http` 工作在 `TCP` 协议的 `80` 端口，`https` 工作在 `TCP` 协议的 `443` 端口
@@ -51,7 +118,7 @@ nav:
 
 [详细解析 HTTP 与 HTTPS 的区别](https://juejin.cn/post/6844903471565504526)
 
-### Q3: 谈谈 https 的原理？为什么 https 能保证安全？
+### 谈谈 https 的原理？为什么 https 能保证安全？
 
 #### 对称加密
 
@@ -91,53 +158,7 @@ nav:
 
 [谈谈 HTTPS](https://juejin.cn/post/6844903504046211079)
 
-### Q4: 讲讲 http 的缓存机制吧，强缓存，协商缓存？
-
-#### 强缓存
-
-> **强缓存**: 不会向服务器发送请求，直接从缓存中读取资源
-
-1. **Expires**
-
-缓存过期时间，用来指定资源到期的时间，是服务器端的具体的时间点, **Expires = max-age + 请求时间**，需要和`Last-modified` 结合使用
-
-2. **Cache-Control**
-
-`Cache-Control` 可以在请求头或者响应头中设置，并且可以组合使用多种指令
-
-**二者的区别:**
-
-- `Expires` 是 `http1.0` 的产物，`Cache-Control` 是 `http1.1` 的产物，两者同时存在的话，`Cache-Control` 优先级高于 `Expires`。
-- 在某些不支持 `HTTP1.1` 的环境下，`Expires` 就会发挥用处。现阶段它的存在只是一种兼容性的写法。
-
-#### 协商缓存
-
-**协商缓存**：在强制缓存失效（eg: Cache-Control: no-cache）后，浏览器携带`缓存标识`向服务器发起请求，由服务器根据 `缓存标识` (对比最新缓存标识)决定是否使用缓存的过程
-
-**Last-Modified** 和 **If-Modified-Since**
-
-浏览器请求，服务器返回`Last-Modified` 这个 `header`，浏览器下一次请求这个资源，浏览器检测到有 `Last-Modified` 这个 `header`，于是添加 `If-Modified-Since` 这个`header`, 值就是 `Last-Modified` 中的值, 服务器通过 `If-Modified-Since` 中的值与服务器中这个资源的最后修改时间对比, 判断是否返回新的资源文件。
-
-**Last-Modified 存在的一些弊端：**
-
-- 如果本地打开缓存文件，即使没有对文件进行修改，但还是会造成 `Last-Modified` 被修改，服务端不能命中缓存导致发送相同的资源
-- 因为 `Last-Modified` 只能以`秒`计时，如果在不可感知的时间内修改完成文件，那么服务端会认为资源还是命中了，不会返回正确的资源
-
-**ETag** 和 **If-None-Match**
-
-`Etag` 是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)，只要资源有变化，`Etag` 就会重新生成。浏览器在下一次加载资源向服务器发送请求时，会将上一次返回的 `Etag` 值放到 `request header` 里的 `If-None-Match` 里，服务器只需要比较客户端传来的 `If-None-Match` 跟自己服务器上该资源的 `ETag` 是否一致，就能很好地判断资源相对客户端而言是否被修改过了。
-
-**二者的区别:**
-
-- 精确度，`ETag` 要优于 `Last-Modified`。
-  - `Last-Modified` 的时间单位是秒，如果某个文件在 `1` 秒内改变了多次，那么他们的 `Last-Modified` 其实并没有体现出来修改，但是 `ETag` 每次都会改变确保了精度
-  - 如果是负载均衡的服务器，各个服务器生成的 `Last-Modified` 也有可能不一致。
-- 性能，`ETag` 要逊于 `Last-Modified`，毕竟 `Last-Modified` 只需要记录时间，而 `ETag` 需要服务器通过算法来计算出一个 `hash` 值。
-- 优先级，服务器校验优先考虑 `ETag`。
-
-[深入理解浏览器的缓存机制](https://www.jianshu.com/p/54cc04190252)
-
-### Q5: SSL/TLS
+### SSL/TLS
 
 #### RSA 算法
 
@@ -189,11 +210,9 @@ nav:
 
 ## TCP
 
-[TCP 协议](http://47.98.159.95/my_blog/blogs/net/tcp/001.html)
-
 [(建议收藏)TCP 协议灵魂之问，巩固你的网路底层基础](https://juejin.cn/post/6844904070889603085)
 
-### Q1: TCP 和 UDP 的区别概述
+### TCP 和 UDP 的区别概述
 
 - `TCP` 是一个面向连接的、可靠的、基于字节流的传输层协议。
 - `UDP` 是一个面向无连接的传输层协议。
@@ -208,7 +227,7 @@ nav:
 
 [TCP 和 UDP 的区别概述](http://47.98.159.95/my_blog/blogs/net/tcp/001.html)
 
-### Q2: 三次握手
+### 三次握手
 
 **目的**: 确认双方的`接收能力`和`发送能力`都正常
 
@@ -233,7 +252,7 @@ nav:
 - 客户端的握手请求中携带了这个 `Cookie` 凭证，服务端就会检查这个凭证是否有效（对应的 IP 地址是否之前产生过握手行为，且在有效期内）
 - 如果有效，服务器就可以向客服端发送响应信息进行通信了，而不需要等到三次握手后
 
-### Q3: 四次挥手
+### 四次挥手
 
 - 第一次挥手: 客户端向服务端发送断开连接请求
 - 第二次挥手: 服务端接收后告诉客户端已收到，客户端接收到了服务端的确认
@@ -258,11 +277,11 @@ nav:
 4. RST：连线复位，首先断开连接，然后重建；
 5. PSH：通知协议栈尽快把 `TCP` 数据提交给上层程序处理。
 
-### Q4: 能不能说一说 TCP 的流量控制？
+### TCP 的流量控制？
 
 [流量控制](https://juejin.cn/post/6844904070889603085#heading-38)
 
-### Q5: 能不能说说 TCP 的拥塞控制？
+### TCP 的拥塞控制
 
 [拥塞控制](https://juejin.cn/post/6844904070889603085#heading-43)
 
@@ -293,5 +312,3 @@ nav:
 [HTTP 发展史（HTTP1.1，HTTPS，SPDY，HTTP2.0，QUIC，HTTP3.0）](https://juejin.cn/post/6844903988953874445)
 
 [一文读懂 HTTP/1、HTTP/2、HTTP/3](https://network.51cto.com/art/202003/612101.htm)
-
-[HTTP 协议几个版本的比较](https://zhuanlan.zhihu.com/p/37387316)

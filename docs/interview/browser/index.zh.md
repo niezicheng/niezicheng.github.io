@@ -1,13 +1,13 @@
 ---
 title: Browser
-order: 5
+order: 4
 toc: 'menu'
 nav:
   title: 知识集锦
   order: 0
 ---
 
-## Q1: 浏览器从输入 url 到渲染页面，发生了什么？
+## 浏览器从输入 url 到渲染页面，发生了什么？
 
 **DNS 的域名查找：**
 从浏览器缓存中查找 -> 本地的 `hosts` 文件查找 -> 找本地 `DNS` 解析器缓存查找 -> 本地 `DNS` 服务器查找
@@ -25,128 +25,53 @@ nav:
 
 [细说浏览器输入 URL 后发生了什么](https://juejin.cn/post/6844904054074654728)
 
-## Q2: 不同端口 cookie 共享
+## 浏览器的缓存机制（强缓存，协商缓存）
 
-> 根据同源策略，`cookie` 是区分端口的，但是对浏览器来说，`cookie` 是区分区域的，所以在同一 `ip` 下的多个端口的`cookie` 是共享的
+### 强缓存
 
-## Q3: 本地存储的四种方式
+> **强缓存**: 不会向服务器发送请求，直接从缓存中读取资源
 
-| **特性**       | **cookies**                                                                          | **localStorage**                                          | **sessionStorage**                                        | **indexedDB**            |
-| -------------- | :----------------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | ------------------------ |
-| 数据的生命期   | 一般由服务器生成，可设置失效时间。如果在浏览器端生成的`cookie`，默认关闭浏览器后失效 | 除非手动被清除，否则永久保存                              | 仅在当前会话下有效，关闭页面或浏览器后失效                | 永久保存                 |
-| 存放数据的大小 | `4K`左右                                                                             | PC 一般 `5M`,移动端`2.5M`                                 | PC 一般`5M`,移动端`2.5M`                                  | 一般没有上限大小         |
-| 与服务器通信   | 始终在同源的`http` 请求中携带，如果使用 `cookie`保存过多会带来性能问题               | 仅在浏览器中保存，不参与和服务器通信                      | 仅在浏览器中保存，不参与和服务器通信                      | 不参与                   |
-| 易用性         | 原生的接口不太友好，需要封装下                                                       | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 比较繁琐，异步，支持事务 |
-| 同源策略       | 同源                                                                                 | 同源                                                      | 同源                                                      | 同源                     |
+1. **Expires**
 
-共同点:
+缓存过期时间，用来指定资源到期的时间，是服务器端的具体的时间点, **Expires = max-age + 请求时间**，需要和`Last-modified` 结合使用
 
-> 都是保存在浏览器端，并且是同源的
+2. **Cache-Control**
 
-不同点:
+`Cache-Control` 可以在请求头或者响应头中设置，并且可以组合使用多种指令
 
-- 与服务器通信:
-  - `cookie` 数据始终在同源的 `http` 请求中携带
-  - `webStorage` 不会在请求中携带，仅仅在本地存储
-- 存储大小区别:
-  - `cookie` 是最大长度`4K`
-  - `webStorage`可以达到 `5M` 甚至更大
-  - `indexedDB` 无限制
-- 数据有效时间区别:
-  - `sessionStorage` 仅仅是会话级别的存储，它只在当前浏览器关闭前有效，不能持久保持;
-  - `localStorage` 始终有效，即使窗口或浏览器关闭也一直有效，除非用户手动删除才会失效;
-  - `cookie` 只在设置的 `cookie` 过期时间之前一直有效，
-  - `indexedDB` 持久存储；
-- 作用域区别:
-  - `sessionStorage` 不能在不同的浏览器窗口中共享，即使是同一个页面;
-  - `localStorage`、`cookie`和`indexedDB` 在所有同源窗口都是共享的;
-- `webStorage` 支持事件通知机制，可以将数据更新的通知发送给监听者。`api` 的接口使用更方便。
-- `indexedDB` 支持事务
+**二者的区别:**
 
-[深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
+- `Expires` 是 `http1.0` 的产物，`Cache-Control` 是 `http1.1` 的产物，两者同时存在的话，`Cache-Control` 优先级高于 `Expires`。
+- 在某些不支持 `HTTP1.1` 的环境下，`Expires` 就会发挥用处。现阶段它的存在只是一种兼容性的写法。
 
-## Q4: fetch 发送 2 次请求的原因
+### 协商缓存
 
-`fetch` 发送 `post` 请求的时候，总是发送 `2` 次，第一次状态码是 `204`，第二次才成功?
+**协商缓存**：在强制缓存失效（eg: Cache-Control: no-cache）后，浏览器携带`缓存标识`向服务器发起请求，由服务器根据 `缓存标识` (对比最新缓存标识)决定是否使用缓存的过程
 
-> 原因很简单，因为你用 `fetch` 的 `post` 请求的时候，导致 `fetch` 第一次发送了一个 `Options` 请求，询问服务器是否支持修改的请求头，如果服务器支持，则在第二次中发送真正的请求
+**Last-Modified** 和 **If-Modified-Since**
 
-## Q5: GET 和 POST 的区别
+浏览器请求，服务器返回`Last-Modified` 这个 `header`，浏览器下一次请求这个资源，浏览器检测到有 `Last-Modified` 这个 `header`，于是添加 `If-Modified-Since` 这个`header`, 值就是 `Last-Modified` 中的值, 服务器通过 `If-Modified-Since` 中的值与服务器中这个资源的最后修改时间对比, 判断是否返回新的资源文件。
 
-- 浏览器在回退时，`GET` 不会重新请求，但是 `POST` 会重新请求
-- **缓存**: `GET` 请求会被浏览器主动缓存下来，请求参数会被完整保留在浏览历史记录里，而 `POST` 默认不会。
-- **参数**: `GET` 一般明文放在 `URL` 中，因此不安全，`POST` 放在请求体中，更适合传输敏感信息; `GET` 请求在 `URL` 中传递的参数是有长度限制的，而 `POST` 没有。
-- **编码**: `GET` 只能进行 `URL` 编码，只能接收 `ASCII` 字符，而 `POST` 没有限制。
-- **幂等性**: `GET` 是幂等的，而 `POST` 不是。(幂等表示执行相同的操作，结果也是相同的)
-- **TCP 角度**: `GET` 请求会把请求报文一次性发出去，而 `POST` 会分为两个 TCP 数据包(首先发 header 部分，如果服务器响应 100(continue)， 然后发 body 部分)。(火狐浏览器除外，它的 POST 请求只发一个 TCP 包)
+**Last-Modified 存在的一些弊端：**
 
-### GET 和 POST 报文上的区别误区
+- 如果本地打开缓存文件，即使没有对文件进行修改，但还是会造成 `Last-Modified` 被修改，服务端不能命中缓存导致发送相同的资源
+- 因为 `Last-Modified` 只能以`秒`计时，如果在不可感知的时间内修改完成文件，那么服务端会认为资源还是命中了，不会返回正确的资源
 
-> 结论: `GET` 和 `POST` 方法没有实质区别
+**ETag** 和 **If-None-Match**
 
-**说明：**
+`Etag` 是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)，只要资源有变化，`Etag` 就会重新生成。浏览器在下一次加载资源向服务器发送请求时，会将上一次返回的 `Etag` 值放到 `request header` 里的 `If-None-Match` 里，服务器只需要比较客户端传来的 `If-None-Match` 跟自己服务器上该资源的 `ETag` 是否一致，就能很好地判断资源相对客户端而言是否被修改过了。
 
-`GET` 和 `POST` 只是 `HTTP` 协议中两种请求方式，而 `HTTP` 协议是基于 `TCP/IP` 的应用层协议，无论 `GET` 还是 `POST`，用的都是同一个传输层协议，所以在传输上，没有实质上的区别
+**二者的区别:**
 
-- 按照规范带参数的报文一般 `GET` 会放在 `URL` 中，而 `POST` 会放在请求体中
-- 不按规范来也是可以的, 我们可以在 `URL` 上写参数，然后方法使用 `POST`；也可以在 `Body` 写参数，然后方法使用 `GET`。当然，这需要服务端支持
+- 精确度，`ETag` 要优于 `Last-Modified`。
+  - `Last-Modified` 的时间单位是秒，如果某个文件在 `1` 秒内改变了多次，那么他们的 `Last-Modified` 其实并没有体现出来修改，但是 `ETag` 每次都会改变确保了精度
+  - 如果是负载均衡的服务器，各个服务器生成的 `Last-Modified` 也有可能不一致。
+- 性能，`ETag` 要逊于 `Last-Modified`，毕竟 `Last-Modified` 只需要记录时间，而 `ETag` 需要服务器通过算法来计算出一个 `hash` 值。
+- 优先级，服务器校验优先考虑 `ETag`。
 
-### GET 请求传参长度的误区
+[深入理解浏览器的缓存机制](https://www.jianshu.com/p/54cc04190252)
 
-> `GET` 请求参数的大小存在限制，而 `POST` 请求的参数大小是无限制的
-
-为了明确这个概念，我们必须了解下面几点:
-
-- `HTTP` 协议未规定 `GET` 和 `POST` 的长度限制
-- `GET` 的最大长度显示是因为浏览器和 `web` 服务器限制了 `URI` 的长度
-- 不同的浏览器和 `WEB` 服务器，限制的最大长度不一样
-- 要支持 `IE`，则最大长度为 `2083` byte，若只支持 `Chrome`，则最大长度 `8182` byte
-
-### POST 方法会产生两个 TCP 数据包误区
-
-- `HTTP` 协议中没有明确说明 `POST` 会产生两个 `TCP` 数据包，而且实际测试(Chrome)发现，`header` 和 `body` 不会分开发送；所以，`header` 和 `body` 分开发送是部分浏览器或框架的请求方法，不属于 `post` 必然行为
-- `RFC` 里描述：`100 continue` 只有在请求里带了 `Expect: 100-continue` 请求头的时候才有意义
-
-> When the request contains an Expect header field that includes a 100-continue expectation, the 100 response indicates that the server wishes to receive the request payload body, as described in Section 5.1.1. The client ought to continue sending the request and discard the 100 response. If the request did not contain an Expect header field containing the 100-continue expectation, the client can simply discard this interim response.
-
-**结论：** 因而部分描述：对于 `POST`，浏览器先发送 `header`，服务器响应 `100 continue`，浏览器再发送 `data`，服务器响应 `200 ok`（返回数据）其实是不严谨的
-
-### POST 方法比 GET 方法安全？
-
-- 从表面上来看，`POST` 比 `GET` 安全，因为 `POST` 数据在地址栏上不可见
-- 从传输的角度来说，他们都是不安全的，因为 `HTTP` 在网络上是明文传输的，只要在网络节点上捉包，就能完整地获取数据报文；要想安全传输，就只有加密，也就是 `HTTPS`
-
-[都 9102 年了，还问 GET 和 POST 的区别](https://segmentfault.com/a/1190000018129846)
-
-### 四种常见的 POST 提交数据方式
-
-- `application/x-www-form-urlencoded` 默认表单数据提交类型
-- `multipart/form-data` 表单上传文件数据提交类型
-- `application/json` JSON 格式数据提交类型
-- `text/xml` XML 格式数据提交类型
-
-[四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
-
-### 为什么要禁止除 GET 和 POST 之外的 HTTP 方法？
-
-- 除 `GET`、`POST` 之外的其它 `HTTP` 方法，其刚性应用场景较少，且禁止它们的方法简单，即实施成本低
-- 一旦让低权限用户可以访问这些方法，他们就能够以此向服务器实施有效攻击，即威胁影响大
-
-1. `OPTIONS` 方法，将会造成服务器信息暴露，如中间件版本、支持的 `HTTP` 方法等【允许客户端查看服务器信息】
-2. `PUT` 方法，由于 `PUT` 方法自身不带验证机制，利用 `PUT` 方法即可快捷简单地入侵服务器，上传 `Webshell` 或其他恶意文件，从而获取敏感数据或服务器权限【从客户端向服务器传送的数据取代指定文档内容】
-3. `DELETE` 方法，利用 `DELETE` 方法可以删除服务器上特定的资源文件，造成恶意攻击【请求服务器删除指定资源】
-
-[为什么要禁止除 GET 和 POST 之外的 HTTP 方法？](https://www.freebuf.com/articles/web/172695.html)
-
-### 公司规定所有接口都用 post 请求，这是为什么？
-
-- `POST` 不会误用缓存
-- `POST` 不受 `URL` 长度限制
-- `POST` 能够用来获取也可以用来修改
-
-[公司规定所有接口都用 post 请求，这是为什么？](https://www.zhihu.com/question/336797348)
-
-## Q6: cookie 的理解（包括 SameSite 属性）
+## cookie 的理解（包括 SameSite 属性）
 
 > `SameSite` 属性可以让 `Cookie` 在跨站请求时不会被发送，从而可以阻止跨站请求伪造攻击（CSRF）。
 
@@ -162,7 +87,7 @@ nav:
 
 [预测最近面试会考 Cookie 的 SameSite 属性](https://juejin.cn/post/6844904095711494151)
 
-## Q7: JS 实现跨域
+## 跨域
 
 > 跨域是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对 `JavaScript` 实施的安全限制，那么只要`协议`、`域名`、`端口`有任何一个不同，都被当作是不同的域
 >
@@ -192,7 +117,7 @@ nav:
 
 [九种跨域方式实现原理（完整版）](https://juejin.cn/post/6844903767226351623)
 
-## Q8: 前端安全知识(XSS、 CSRF)
+## 前端安全知识(XSS、 CSRF)
 
 ### XSS（Cross Site Scripting）- 跨域脚本攻击
 
@@ -247,12 +172,49 @@ nav:
 
 [寒冬求职之你必须要懂的 Web 安全](https://juejin.cn/post/6844903842635579405)
 
-## Q9: offset/scroll/client
+## offset/scroll/client
 
-- [offset/scroll/client 各类属性详解](https://juejin.cn/post/6940808773564891166#heading-2)
-- [client offset clientX offsetX screenX pageX scroll 区别](https://juejin.cn/post/6920410669904822279)
+[offset/scroll/client 各类属性详解](https://juejin.cn/post/6940808773564891166#heading-2)
 
-## Q10: SPA and MPA
+## 本地存储的四种方式
+
+> 根据同源策略，`cookie` 是区分端口的，但是对浏览器来说，`cookie` 是区分区域的，所以在同一 `ip` 下的多个端口的`cookie` 是共享的
+
+| **特性**       | **cookies**                                                                          | **localStorage**                                          | **sessionStorage**                                        | **indexedDB**            |
+| -------------- | :----------------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | ------------------------ |
+| 数据的生命期   | 一般由服务器生成，可设置失效时间。如果在浏览器端生成的`cookie`，默认关闭浏览器后失效 | 除非手动被清除，否则永久保存                              | 仅在当前会话下有效，关闭页面或浏览器后失效                | 永久保存                 |
+| 存放数据的大小 | `4K`左右                                                                             | PC 一般 `5M`,移动端`2.5M`                                 | PC 一般`5M`,移动端`2.5M`                                  | 一般没有上限大小         |
+| 与服务器通信   | 始终在同源的`http` 请求中携带，如果使用 `cookie`保存过多会带来性能问题               | 仅在浏览器中保存，不参与和服务器通信                      | 仅在浏览器中保存，不参与和服务器通信                      | 不参与                   |
+| 易用性         | 原生的接口不太友好，需要封装下                                                       | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 比较繁琐，异步，支持事务 |
+| 同源策略       | 同源                                                                                 | 同源                                                      | 同源                                                      | 同源                     |
+
+共同点:
+
+> 都是保存在浏览器端，并且是同源的
+
+不同点:
+
+- 与服务器通信:
+  - `cookie` 数据始终在同源的 `http` 请求中携带
+  - `webStorage` 不会在请求中携带，仅仅在本地存储
+- 存储大小区别:
+  - `cookie` 是最大长度`4K`
+  - `webStorage`可以达到 `5M` 甚至更大
+  - `indexedDB` 无限制
+- 数据有效时间区别:
+  - `sessionStorage` 仅仅是会话级别的存储，它只在当前浏览器关闭前有效，不能持久保持;
+  - `localStorage` 始终有效，即使窗口或浏览器关闭也一直有效，除非用户手动删除才会失效;
+  - `cookie` 只在设置的 `cookie` 过期时间之前一直有效，
+  - `indexedDB` 持久存储；
+- 作用域区别:
+  - `sessionStorage` 不能在不同的浏览器窗口中共享，即使是同一个页面;
+  - `localStorage`、`cookie`和`indexedDB` 在所有同源窗口都是共享的;
+- `webStorage` 支持事件通知机制，可以将数据更新的通知发送给监听者。`api` 的接口使用更方便。
+- `indexedDB` 支持事务
+
+[深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
+
+## SPA and MPA
 
 **SPA 和 MPA 之间的比较：**
 | | 多页面应用模式 MPA | 单页面应用模式 SPA |
@@ -271,7 +233,7 @@ nav:
 
 [SPA（单页面应用）和 MPA（多页面应用）](https://www.jianshu.com/p/a02eb15d2d70)
 
-## Q11: 浅谈 SSR
+## 浅谈 SSR
 
 [浅谈服务端渲染(SSR)](https://www.jianshu.com/p/10b6074d772c)
 
