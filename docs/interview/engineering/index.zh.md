@@ -27,7 +27,7 @@ nav:
 
 [React 16 加载性能优化指南](https://mp.weixin.qq.com/s/XSvhOF_N0VbuOKStwi0IYw)
 
-## Q1: 网页基本性能优化
+## 网页基本性能优化
 
 - 减少 `HTTP` 请求
 - 使用内容发布网络(CDN)
@@ -43,7 +43,7 @@ nav:
 
 [写给中高级前端关于性能优化的 9 大策略和 6 大指标 | 网易四年实践](https://juejin.cn/post/6981673766178783262)
 
-## Q2: MVC 和 MVVM
+## MVC 和 MVVM
 
 **MVC:**
 
@@ -71,11 +71,11 @@ nav:
 
 [浅谈 MVC、MVP 和 MVVM 架构模式](https://draveness.me/mvx/)
 
-## Q3: 规范代码提交
+## 规范代码提交
 
 [Git Commit 规范（Conventional Commit）](https://juejin.cn/post/6985500205554597918)
 
-## Q4: TS 问题常见解答
+## TS 问题常见解答
 
 [钉钉前端面试题~TypeScript 相关问题的部分解答](https://juejin.cn/post/6988763249982308382)
 

@@ -416,7 +416,7 @@ console.log(baseState.b === nextState.b); // true
 
 - 基本数据类型
 
-> 五大基本数据类型: `number`、`string`、`boolean`、`null`、`undefined`、`symbol`
+> 六大基本数据类型: `number`、`string`、`boolean`、`null`、`undefined`、`symbol`、`bigint`
 
 - 引用数据类型
   - 对象 `Object`

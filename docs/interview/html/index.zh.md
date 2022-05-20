@@ -167,3 +167,18 @@ importScripts('script1.js', 'script2.js');
 - `iframe` 和主页面共享连接池，而浏览器对相同区域有限制所以会影响性能
 
 [iframe,我们来谈一谈](https://segmentfault.com/a/1190000004502619)
+
+## WebSocket
+
+**最大特点：**服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于[服务器推送技术](https://en.wikipedia.org/wiki/Push_technology)的一种
+
+**特点：**
+
+- 建立在 `TCP` 协议之上，服务器端的实现比较容易
+- 与 `HTTP` 协议有着良好的兼容性。默认端口也是 `80` 和 `443`，并且握手阶段采用 `HTTP` 协议，因此握手时不容易屏蔽，能通过各种 `HTTP` 代理服务器
+- 数据格式比较轻量，性能开销小，通信高效
+- 可以发送文本，也可以发送二进制数据
+- 没有同源限制，客户端可以与任意服务器通信
+- 协议标识符是 `ws`（如果加密，则为 wss），服务器网址就是 `URL`
+
+[WebSocket 教程](https://www.ruanyifeng.com/blog/2017/05/websocket.html)
