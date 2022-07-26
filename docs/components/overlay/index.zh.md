@@ -3,7 +3,7 @@ title: Overlay 遮罩层
 order: 15
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Overlay 遮罩层

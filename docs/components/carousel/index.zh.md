@@ -3,7 +3,7 @@ title: Carousel 轮播
 order: 3
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Carousel 轮播

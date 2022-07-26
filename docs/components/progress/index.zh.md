@@ -3,7 +3,7 @@ title: Progress 进度条
 order: 16
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Progress 进度条

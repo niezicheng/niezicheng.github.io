@@ -3,7 +3,7 @@ title: ImageViewer 图片预览
 order: 9
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## ImageViewer 图片预览

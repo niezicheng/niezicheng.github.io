@@ -3,7 +3,7 @@ title: Loading 加载
 order: 7
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Loading 加载

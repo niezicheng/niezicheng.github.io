@@ -3,7 +3,7 @@ title: Icon 图标
 order: 9
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Icon 图标

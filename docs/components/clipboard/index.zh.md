@@ -3,7 +3,7 @@ title: Clipboard 剪切板
 order: 3
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Clipboard 剪切板

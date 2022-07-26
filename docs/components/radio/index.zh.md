@@ -3,7 +3,7 @@ title: Radio 单选框
 order: 20
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Radio 单选框

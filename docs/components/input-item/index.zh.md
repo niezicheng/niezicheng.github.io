@@ -3,7 +3,7 @@ title: InputItem 文本输入框
 order: 9
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## InputItem 文本输入框

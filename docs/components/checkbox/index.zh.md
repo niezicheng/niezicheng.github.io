@@ -3,7 +3,7 @@ title: Checkbox 复选框
 order: 3
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Checkbox 复选框

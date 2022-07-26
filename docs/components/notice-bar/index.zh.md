@@ -3,7 +3,7 @@ title: NoticeBar 通告栏
 order: 9
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## NoticeBar 通告栏

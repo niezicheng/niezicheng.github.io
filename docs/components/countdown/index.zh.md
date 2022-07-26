@@ -3,7 +3,7 @@ title: Countdown 倒计时
 order: 3
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Countdown 倒计时

@@ -3,7 +3,7 @@ title: ImagePicker 图片选择器
 order: 9
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## ImagePicker 图片选择器

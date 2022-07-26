@@ -3,7 +3,7 @@ title: Tabs 标签页
 order: 21
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Tabs 标签页

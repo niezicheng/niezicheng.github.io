@@ -3,7 +3,7 @@ title: VideoViewer 视频/图片预览
 order: 22
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## VideoViewer 图片预览

@@ -3,7 +3,7 @@ title: 算法学习资源
 order: 0
 nav:
   title: LeetCode
-  order: 2
+  order: 4
 ---
 
 ## 数据结构及算法

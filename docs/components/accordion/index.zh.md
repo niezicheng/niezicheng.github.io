@@ -3,7 +3,7 @@ title: Accordion 手风琴
 order: 1
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Accordion 手风琴
@@ -38,7 +38,7 @@ nav:
   - 控制子元素的展示/折叠和折叠显示图标的类型
 
 ```ts
-  active: activeSections.includes(index)
+active: activeSections.includes(index);
 ```
 
 - `onChange` 属性

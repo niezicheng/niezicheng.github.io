@@ -3,7 +3,7 @@ title: Barcode 条形码/二维码
 order: 2
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Barcode 条形码/二维码

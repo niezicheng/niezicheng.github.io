@@ -3,7 +3,7 @@ title: Upload 上传
 order: 21
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Upload 上传

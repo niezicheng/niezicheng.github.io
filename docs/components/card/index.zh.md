@@ -3,7 +3,7 @@ title: Card 卡片
 order: 3
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Card 卡片

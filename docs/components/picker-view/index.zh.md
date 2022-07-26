@@ -3,7 +3,7 @@ title: PickerView 选择器
 order: 16
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## PickerView 选择器

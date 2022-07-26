@@ -3,7 +3,7 @@ title: Form 表单
 order: 6
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Form 表单

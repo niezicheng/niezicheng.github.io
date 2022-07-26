@@ -3,7 +3,7 @@ title: Badge 徽标签
 order: 2
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## Badge 徽标签

@@ -3,7 +3,7 @@ title: SwipeAction 侧滑块
 order: 21
 nav:
   title: 组件
-  order: 0
+  order: 2
 ---
 
 ## SwipeAction 侧滑块

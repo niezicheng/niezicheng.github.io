@@ -3,7 +3,7 @@ title: 排序算法
 order: 1
 nav:
   title: LeetCode
-  order: 2
+  order: 4
 ---
 
 ## 直接插入排序（稳定）
