@@ -238,3 +238,120 @@ const scrollRef = useRef(); // 元素实例
 
 const [x, y] = useScroll(scrollRef);
 ```
+
+## usePersistFn
+
+> 一个持久化函数 的 `hooks`，保证函数地址永远不会变化
+
+```tsx
+import { useRef } from 'react';
+
+type noop = (...args: any[]) => any;
+
+function usePersistFn<T extends noop>(func: T) {
+  const funcRef = useRef<T>(func);
+  const persistFunc = useRef<T>();
+
+  // 将传入的 func 存储到 ref 中
+  funcRef.current = func;
+
+  if (!persistFunc.current) {
+    persistFunc.current = function(...args) {
+      return funcRef.current.apply(this, args);
+    } as T;
+  }
+
+  return persistFunc.current;
+}
+
+export default usePersistFn;
+```
+
+## usePagination
+
+> 分页数据请求加载封装
+
+```tsx
+import { useRef, useState, useMemo, useCallback, useEffect } from 'react';
+import get from 'lodash/get';
+import set from 'lodash/set';
+
+type ArgsType = {
+  // 分页页数
+  pageNo?: number;
+  // 分页大小
+  pageSize?: number;
+  [propName: string]?: any;
+}
+
+type Options = {
+  // 获取数据方法
+  getData: (params: any) => (params) => Promise;
+  // 数据总数 key 路径
+  totalPath?: string;
+  // 数据 key 路径
+  dataPath?: string;
+  // 初始化参数
+  initArgs?: ArgsType;
+}
+
+const usePagination = (options: Options) => {
+  const { getData, totalPath = 'total', dataPath = 'data' } = options;
+
+  const { current: initArgs } = useRef<ArgsType>(options?.initArgs);
+  const [loading, setLoading] = useState(false);
+  const [args, setArgs] = useState<ArgsType>(initArgs);
+  const [result, setResult] = useState(() => {
+    const initRes = {};
+    set(initRes, totalPath, 0);
+    return set(initRes, dataPath, []);
+  });
+
+  const total = useMemo(() => get(result, totalPath, 0), [result, totalPath]);
+  const data = useMemo(() => get(result, dataPath, []), [result, dataPath]);
+
+  const getDataPersist = usePersistFn(getData);
+
+  // 获取数据处理函数
+  const _getData = useCallback(() => {
+    setLoading(true);
+    try {
+      const res = await getDataPersist(args);
+      let dataSource = needJackson ? jacksonConverter.parse(JSON.stringify(res)) : res;
+        if (args.pageNo > 1) {
+          setResult((prevResult) => {
+            const newList = [..._get(prevResult, dataPath, []), ..._get(dataSource, dataPath, [])];
+            return _set({ ...dataSource }, dataPath, newList);
+          });
+        } else {
+          setResult(dataSource || _set({}, dataPath, []));
+        }
+    } catch(err) {
+      console.log(err);
+       setLoading(false);
+    }
+  }, []);
+
+  useEffect(_getData, [_getData]);
+
+  // 刷新方法
+  const refresh = usePersistFn((type, refreshArgs) => {
+    setArgs(type === 'init' ? { ...initArgs } : { ...args, ...refreshArgs });
+  });
+
+  // 加载更多方法 pageNo + 1
+  const loadMore = usePersistFn(() => {
+    // 触发分页加载更多（
+    if (!loading && total > data?.length) {
+      setArgs((prevArgs) => ({ ...prevArgs, pageNo: prevArgs.pageNo + 1 }));
+    }
+  });
+
+  // 底部渲染信息
+  const renderFooter = useCallback(() => (
+    <Footer loading={loading} hasMore={total > data?.length} />
+  ), [data?.length, loading, total]);
+
+  return { args, setArgs, loading, result, loadMore, renderFooter, refresh };
+};
+```
