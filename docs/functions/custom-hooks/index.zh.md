@@ -10,6 +10,10 @@ nav:
 
 [ahooks](https://ahooks.js.org/)
 
+## ahooks-analysis
+
+[ahooks-analysis](https://gpingfeng.github.io/ahooks-analysis/)
+
 ## useSyncCallback
 
 > 自定义 `useSyncCallback`, 支持类似 `class` 组件 `setState` 方法的参数 `callback` 方法
@@ -353,5 +357,145 @@ const usePagination = (options: Options) => {
   ), [data?.length, loading, total]);
 
   return { args, setArgs, loading, result, loadMore, renderFooter, refresh };
+};
+```
+
+## useMatchMedia
+
+> 媒体查询匹配【通过监听窗口 `resize` 来判断是否匹配对应尺寸屏幕】
+
+```ts
+import { useEffect, useState, useCallback } from 'react';
+import _throttle from 'lodash/throttle';
+
+// 响应式断点
+export const MEDIA_BREAKPOINT_KEY = {
+  lg: 'lg',
+  md: 'md',
+  sm: 'sm',
+};
+
+// 响应式断点列表
+export const MEDIA_BREAKPOINT_LIST = [
+  { name: MEDIA_BREAKPOINT_KEY.lg, rule: '(min-width: 906px)' },
+  {
+    name: MEDIA_BREAKPOINT_KEY.md,
+    rule: '(min-width: 415px) and (max-width: 905px)',
+  },
+  { name: MEDIA_BREAKPOINT_KEY.sm, rule: '(max-width: 414px)' },
+];
+
+function useMatchMedia() {
+  const [currentMedia, setCurrentMedia] = useState(MEDIA_BREAKPOINT_KEY.lg); // 当前媒体 lg
+
+  const updateMatchResult = useCallback(() => {
+    let result = MEDIA_BREAKPOINT_KEY.lg;
+    if (window) {
+      // 当前窗口是否匹配对应端点规则 currentBreakpoint: { name: '', rule: '' },
+      const currentBreakpoint = MEDIA_BREAKPOINT_LIST.find(
+        it => window.matchMedia(it.rule).matches,
+      );
+      result = currentBreakpoint?.name;
+    }
+    setCurrentMedia(result);
+  }, []);
+
+  useEffect(() => {
+    updateMatchResult();
+    if (window) {
+      const resizeHandler = _throttle(updateMatchResult, 100);
+      // 监听窗口 resize 变化，更新相应 currentMedia 值
+      window.addEventListener('resize', resizeHandler);
+      return () => {
+        // 取消监听
+        window.removeEventListener('resize', resizeHandler);
+      };
+    }
+    return null;
+  }, [updateMatchResult]);
+
+  const mediaMatchResult = { currentBreakpoint: currentMedia };
+  // 遍历响应式断点列表，为匹配的媒体尺寸 boolean 映射
+  MEDIA_BREAKPOINT_LIST.forEach(it => {
+    mediaMatchResult[it.name] = it.name === currentMedia;
+  });
+  // 数据格式 { lg: true, md: false, ms: false }; 当前匹配的尺寸为 lg 【'(min-width: 906px)'】
+  return mediaMatchResult;
+}
+
+export default useMatchMedia;
+```
+
+## useFooterClass
+
+> 返回不同情况下的底部元素需要的类名信息【是否固定定位】
+
+```ts
+/**
+ * 通过比较内容和窗口高度，返回对应的底部类名
+ * @param {*} contentRef
+ * @param {*} fixedClass
+ * @param {*} footHeight 底部固定高度
+ * @returns 类名
+ */
+export useFooterClass = (contentRef, fixedClass, footHeight) => {
+  const [footerClass, setFooterClass] = useState(''); // 底部元素类名字串
+
+  // 处理函数
+  const handler = useCallback(() => {
+    // 内容元素存在
+    if (contentRef.current) {
+      // 获取客户端高度
+      const docHeight = document.documentElement.clientHeight;
+      // 获取内容底部距离窗口的距离
+      const contentBtmToTop = contentRef.current.getBoundingClientRect().bottom;
+      // 是否底部固定定位
+      const isBottom = docHeight - contentBtmToTop <= footHeight;
+
+      if (isBottom && footerClass !== fixedClass) {
+        setFooterClass(fixedClass);
+      } else if (!isBottom && footerClass !== '') {
+        setFooterClass('');
+      }
+    }
+  }, [fixedClass, footHeight, footerClass, contentRef]);
+
+  useEffect(() => {
+    // 首次渲染计算
+    handler();
+  }, [handler]);
+
+  // 当窗口滚动时出发处理函数进行计算
+  useWindowScroll(handler, true);
+
+  return footerClass;
+}
+```
+
+### 示例
+
+```tsx
+import { useRef } from 'react';
+import { useFooterClass } from '../useFooterClass';
+
+const FOOTER_HEIGHT = 44;
+
+const Demo = () => {
+  const contentRef = useRef();
+  const footerClass = useFooterClass(
+    contentRef.current,
+    'fixed',
+    FOOTER_HEIGHT,
+  );
+
+  return (
+    <>
+      {/* 头部元素 */}
+      <Header />
+      <div ref={contentRef}>内容信息</div>
+      {/* 底部元素 */}
+      <Footer footerClass={footerClass} />
+    </>
+  );
 };
 ```
