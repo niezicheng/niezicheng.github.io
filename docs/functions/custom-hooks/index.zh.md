@@ -426,6 +426,27 @@ function useMatchMedia() {
 export default useMatchMedia;
 ```
 
+## useWindowScroll
+
+> 监听窗口滚动及是否监听 `resize` 时监听
+
+```ts
+import _throttle from 'lodash/throttle';
+
+const useWindowScroll = (handler, includeResize = fasle) => {
+  useEffect(() => {
+    const newHandler = _throttle(handler, 100);
+    window.addEventListener('scroll', newHandler);
+    includeResize && window.addEventListener('resize', newHandler);
+
+    return () => {
+      window.removeEventListener('scroll', newHandler);
+      includeResize && window.removeEventListener('resize', newHandler);
+    };
+  }, [handle, includeResize]);
+};
+```
+
 ## useFooterClass
 
 > 返回不同情况下的底部元素需要的类名信息【是否固定定位】
