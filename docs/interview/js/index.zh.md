@@ -353,6 +353,8 @@ const myInstanceof = (a, b) => {
 
 [JavaScript 中的垃圾回收和内存泄漏](https://blog.fundebug.com/2019/04/30/javascript-memory-management/)
 
+[认识 V8 引擎](https://zhuanlan.zhihu.com/p/27628685)
+
 ## 事件循环机制
 
 **Event Loop：**

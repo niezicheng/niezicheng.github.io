@@ -86,7 +86,15 @@ nav:
 - 使用 `css text`,`className` 一次性改变属性
 - 使用 `fragment` 对于多次重排的元素，比如说动画。使用绝对定位脱离文档流，使其不影响其他元素
 
-[CSS 什么情况下引起回流/重绘](https://blog.csdn.net/weixin_42301080/article/details/119368348)
+什么情况下触发回流：
+
+- 当元素的尺寸或者位置发生了变化，就需要重新计算渲染树，这就是回流
+- `DOM`元素的几何属性(`width/height/padding/margin/border`)发生变化时会触发回流
+- `DOM`元素移动或增加会触发回流
+- 读写`offset/scroll/client`等属性时会触发回流
+- 调用`window.getComputedStyle`会触发回流
+
+[你真的了解回流和重绘吗](https://juejin.cn/post/6844903779700047885)
 
 ## 渐进增强和优雅降级
 
@@ -133,9 +141,15 @@ nav:
 - `display` 为 `inline-block`、`table-cells`、`table-caption`
 - `overflow` 除了 `visible` 以外的值 (hidden、auto、scroll)
 
+### BFC 的应用
+
+- 清除浮动：`BFC` 内部的浮动元素会参与高度计算，因此可用于清除浮动，防止高度塌陷
+- 避免某元素被浮动元素覆盖：`BFC` 的区域不会与浮动元素的区域重叠
+- 阻止外边距重叠：属于同一个 `BFC` 的两个相邻 `Box` 的 `margin` 会发生折叠，不同 `BFC` 不会发生折叠
+
 [10 分钟理解 BFC 原理](https://zhuanlan.zhihu.com/p/25321647)
 
-[BFC 应用](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/02-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
+[小科普：到底什么是 BFC、IFC、GFC 和 FFC](https://juejin.cn/post/6844903480801525773)
 
 ## 清除浮动的方法
 
@@ -297,8 +311,10 @@ div::after {
   - 给父级相对定位，子级绝对定位 `height: 百分比 x;` `x` 为父元素 0 ~ 100%; `margin: auto;` (定位为上下左右为 0，margin: 0 可以实现脱离文档流的居中)
 - table-cell
   - 设置父元素的 `display: table-cell`; 并且 `vertical-align: middle`，这样子元素可以实现垂直居中
+- 伪元素
+  - 设置父元素 `before` 伪元素和子元素 `display: inline-block` 和 `vertical-align: middle`, 伪元素 `height: 100%`; 父元素 `text-align: center`
 
-[元素水平或垂直居中问题](https://www.cnblogs.com/nzcblogs/p/11128625.html)
+[CSS设置居中的方案总结-超全](https://juejin.cn/post/6844903560879013901)
 
 ### 让图片宽度为 300px [仅添加 css 样式]
 

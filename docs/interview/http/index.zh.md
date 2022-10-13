@@ -9,6 +9,8 @@ nav:
 
 > 网络接口层、网络层(IP)、运输层(TCP/UDP)、应用层(HTTP/DNS)
 
+![图解](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/6/1714e043d3a1add2~tplv-t2oaga2asx-zoom-in-crop-mark:4536:0:0:0.awebp)
+
 ## HTTP
 
 [20 分钟助你拿下 HTTP 和 HTTPS，巩固你的 HTTP 知识体系](https://juejin.cn/post/6994629873985650696)
