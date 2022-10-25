@@ -108,26 +108,6 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 
 [浅拷贝与深拷贝](https://juejin.cn/post/6844904197595332622)
 
-## 图片的预加载和懒加载
-
-**预加载:**
-
-- 提前加载图片，当用户需要查看时可直接从本地缓存中渲染
-
-**懒加载:**
-
-- 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数
-
-**两种技术的本质:**
-
-- 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
-- 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
-
-**懒加载优化：**
-监听列表向上滚动事件，只对**上一次最后进入可视窗口加载的图片**后的所有图片进行循环监听判断是否加载【去除对已加载的图片再循环处理】
-
-[懒加载和预加载](https://juejin.cn/post/6844903614138286094)
-
 ## 闭包及其作用
 
 > 闭包是指有权访问另外一个函数作用域中的变量的函数
@@ -194,8 +174,8 @@ son.\_\_proto\_\_.constructor === Mother 为 `true`，但是 Mother.\_\_proto\_\
   - 优点：通过构造函数初始化属性，通过原型实现函数方法的复用
   - 缺点：使用了两种不同的模式，对代码的封装性不够好
 - 动态原型模式
-  - 将原型方法赋值和创建过程移动到构造函数内部，对属性对判断实现仅仅在第一次调用函数时候执行。
-  - 很好对对组合模式进行来封装
+  - 将原型方法赋值和创建过程移动到构造函数内部，对属性的判断实现仅仅在第一次调用函数时候执行。
+  - 很好的对组合模式进行来封装
 - 寄生构造函数模式
   - 基于一个已有类型，在实例化时对实例对象进行扩展（达到既不修改原构造函数也达到扩展对象目的）
   - 缺点：和工厂模式一样，无法实现对对象的识别，均为 `Object`
@@ -204,7 +184,7 @@ son.\_\_proto\_\_.constructor === Mother 为 `true`，但是 Mother.\_\_proto\_\
 
 ```ts
 function isProperty(object, property) {
-  // hasOwnProperty 判断自身时候有该属性， 判断属性是否在 object 原型（Person.Property）中存在
+  // hasOwnProperty 判断自身是否有该属性， 判断属性是否在 object 原型（Person.Property）中存在
   return !object.hasOwnProperty(property) && property in object;
 }
 
@@ -243,18 +223,20 @@ p2.sayName(); // chen
 ### 继承的几种方式和优缺点？
 
 - 原型链继承
-  - 子类构造函数的原型（prototype）等于父类的实例（new Parent()）【重要: Child.prototype === new Parent()】, 即：new Child\_\_proto\_\_ = new Parent()
+  - 子类构造函数的原型（prototype）等于父类的实例（new Parent()）【重要: Child.prototype === new Parent()】, 即：new Child.\_\_proto\_\_ = new Parent()
   - 特点: 基于原型链，可以继承父类原型上的属性和方法
-  - 缺点: 不能继承父类实例的属性和方法；所有子类共用父类原型上的属性（注：引用类型属性 Array 等）
+  - 缺点: 不能继承父类实例的属性和方法；所有子类共用父类原型上的属性（注：引用类型属性 `Array` 等）
 - 构造（伪）继承
   - 子类构造函数中调用父类构造函数改变并父类构造函数中 `this` 指向
   - 特点: 可以实现多继承，可以继承父类实例的属性和方法，
   - 缺点: 不能继承原型上的属性和方法。
 - 组合继承（原型 + 伪继承）
-  - 可以继承父类实例的属性和方法，也可以继承原型上的属性和方法。
-  - 属性使用构造函数继承，方法使用原型链继承
+  - 特点: 可以继承父类实例的属性和方法，也可以继承原型上的属性和方法；属性使用构造函数继承，方法使用原型链继承。
+  - 缺点: 子类实例化时会调用多次父类构造函数
+- 寄生组合继承（原型 + 伪继承）
+  - 可以继承父类实例的属性和方法，也可以继承原型上的属性和方法；子类实例化时只调用一次父类构造函数
 
-**组合继承示例:**
+#### 寄生组合继承示例
 
 ```ts
 function Parent(name) {
@@ -274,22 +256,32 @@ Parent.prototype.sayName = function() {
 };
 
 // 继承父类原型【属性、方法】
-Child.prototype = new Parent(); // 子类构造函数的原型指向父类的实例
+// Child.prototype = new Parent(); // 子类构造函数的原型指向父类的实例
+Child.prototype = Object.create(Parent.prototype); // 子类原型指向父类原型的拷贝
 Child.prototype.constructor = Child; // 父类的实例构造函数指向子类构造函数
 
 let child = new Child('orange', 18); // { name: 'orange', arr: [1, 2, 3], age: 18 }
 child.sayName(); // 'orange'
 ```
 
-**instanceof 实现:**
+#### instanceof 实现
 
 ```ts
 // 实现思想【实例的 __proto__ 是否递归指向函数的 prototype 属性】
-const myInstanceof = (a, b) => {
-  if (!a.__proto__) return false;
-  if (fn === Object || a.__proto === b.prototype) return true;
-  return myInstanceof(a.__proto__, b);
-};
+function myInstanceof(instance, fun) {
+  let funPrototype = fun.prototype; // 取右表达式的 prototype 值
+  instance = instance.__proto__; // 取左表达式的__proto__值
+  while (true) {
+    if (instance === null) {
+      return false;
+    }
+    if (instance === funPrototype) {
+      return true;
+    }
+    // 递归赋值实例原型
+    instance = instance.__proto__;
+  }
+}
 ```
 
 [js 继承](https://www.cnblogs.com/nzcblogs/p/11210652.html)
@@ -357,7 +349,8 @@ const myInstanceof = (a, b) => {
 
 ## 事件循环机制
 
-**Event Loop：**
+### 浏览器 Event Loop
+
 ![图解](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/21/16a3e8964d1e54ce~tplv-t2oaga2asx-watermark.awebp)
 
 **说明：**
@@ -380,7 +373,60 @@ const myInstanceof = (a, b) => {
 
 微任务： `Promise.then`、 `MutaionObserver`、`process.nextTick` (Node.js)
 
+### Node Event Loop
+
+![图解](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9844fc265e1248b78958ff554c974ab1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
+**主要阶段:**
+
+1. timers：计时器阶段，用于处理 `setTimeout` 以及 `setInterval` 的回调函数
+2. pending callbacks：用于执行某些系统操作的回调，例如 `TCP` 错误
+3. idle, prepare：`Node`内部使用，不用做过多的了解
+4. poll：轮询阶段，执行队列中的 `I/O` 队列，并检查定时器是否到时
+5. check：执行 `setImmediate` 的回调
+6. close callbacks：处理关闭的回调，例如：`socket.destroy()`
+
+**常见的宏任务和微任务:**
+
+宏任务： `setTimeout`、`setInterval`、`setImmediate`
+
+微任务： `Promise.then`、`process.nextTick`
+
+**说明：**
+
+- `Node EventLoop` 重点关注这四个阶段，分别是 `timers`、`poll`、`check`、`close callbacks`
+
+### Node 与浏览器的 Event Loop 差异
+
+- 浏览器环境下，执行 `macrotask` 队列前，如果 `microtask` 队列存在则先执行 `microtask` 队列
+- `Node10` 及其之前版本环境下，执行 `macrotask` 队列时会将该队列**所有任务执行完毕**再去执行 `microtask` 队列; 10 版本之后和浏览器基本一致
+
+```ts
+console.log('start');
+setTimeout(() => {
+  console.log('timer1');
+  Promise.resolve().then(function() {
+    console.log('promise1');
+  });
+}, 0);
+setTimeout(() => {
+  console.log('timer2');
+  Promise.resolve().then(function() {
+    console.log('promise2');
+  });
+}, 0);
+Promise.resolve().then(function() {
+  console.log('promise3');
+});
+console.log('end');
+
+// 浏览器：start=>end=>promise3=>timer1=>promise1=>timer2=>promise2
+// Node：start=>end=>promise3=>timer1=>timer2=>promise1=>promise2
+```
+
 [最后一次搞懂 Event Loop](https://juejin.cn/post/6844903827611598862)
+
+[浏览器与 Node 环境下的 Event Loop](https://juejin.cn/post/6886992599006380045)
 
 [浏览器与 Node 的事件循环(Event Loop)有何区别?](https://juejin.cn/post/6844903761949753352)
 
@@ -572,7 +618,7 @@ map.get('chen'); // chen
 
 ```ts
 function* foo(x) {
-  5;
+  // 5;
   let y = 2 * (yield x + 1);
   let z = yield y / 3;
   return x + y + z;
@@ -587,7 +633,7 @@ console.log(it.next(12)); // { value: 8, done: false }
 console.log(it.next(13)); // { value: 42, done: true }
 ```
 
-[工具库-方法实现-Promise](https://niezicheng.github.io/functions/method-realize/promise)
+[工具库-方法实现-Promise](https://niezicheng.github.io/functions/classic/promise)
 
 [9k 字 | Promise/async/Generator 实现原理解析](https://juejin.cn/post/6844904096525189128)
 

@@ -45,6 +45,10 @@ nav:
 
 [打破砂锅问到底：详解 Webpack 中的 sourcemap](https://segmentfault.com/a/1190000008315937)
 
+### Tree shaking
+
+[Webpack Tree shaking 深入探究](https://juejin.cn/post/6844903687412776974#heading-18)
+
 ### webpack 代码分割是怎么做的？
 
 > 路由懒加载和 `webpack` 异步加载模块都是这个 `import()` 语法，值得仔细看看

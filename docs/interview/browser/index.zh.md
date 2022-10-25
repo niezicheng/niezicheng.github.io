@@ -29,6 +29,8 @@ nav:
 
 ## 浏览器的缓存机制（强缓存，协商缓存）
 
+![image](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e2572dfb1ee4923a0d3e183c63380b2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+
 ### 强缓存
 
 > **强缓存**: 不会向服务器发送请求，直接从缓存中读取资源
@@ -45,6 +47,8 @@ nav:
 
 - `Expires` 是 `http1.0` 的产物，`Cache-Control` 是 `http1.1` 的产物，两者同时存在的话，`Cache-Control` 优先级高于 `Expires`。
 - 在某些不支持 `HTTP1.1` 的环境下，`Expires` 就会发挥用处。现阶段它的存在只是一种兼容性的写法。
+
+![image](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc66368a78e947058b8d816f92b00607~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 ### 协商缓存
 
@@ -184,6 +188,116 @@ nav:
 
 [offset/scroll/client 各类属性详解](https://juejin.cn/post/6940808773564891166#heading-2)
 
+## 图片的预加载和懒加载
+
+**预加载:**
+
+- 提前加载图片，当用户需要查看时可直接从本地缓存中渲染
+
+**懒加载:**
+
+- 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数
+
+**两种技术的本质:**
+
+- 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
+- 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
+
+**懒加载优化：**
+监听列表向上滚动事件，只对**上一次最后进入可视窗口加载的图片**后的所有图片进行循环监听判断是否加载【去除对已加载的图片再循环处理】
+
+[懒加载和预加载](https://juejin.cn/post/6844903614138286094)
+
+### 实现图片懒加载
+
+1. clientHeight、scrollTop 和 offsetTop
+
+- clientHeight = CSS height + CSS padding - 水平滚动条高度 (如果存在)
+- scrollTop = 滚动元素顶部距离容器顶部的高度【无法滚动元素 scrollTop 为 0】
+- offsetTop = 元素顶部距离容器顶部的高度
+
+给图片一个占位资源:
+
+```html
+<img src="default.jpg" data-src="http://www.xxx.com/target.jpg" />
+```
+
+监听 scroll 事件来判断图片是否到达视口:
+
+```js
+let img = document.getElementsByTagName('img');
+let num = img.length;
+let count = 0; //计数器，从第一张图片开始计
+
+lazyload(); //首次加载别忘了显示图片
+
+window.addEventListener('scroll', lazyload);
+
+function lazyload() {
+  let viewHeight = document.documentElement.clientHeight; //视口高度
+  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; //滚动条卷去的高度
+  for (let i = count; i < num; i++) {
+    // 元素现在已经出现在视口中【图片距离滚动父元素顶部距离 < 滚动超出窗口高度 + 窗口高度】
+    if (img[i].offsetTop < scrollHeight + viewHeight) {
+      if (img[i].getAttribute('src') !== 'default.jpg') continue;
+      img[i].src = img[i].getAttribute('data-src');
+      count++;
+    }
+  }
+}
+```
+
+对 scroll 事件做节流处理，以免频繁触发:
+
+```js
+// throttle函数我们上节已经实现
+window.addEventListener('scroll', throttle(lazyload, 200));
+```
+
+2. getBoundingClientRect
+
+`DOM` 元素的 [getBoundingClientRect](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect) API; 获取元素相对于**视口**的位置
+
+```js
+function lazyload() {
+  for (let i = count; i < num; i++) {
+    // 元素现在已经出现在视口中
+    if (
+      img[i].getBoundingClientRect().top < document.documentElement.clientHeight
+    ) {
+      if (img[i].getAttribute('src') !== 'default.jpg') continue;
+      img[i].src = img[i].getAttribute('data-src');
+      count++;
+    }
+  }
+}
+```
+
+3. IntersectionObserver
+
+浏览器内置的 API [IntersectionObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver)，实现了监听 `window` 的 `scroll` 事件、判断是否在视口中以及节流三大功能；`IntersectionObserver` 也可以用作其他资源的预加载
+
+```js
+let img = document.getElementsByTagName('img');
+
+const observer = new IntersectionObserver(changes => {
+  //changes 是被观察的元素集合
+  for (let i = 0, len = changes.length; i < len; i++) {
+    let change = changes[i];
+    // 通过这个属性判断是否在视口中
+    if (change.isIntersecting) {
+      const imgElement = change.target;
+      imgElement.src = imgElement.getAttribute('data-src');
+      observer.unobserve(imgElement);
+    }
+  }
+});
+
+Array.from(img).forEach(item => observer.observe(item));
+```
+
+[(1.6w 字)浏览器灵魂之问，请问你能接得住几个？](https://juejin.cn/post/6844904021308735502)
+
 ## SPA and MPA
 
 **SPA 和 MPA 之间的比较：**
@@ -209,7 +323,11 @@ nav:
 
 [服务端渲染(SSR)](https://zhuanlan.zhihu.com/p/90746589)
 
-[1w字 | 从零开始的React服务端渲染](https://juejin.cn/post/6844904000387563533)
+[1w 字 | 从零开始的 React 服务端渲染](https://juejin.cn/post/6844904000387563533)
+
+## Axios
+
+[Axios 如何取消重复请求](https://juejin.cn/post/6955610207036801031)
 
 ## 实践
 

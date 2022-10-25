@@ -41,14 +41,18 @@ nav:
 - 写过自定义 `hook` 吗？解决了哪些问题。【useSyncCallback、useState、WithCallback】
 - 讲讲 `React Hooks` 的闭包陷阱，你是怎么解决的？【缺少依赖导致函数内对应变量值不变，添加 hooks 依赖提示插件配置】
 
-**React Hooks 问答**
+**React Hooks 问答:**
+
 Q：为什么只能在函数最外层调用 `Hook`？为什么不要在循环、条件判断或者子函数中调用？
+
 A：`memoizedState` 数组是按 `hook` 定义的顺序来放置数据的，如果 `hook` 顺序变化，`memoizedState` 并不会感知到。
 
 Q：自定义的 `Hook` 是如何影响使用它的函数组件的？
+
 A：共享同一个 `memoizedState`，共享同一个顺序。
 
 Q："Capture Value" 特性是如何产生的？
+
 A：每一次 `ReRender` 的时候，都是重新去执行函数组件了，对于之前已经执行过的函数组件，并不会做任何操作。
 
 [五分钟搞懂 React Hooks 工作原理](https://blog.csdn.net/LuckyWinty/article/details/103740283)
