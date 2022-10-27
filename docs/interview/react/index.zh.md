@@ -73,7 +73,7 @@ const [state, setState] = useState(() => {
 **说明：**
 
 - `setState` 回调函数与原来的值是递归浅比较【Object.is()】
-- 当 `setState` 设置值和原来一样【值或址相同】时，不会触发组件的重新渲染【引用类型 state 值可能发生改变，但是组件未重新渲染，展示的还是旧 state】
+- 当 `setState` 设置值和原来一样【值或址相同】时，不会触发组件的**重新渲染**【引用类型 `state` 值可能发生改变，但是组件未重新渲染，展示的还是旧 `state`】
 
 [React hooks 依赖项数组中的比较方式](https://zhuanlan.zhihu.com/p/461898776)
 
@@ -115,9 +115,11 @@ const [state, setState] = useState(() => {
 - `Link` 改用了 `history` 对象提供的方法进行跳转
 - `Link` 的 `跳转` 行为只会触发相匹配的 `Route` 对应的页面内容更新，而不会刷新整个页面
 
+[官网中文翻译](https://react-router.docschina.org/)
+
 ## Redux
 
-[英文官网](https://redux.js.org/)、[官网中文翻译](https://react-router.docschina.org/)
+[英文官网](https://redux.js.org/)
 
 [中文文档](https://cn.redux.js.org/)
 

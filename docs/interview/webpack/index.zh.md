@@ -17,7 +17,7 @@ nav:
 
 [webpack4.0-demo 基础部分](https://github.com/niezicheng/webpack4.0-demo)
 
-### webpack 的基础知识
+## 基础知识
 
 [带你深度解锁 Webpack 系列](https://juejin.cn/post/6844904079219490830)
 
@@ -33,7 +33,7 @@ nav:
 
 **PS**：在以上过程中，`Webpack` 会在特定的时间点广播出特定的事件，插件在监听到感兴趣的事件后会执行特定的逻辑并且插件可以调用 `Webpack` 提供的 `API` 改变 `Webpack` 的运行结果。
 
-### webpack 插件机制
+## 插件机制
 
 - 读取配置的过程中会先执行 `new HelloPlugin(options)` 初始化一个 `HelloPlugin` 获得其实例。
 - 初始化 `compiler` 对象后调用 `HelloPlugin.apply(compiler)` 给插件实例传入 `compiler` 对象。
@@ -41,44 +41,125 @@ nav:
 
 [揭秘 webpack 插件的工作原理](https://segmentfault.com/a/1190000023016347)
 
-### Source Map
-
-[打破砂锅问到底：详解 Webpack 中的 sourcemap](https://segmentfault.com/a/1190000008315937)
-
-### Tree shaking
-
-[Webpack Tree shaking 深入探究](https://juejin.cn/post/6844903687412776974#heading-18)
-
-### webpack 代码分割是怎么做的？
-
-> 路由懒加载和 `webpack` 异步加载模块都是这个 `import()` 语法，值得仔细看看
-
-[webpack 的代码分割（路由懒加载同理）](https://juejin.cn/post/6844904101134729229)
-
-### webpack 与 gulp 的差别？(模块化与流的区别)
-
-- `gulp` 强调的是前端开发的工作流程，我们可以通过配置一系列的 `task`，定义 `task` 处理的事务(例如文件压缩合并、雪碧图、启动 server、版本控制等)，然后定义执行顺序， 来让 `gulp` 执行这些 `task`，从而构建项目的整个前端开发流程。
-- `webpack` 是一个前端模块化方案，更侧重模块打包，我们可以把开发中的所有资源(图片、js 文件、css 文件等)都看成模块，通过 `loader`(加载器)和 `plugins`(插件)对资源进行处理，打包成符合生产环境部署的前端资源。
-
-### webpack 自定义 loader
+## loader
 
 [webpack 中如何自定义 loader](https://juejin.cn/post/6891649726656020493)
 
 [webpack 如何自定义一个 loader？](https://segmentfault.com/a/1190000023921193)
 
-## Babel
+## 代码分割
 
-[中文文档](https://www.babeljs.cn/)
+官方说明：
 
-[英文文档](https://babeljs.io/)
+默认情况下，它只会影响到**按需加载**的 `chunks`，因为修改 `initial chunks` 会影响到项目的 `HTML` 文件中的脚本标签。
 
-## babel 的原理是什么？
+`webpack` 将根据以下条件自动拆分 `chunks`：
 
-[[实践系列]Babel 原理](https://juejin.cn/post/6844903760603398151)
+- `node_modules` 资源会命中 `defaultVendors` 规则，并被单独打包
+- 只有包体超过 `20kb` 的 `Chunk` 才会被单独打包
+- 加载 `Async Chunk` 所需请求数不得超过 `30`
+- 加载 `Initial Chunk` 所需请求数不得超过 `30`
 
-## 如何写一个 babel 插件？
+**默认配置：**
 
-[编写一个简单的 babel 插件](https://juejin.cn/post/6844903582613897223)
+```ts
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+      chunks: 'async', // 有效值为 `all`，`async` 和 `initial`
+      minSize: 20000, // 生成 chunk 的最小体积（≈ 20kb)
+      minRemainingSize: 0, // 确保拆分后剩余的最小 chunk 体积超过限制来避免大小为零的模块
+      minChunks: 1, // 拆分前必须共享模块的最小 chunks 数。
+      maxAsyncRequests: 30, // 最大的按需(异步)加载次数
+      maxInitialRequests: 30, // 打包后的入口文件加载时，还能同时加载js文件的数量（包括入口文件）
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        // 配置提取模块的方案
+        defaultVendors: {
+          test: /[\/]node_modules[\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+
+        // vendors: {
+        //   test: /[\\/]node_modules[\\/]/,
+        //   minChunks: 2,
+        //   minSize: 0
+        // }
+
+        //  echarts: {
+        //   name: 'chunk-echarts',
+        //   priority: 20,
+        //   test: /[\\/]node_modules[\\/]_?echarts(.*)/
+        // },
+
+        // commons: {
+        //   name: 'chunk-commons',
+        //   minChunks: 2,
+        //   priority: 5,
+        //   chunks: 'initial',
+        //   reuseExistingChunk: true
+        // }
+      },
+    },
+  },
+};
+```
+
+`SplitChunksPlugin` 基本配置项：
+
+- **minChunks**：用于设置引用阈值，被引用次数超过该阈值的 `Module` 才会进行分包处理
+- **maxInitialRequest/maxAsyncRequests**：用于限制 `Initial Chunk`(或 `Async Chunk`) 最大并行请求数，本质上是在限制最终产生的分包数量
+- **minSize**：超过这个尺寸的 `Chunk` 才会正式被分包
+- **maxAsyncSize**：与 `maxSize` 功能类似，但只对异步引入的模块生效
+- **maxInitialSize**：与 `maxSize` 类似，但只对 `entry` 配置的入口模块生效
+- **enforceSizeThreshold**：超过这个尺寸的 `Chunk` 会被强制分包，忽略上述其它 `size` 限制
+- **cacheGroups**：用于设置缓存组规则，为不同类型的资源设置更有针对性的分包策略
+
+**优先级说明:**
+
+> maxInitialRequest/maxAsyncRequests < maxSize < minSize 而命中 `enforceSizeThreshold` 阈值的 `Chunk` 会直接跳过这些属性判断，强制进行分包
+
+[Webpack Chunk 分包规则详解](https://juejin.cn/post/6961724298243342344)
+
+[Webpack 性能系列四：分包优化](https://www.51cto.com/article/689344.html)
+
+## Tree shaking
+
+开发环境配置 `optimization.usedExports: true`; 生产环境下默认开启。
+
+### Tree shaking 基本原理
+
+- `ES6` 的模块引入是静态分析的，故而可以在编译时正确判断到底加载了什么代码。
+- 分析程序流，判断哪些变量未被使用、引用，进而删除此代码
+
+### 注意事项
+
+- 使用 `ES2015` 模块语法（即 `import` 和 `export`）
+- 确保没有编译器将您的 ES2015 模块语法转换为 CommonJS（顺带一提，这是现在常用的 @babel/preset-env 的默认行为，详细信息请[参阅文档](https://babeljs.io/docs/en/babel-preset-env#modules)）
+- 在项目的 `package.json` 文件中，添加 `sideEffects` 属性，将文件标记为无副作用；支持 `false` 或文件路径数组
+- 使用 `mode` 为 `production` 的配置项以启用更多优化项，包括压缩代码与 `tree shaking`
+
+[Webpack Tree shaking 深入探究](https://juejin.cn/post/6844903687412776974#heading-18)
+
+## Source Map
+
+[打破砂锅问到底：详解 Webpack 中的 sourcemap](https://segmentfault.com/a/1190000008315937)
+
+## Hot Module Replacement
+
+[轻松理解 webpack 热更新原理](https://juejin.cn/post/6844904008432222215)
+
+### webpack 与 gulp 的差别？(模块化与流的区别)
+
+- `gulp` 强调的是前端开发的工作流程，我们可以通过配置一系列的 `task`，定义 `task` 处理的事务(例如文件压缩合并、雪碧图、启动 server、版本控制等)，然后定义执行顺序， 来让 `gulp` 执行这些 `task`，从而构建项目的整个前端开发流程。
+- `webpack` 是一个前端模块化方案，更侧重模块打包，我们可以把开发中的所有资源(图片、js 文件、css 文件等)都看成模块，通过 `loader`(加载器)和 `plugins`(插件)对资源进行处理，打包成符合生产环境部署的前端资源。
 
 ## 拓展
 
