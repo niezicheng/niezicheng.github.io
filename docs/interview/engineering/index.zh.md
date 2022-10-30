@@ -59,6 +59,16 @@ nav:
 
 [钉钉前端面试题~TypeScript 相关问题的部分解答](https://juejin.cn/post/6988763249982308382)
 
+### interface VS type
+
+- 二者都可以描述一个对象或者函数
+- 二者都允许拓展（`extends`）；效果相同，但语法不同【`extends`、`&`】
+- `type` 可以声明基本类型别名，联合类型，元组等类型
+- `type` 语句中还可以使用 `typeof` 获取实例的类型进行赋值
+- `interface` 能够声明合并【同一个类型的多个声明会进行合并】
+
+[Typescript 中的 interface 和 type 到底有什么区别](https://juejin.cn/post/6844903749501059085)
+
 ## 拓展
 
 [聊聊 package.json 文件中的 module 字段](https://loveky.github.io/2018/02/26/tree-shaking-and-pkg.module/)

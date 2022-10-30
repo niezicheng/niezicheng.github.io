@@ -95,6 +95,10 @@ const [state, setState] = useState(() => {
 
 [【React 深入】从 Mixin 到 HOC 再到 Hook](https://juejin.cn/post/6844903815762673671)
 
+### React.lazy 懒加载
+
+[深入理解 React：懒加载（lazy）实现原理](https://juejin.cn/post/6844904191853494280)
+
 ## React Router
 
 [英文官网](https://reactrouter.com/)

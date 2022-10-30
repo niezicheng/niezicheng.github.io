@@ -156,6 +156,10 @@ module.exports = {
 
 [轻松理解 webpack 热更新原理](https://juejin.cn/post/6844904008432222215)
 
+## webpack 如何实现动态加载
+
+require.ensure、import()
+
 ### webpack 与 gulp 的差别？(模块化与流的区别)
 
 - `gulp` 强调的是前端开发的工作流程，我们可以通过配置一系列的 `task`，定义 `task` 处理的事务(例如文件压缩合并、雪碧图、启动 server、版本控制等)，然后定义执行顺序， 来让 `gulp` 执行这些 `task`，从而构建项目的整个前端开发流程。
