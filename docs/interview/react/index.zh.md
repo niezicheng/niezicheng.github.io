@@ -109,6 +109,8 @@ const [state, setState] = useState(() => {
 
 [中文文档(看起来内容比较旧了)](https://react-guide.github.io/react-router-cn/)
 
+[「源码解析 」这一次彻底弄懂 react-router 路由原理](https://juejin.cn/post/6886290490640039943)
+
 ### Link 标签与 a 标签？
 
 **react-router 里面的 Link 标签和 a 标签的区别？**
@@ -126,6 +128,8 @@ const [state, setState] = useState(() => {
 [英文官网](https://redux.js.org/)
 
 [中文文档](https://cn.redux.js.org/)
+
+[手写系列之简易 redux -- createStore](https://juejin.cn/post/7156891589422514189)
 
 ## 源码解读
 

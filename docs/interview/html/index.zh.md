@@ -85,7 +85,7 @@ nav:
 
 ![图解](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2018/2/7/1616fd1a181ab854~tplv-t2oaga2asx-zoom-in-crop-mark:4536:0:0:0.image)
 
-[浅谈script标签的defer和async](https://juejin.cn/post/6844903560879013896)
+[浅谈 script 标签的 defer 和 async](https://juejin.cn/post/6844903560879013896)
 
 ## meta 属性及作用
 
@@ -106,10 +106,14 @@ nav:
 - viewport：视口，用于控制页面宽高及缩放比例
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1"
+/>
 ```
 
 - http-equiv 属性的作用和参数
+
   - `expires`，指定过期时间
   - `pragma`，设置 `no-cache` 可以禁止缓存
   - `refresh`，定时刷新
@@ -122,8 +126,6 @@ nav:
   - `initial-scale`，初始缩放比例，`1~10`
   - `maximum-scale/minimum-scale`，允许用户缩放的最大/小比例
   - `user-scalable`，用户是否可以缩放 (yes/no)
-
-
 
 ## 本地存储的四种方式
 
@@ -262,7 +264,7 @@ importScripts('script1.js', 'script2.js');
 
 ## WebSocket
 
-**最大特点：**服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于[服务器推送技术](https://en.wikipedia.org/wiki/Push_technology)的一种
+**最大特点**：服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于[服务器推送技术](https://en.wikipedia.org/wiki/Push_technology)的一种
 
 **特点：**
 
@@ -274,3 +276,19 @@ importScripts('script1.js', 'script2.js');
 - 协议标识符是 `ws`（如果加密，则为 wss），服务器网址就是 `URL`
 
 [WebSocket 教程](https://www.ruanyifeng.com/blog/2017/05/websocket.html)
+
+## canvas vs SVG
+
+### SVG 矢量图
+
+- 不依赖分辨率【不失真】，放大缩小图像都很清晰
+- 基于图形元素，矢量、`XML`、`CSS`、元素操作
+- 适合大面积、小数量应用场景【如：富文本中去实现一些动画】
+
+### Canvas 像素图（在元素特别多的情况 1000+）
+
+- 性能高，可以自己控制绘制过程，还能使用 `WebGL`
+- 基于像素，可控性高，像素级控制，只能脚本驱动
+- 适合小面积、大数量应用场景【如：复杂丰富的数据可视化展示（图表）等】
+
+[SVG 与 HTML5 的 canvas 各有什么优点，哪个更有前途？](https://www.zhihu.com/question/19690014)

@@ -140,7 +140,7 @@ const cloneObj = $.extend(true, {}, obj);
 ```ts
 const cloneDeep = (obj, map = new WeekMap()) => {
   // 基本数据类型、function
-  if (!obj || obj === null || typeof obj !== 'object') return obj;
+  if (!obj || typeof obj !== 'object') return obj;
   // Date
   if (obj instanceof Date) return new Date(obj);
   // RegExp
@@ -403,7 +403,7 @@ function myInstanceof(instance, fun) {
 
 [V8 引擎垃圾内存回收原理解析](https://juejin.cn/post/6844903993420840967)
 
-[JavaScript 中的垃圾回收和内存泄漏](https://blog.fundebug.com/2019/04/30/javascript-memory-management/)
+[JavaScript 中的垃圾回收和内存泄漏](https://juejin.cn/post/6844903833387155464)
 
 [认识 V8 引擎](https://zhuanlan.zhihu.com/p/27628685)
 
@@ -648,7 +648,7 @@ map.get('chen'); // chen
 `WeakMap` 与 `Map` 的区别有两点:
 
 - `WeakMap` 只接受引用类型作为键名（`null` 除外），不接受其他类型的值作为键名。
-- `WeakMap` 的`键`会在不再可用后，会被垃圾回收机制处理销毁。
+- `WeakMap` 的`键`在不再可用后，会被垃圾回收机制处理销毁。
 
 **注意:**
 `Weak Map` 的`键`才是弱引用，值不是。在 `Weak Map` 的值中存储对象会阻止垃圾回收，即使该对象的其他引用已全都被移除。
@@ -707,8 +707,8 @@ console.log(it.next(13)); // { value: 42, done: true }
 - `ES6` `Set` 去重
   - Array.from(new Set(array))
   - [...new Set(array)]
-- `Object` 键值对去重;
-  - 把数组的值存成 `Object` 的 `key` 值，比如 `Object[value1] = true`， 在判断另一个值的时候，如果 `Object[value2]` 存在的话，就说明该值是重复的
+- `Map` 键值对去重;
+  - 把数组的值存成 `Map` 的 `key` 值，比如 `Map[value1] = true`， 在判断另一个值的时候，如果 `Map[value2]` 存在的话，就说明该值是重复的
 
 [JS 数组去重!!!一篇不怎么靠谱的"深度"水文](https://juejin.cn/post/6844903477768896520)
 

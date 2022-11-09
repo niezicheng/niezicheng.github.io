@@ -327,6 +327,38 @@ Array.from(img).forEach(item => observer.observe(item));
 
 ## Axios
 
+### 示例
+
+```ts
+// import axios from "axios";
+const axios = require('axios');
+
+(async () => {
+  // 方式一
+  const cancelToken = axios.CancelToken;
+  const source = cancelToken.source();
+
+  const data = await axios.get('', {
+    cancelToken: source.token,
+  });
+
+  console.log('data--------', data);
+})();
+
+// source.cancel('Operation canceled by the user.'); // 取消请求
+
+// 方式二
+let cancel;
+
+axios.get('', {
+  cancelToken: new CancelToken(c => {
+    cancel = c;
+  }),
+});
+
+cancel(); // 取消请求
+```
+
 [Axios 如何取消重复请求](https://juejin.cn/post/6955610207036801031)
 
 ## 实践
@@ -385,7 +417,7 @@ getAll(name); // 获取相同 name 的所有参数（这是可行的，例如 ?n
 let urlStr = 'https://google.com/search?q=hello&name=leo';
 let url = new URL(urlStr);
 
-urlStr.searchParams.get('q'); // hello
+url.searchParams.get('q'); // hello
 
 // url.searchParams 为迭代器对象
 for (let [key, value] of url.searchParams) {

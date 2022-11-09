@@ -11,6 +11,15 @@ nav:
 
 [最新 React Native 面试题和答案合集](http://www.srcmini.com/33329.html)
 
+## 移动端 1px
+
+- 新项目依据 `DPR`(devicePixelRatio) 设备像素比设置 `viewport` 的 `scale` 值
+- 老项目一般使用 `伪元素 + transform` 方式
+
+[移动端 1px 解决方案](https://juejin.cn/post/6844903877947424782)
+
+[响应式布局、移动端适配](https://juejin.cn/post/6847902217727377416)
+
 ## JSBridge
 
 `JSBridge` 就是 `JavaScript` 和 `native` 之间的桥梁，提供两者相互调用的能力, 将 `native` 能力提供给`JavaScript`，同时 `native` 也可能需要调用 `JavaScript` 的一些功能

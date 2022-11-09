@@ -10,7 +10,9 @@ nav:
 ## 盒模型
 
 > 内容的宽高 = `content` 宽/高
+>
 > 盒子的宽/高 = `content` 宽/高 + `padding` 水平/垂直边距 + `border` 左右/上下
+>
 > 元素所占空间的宽/高 = 盒子的宽/高 + `margin` 水平/垂直边距
 
 - 标准盒模型: 宽高指的是盒子 `content` 的宽高
@@ -31,9 +33,10 @@ nav:
 
 减少重绘重排的方法有:
 
-- 不在布局信息改变时做 `DOM` 查询，
-- 使用 `css text`,`className` 一次性改变属性
-- 使用 `fragment` 对于多次重排的元素，比如说动画。使用绝对定位脱离文档流，使其不影响其他元素
+- 不在布局信息改变时做 `DOM` 查询
+- 使用 `css text`, `className` 一次性改变属性
+- 尽量避免多次触发同步布局事件【访问元素的一些属性（`offsetWidth` 等），会导致浏览器强制清空队列，进行强制同步布局】
+- 使用 `fragment` 对于多次重排的元素，比如说动画。使用绝对定位脱离文档流，使其不影响所在层的其他元素
 
 什么情况下触发回流：
 
@@ -130,7 +133,7 @@ nav:
 - 页面被加载时，`link` 会同时被加载，而 `@import` 引用的 `css` 会等到页面加载结束后加载
 - `link` 方式样式的权重高于 @import 的
 - `link` 可以使用 js 动态引入，@import 不行
-- `link` 此没有兼容性要求，而 @import IE 低版本浏览器不支持
+- `link` 没有兼容性要求，而 @import IE 低版本浏览器不支持
 
 ## transition 和 animation 的区别
 
@@ -145,14 +148,23 @@ nav:
 
 ## JS 动画和 css3 动画的差异性
 
-> 渲染线程分为 `main thread` 和 `compositor thread`(合成线程)，如果 `css` 动画只改变 `transform` 和 `opacity`， 这时整个 `CSS` 动画得以在 `compositor thread` 完成(而 `JS` 动画则会在 `main thread` 执行，然后触发 `compositor thread` 进行下一步操作)，特别注意的是如果改变 `transform` 和 `opacity` 是不会 `layout` 或者 `paint` 的
+> 渲染线程分为 `main thread` 和 `compositor thread`(合成线程)，如果 `css` 动画只改变 `transform` 和 `opacity`， 这时整个 `CSS` 动画得以在 `compositor thread` 完成(而 `JS` 动画则会在 `main thread` 执行，然后触发 `compositor thread` 进行下一步操作)，特别注意的是如果改变 `transform` 和 `opacity` 是不会 `layout` 或者 `paint` 的【它们会触发 `css3` 硬件加速】
 
 区别:
 
 - 功能涵盖面: `JS` 比 `CSS` 大
-- 实现/重构难度不一: `CSS3` 比 `JS` 更加简单，性能跳优方向固定对帧速表现不好的低版本浏览器，`css3` 可以做到自然降级
+- 实现/重构难度不一: `CSS3` 比 `JS` 更加简单，性能调优方向固定对帧速表现不好的低版本浏览器，`css3` 可以做到自然降级
 - `css` 动画有天然事件支持
 - `css3` 有兼容性问题
+
+[为什么 CSS 动画比 JavaScript 高效？](https://juejin.cn/post/6999934705957077029)
+
+## requestAnimationFrame 了解
+
+- `requestAnimationFrame` 回调的执行与 `task` 和 `microtask` 无关，而是与浏览器是否渲染相关联；它是在浏览器渲染前，在**微任务**执行后执行
+- `requestIdleCallback` 是在浏览器渲染后有空闲时间时执行，如果 requestIdleCallback 设置了第二个参数 timeout，则会在超时后的下一帧强制执行
+
+[你知道的 requestAnimationFrame](https://juejin.cn/post/6844903761102536718)
 
 ## display: table 和 table 有什么区别
 
@@ -174,9 +186,9 @@ nav:
 
 ## css 样式隔离方案
 
-- BEM (Block-Element-Modifier)，也就是模块名 + 元素名 + 修饰器名 结合的方式
-- CSS Modules，CSS 模块化处理【也支持局部 `:local` 和全局 `:global` 方式】
-- CSS in JS，在文件中使用 `JS` 的方式去写 `CSS` 并引用【styled-components】
+- BEM (Block-Element-Modifier)，也就是`模块名 + 元素名 + 修饰器名`结合的方式
+- CSS Modules，`CSS` 模块化处理，通过 `css-loader?modules` 支持实现【也支持局部 `:local` 和全局 `:global` 方式】
+- CSS in JS，在文件中使用 `JS` 的方式去写 `CSS` 并引用【例如：`styled-components`】
 - 预处理器，`SASS`、`LESS`、`Stylus`、`PostCSS` 等
 - Shadow DOM，浏览器原生支持的方式
 - vue scoped，`CSS` 只作用于当前组件中的元素，不过也会受父组件样式影响

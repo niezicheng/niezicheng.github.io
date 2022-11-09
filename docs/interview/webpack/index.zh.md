@@ -47,6 +47,12 @@ nav:
 
 [webpack 如何自定义一个 loader？](https://segmentfault.com/a/1190000023921193)
 
+## externals
+
+防止将某些 `import` 的包(`package`)打包到 `bundle` 中，而是在运行时(`runtime`)再去从外部获取这些扩展依赖(`external dependencies`)
+
+[Externals](https://webpack.js.org/configuration/externals/#externals)
+
 ## 代码分割
 
 官方说明：
