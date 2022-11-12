@@ -106,24 +106,16 @@ nav:
 ## 清除浮动的方法
 
 - 使用带 `clear` 属性的空元素
-
-  在浮动元素后使用一个空元素如: `<div class="clear"></div>`，并在 `CSS` 中赋予 `.clear{ clear:both; }` 属性即可清理浮动。亦可使用`<br class="clear" />`或`<hr class="clear" />`来进行清理。
-
-- 使用邻接元素处理(和上一种方法原理一样)
-
-  什么都不做，给浮动元素后面的元素添加 `clear` 属性。
-
+  - 在浮动元素后使用一个空元素如: `<div class="clear"></div>`，并在 `CSS` 中赋予 `.clear{ clear:both; }` 属性即可清理浮动。亦可使用`<br class="clear" />`或`<hr class="clear" />`来进行清理。
 - 使用 `CSS` 的 `overflow` 属性
-
-  给浮动元素的容器添加 `overflow: hidden;`或 `overflow: auto;`可以清除浮动，另外在 `IE6` 中还需要触发 `hasLayout` ，例如为父元素设置容器宽高或设置 `zoom: 1`。在添加 `overflow` 属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动 的效果。
-
+  - 浮动元素的父容器添加 `overflow: hidden;`或 `overflow: auto;` 可以清除浮动
+- 使用 `CSS` 的 `zoom` 属性
+  - 浮动元素的父容器设置 `zoom: 1`【火狐浏览器不支持 `zoom` 属性，`webkit` 内核浏览支持】
+  - `zoom` 这个属性是 `ie` 专有属性，除了设置或者检索对象的缩放比例之外，它还有可以触发 `ie` 的 `haslayout`属性，清除浮动，清除 `margin` 重叠等作用
 - 使用 `CSS` 的 `:after` 伪元素
-
-  结合 `:after` 伪元素(注意这不是伪类，而是伪元素，代表一个元素之后最近的元素)和 `IEhack` ，可以完美兼容当前主流的各大浏览器，这里的 `IEhack` 指的是触发 `hasLayout`。 给浮动元素的容器添加一个 `clearfix` 的 `class`，然后给这个 `class` 添加一个`:after` 伪元素实现元素末尾添加一个看不见的块元素(Block element)清理浮动。
-
+  - 结合 `:after` 伪元素(注意这不是伪类，而是伪元素，代表一个元素之后最近的元素)和 `IEhack` ，可以完美兼容当前主流的各大浏览器，这里的 `IEhack` 指的是触发 `hasLayout`。 给浮动元素的容器添加一个 `clearfix` 的 `class`，然后给这个 `class` 添加一个`:after` 伪元素实现元素末尾添加一个看不见的块元素(Block element)清理浮动
 - 给浮动的元素的容器添加浮动
-
-  给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，不推荐使用。
+  - 给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，不推荐使用
 
 [清除浮动](https://www.cnblogs.com/ForEvErNoME/p/3383539.html)
 
@@ -162,7 +154,7 @@ nav:
 ## requestAnimationFrame 了解
 
 - `requestAnimationFrame` 回调的执行与 `task` 和 `microtask` 无关，而是与浏览器是否渲染相关联；它是在浏览器渲染前，在**微任务**执行后执行
-- `requestIdleCallback` 是在浏览器渲染后有空闲时间时执行，如果 requestIdleCallback 设置了第二个参数 timeout，则会在超时后的下一帧强制执行
+- `requestIdleCallback` 是在浏览器渲染后有空闲时间时执行，如果 `requestIdleCallback` 设置了第二个参数 `timeout`，则会在超时后的下一帧强制执行
 
 [你知道的 requestAnimationFrame](https://juejin.cn/post/6844903761102536718)
 

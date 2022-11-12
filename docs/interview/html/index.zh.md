@@ -73,6 +73,8 @@ nav:
 - drop: 当元素或选中的文本在可释放目标上被释放时触发，事件主体是`目标元素`
 - dragend: 当拖拽操作结束时触发 (比如松开鼠标按键或敲“Esc”键），事件主体是`被拖拽元素`
 
+[HTML5 原生拖拽/拖放 Drag & Drop 详解](https://juejin.cn/post/6844903513491767303)
+
 ## defer 和 async
 
 ### defer
@@ -163,7 +165,7 @@ nav:
 - `webStorage` 支持事件通知机制，可以将数据更新的通知发送给监听者。`api` 的接口使用更方便。
 - `indexedDB` 支持事务
 
-[深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221#heading-19)
+[深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://juejin.cn/post/6844903814445662221)
 
 ## web workers
 
@@ -175,7 +177,7 @@ web workers 的几个使用场景可以参考下：
 - 当大图片 `canvas`转 `base64` 的时候非常耗时，就可以使用 `wokers`
 - 端对端加密的时候，要大量计算，可以使用 `workers`
 - 拼写检查，检索的所有工作可以让 `workers` 来完成，不会阻塞 `UI`
-- 在网络不稳定情况下,使用`indexDb api`的时候，可以交给`workers`，这样不会阻塞主线 `UI`
+- 在网络不稳定情况下，使用`indexDb api`的时候，可以交给`workers`，这样不会阻塞主线 `UI`
 
 [Web Worker 使用教程](http://www.ruanyifeng.com/blog/2018/07/web-worker.html)
 
@@ -185,7 +187,7 @@ web workers 的几个使用场景可以参考下：
 
 主线程和 `worker` 线程相同 `api`:
 
-- postMessage(data): 发送消息 data
+- postMessage(data): 发送消息 `data`
 - onmessage: 指定 `message` 事件的监听函数
 - onmessageerror: 指定 `messageerror` 事件的监听函数(发送的数据无法序列化成字符串时, 会触发这个事件)。
 

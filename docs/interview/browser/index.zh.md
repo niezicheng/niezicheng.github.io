@@ -29,8 +29,6 @@ nav:
 
 ## 浏览器的缓存机制（强缓存，协商缓存）
 
-![image](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e2572dfb1ee4923a0d3e183c63380b2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
-
 ### 强缓存
 
 > **强缓存**: 不会向服务器发送请求，直接从缓存中读取资源
@@ -48,7 +46,7 @@ nav:
 - `Expires` 是 `http1.0` 的产物，`Cache-Control` 是 `http1.1` 的产物，两者同时存在的话，`Cache-Control` 优先级高于 `Expires`。
 - 在某些不支持 `HTTP1.1` 的环境下，`Expires` 就会发挥用处。现阶段它的存在只是一种兼容性的写法。
 
-![image](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc66368a78e947058b8d816f92b00607~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![强缓存](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e2572dfb1ee4923a0d3e183c63380b2~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 ### 协商缓存
 
@@ -74,6 +72,8 @@ nav:
   - 如果是负载均衡的服务器，各个服务器生成的 `Last-Modified` 也有可能不一致。
 - 性能，`ETag` 要逊于 `Last-Modified`，毕竟 `Last-Modified` 只需要记录时间，而 `ETag` 需要服务器通过算法来计算出一个 `hash` 值。
 - 优先级，服务器校验优先考虑 `ETag`。
+
+![协商缓存](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc66368a78e947058b8d816f92b00607~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 [实践这一次,彻底搞懂浏览器缓存机制](https://juejin.cn/post/6844903764566999054)
 

@@ -51,15 +51,15 @@ Q：自定义的 `Hook` 是如何影响使用它的函数组件的？
 
 A：共享同一个 `memoizedState`，共享同一个顺序。
 
-Q："Capture Value" 特性是如何产生的？
+Q：`Capture Value` 特性是如何产生的？
 
 A：每一次 `ReRender` 的时候，都是重新去执行函数组件了，对于之前已经执行过的函数组件，并不会做任何操作。
 
-[五分钟搞懂 React Hooks 工作原理](https://blog.csdn.net/LuckyWinty/article/details/103740283)
-
 [useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
 
-[React Hook 从入门应用到编写自定义 Hook](https://juejin.cn/post/6887838157874659341#heading-21)
+[React Hook 从入门应用到编写自定义 Hook](https://juejin.cn/post/6887838157874659341)
+
+[「react 进阶」一文吃透 react-hooks 原理](https://juejin.cn/post/6944863057000529933)
 
 ### useState 和 setState
 
