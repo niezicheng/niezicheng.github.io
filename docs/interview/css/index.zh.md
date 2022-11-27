@@ -24,6 +24,8 @@ nav:
 - box-sizing: border-box; IE 盒模型
 - box-sizing: inherit; 继承父元素的盒模型，
 
+[CSS 盒模型详解](https://juejin.cn/post/6844903505983963143)
+
 ## 重绘和回流
 
 > 回流必将引起重绘，而重绘不一定会引起回流
@@ -81,6 +83,8 @@ nav:
 - 联系：
   - 它们都能让元素不可见
 
+[display:none visibility:hidden opacity:0 区别](https://juejin.cn/post/6844904200401502215)
+
 ## BFC 块级格式化上下文
 
 > BFC: 块级格式化上下文，可用于清楚浮动，防止 `margin` 重叠等
@@ -117,7 +121,7 @@ nav:
 - 给浮动的元素的容器添加浮动
   - 给浮动元素的容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局，不推荐使用
 
-[清除浮动](https://www.cnblogs.com/ForEvErNoME/p/3383539.html)
+[清除浮动的四种方式及其原理理解](https://juejin.cn/post/6844903504545316877)
 
 ## link 和 import 标签
 
@@ -126,6 +130,8 @@ nav:
 - `link` 方式样式的权重高于 @import 的
 - `link` 可以使用 js 动态引入，@import 不行
 - `link` 没有兼容性要求，而 @import IE 低版本浏览器不支持
+
+[你真的理解@import 和 link 引入样式的区别吗?](https://juejin.cn/post/6844903581649207309)
 
 ## transition 和 animation 的区别
 
@@ -149,6 +155,8 @@ nav:
 - `css` 动画有天然事件支持
 - `css3` 有兼容性问题
 
+[css 动画和 js 动画有什么区别？](https://www.zhihu.com/question/63437509)
+
 [为什么 CSS 动画比 JavaScript 高效？](https://juejin.cn/post/6999934705957077029)
 
 ## requestAnimationFrame 了解
@@ -165,6 +173,8 @@ nav:
 - `display: table` 的 `css` 声明能够让一个 `html` 元素和它的子节点像 `table` 元素一样，使用基于表格的 `css` 布局，是我们能够轻松定义一个单元格的边界，背景等样式，而不会产生因为使用了 `table` 那样的制表标签导致的语义化问题。
 - 之所以现在逐渐淘汰了 `table` 系表格元素，是因为用 `div + css` 编写出来的文件比用 `table` 编写出来的文件小，而且 `table` 必须在页面完全加载后才显示，`div` 则是逐行显示，`table` 的嵌套性太多，没有 `div` 简洁.
 
+[display:table 与本身的 table 的区别](https://www.cnblogs.com/xiaoan0705/p/8921559.html)
+
 ## em 和 rem
 
 ### em
@@ -175,6 +185,8 @@ nav:
 ### rem 【root em】
 
 所有元素使用 `rem` 单位都是相对于根元素(html)字体大小而言
+
+[px rem em vh vw 之间的区别到底是啥？](https://juejin.cn/post/6844904161243299854)
 
 ## css 样式隔离方案
 
@@ -193,9 +205,9 @@ CSS 实现模块隔离主要有运行时和编译时两类方案：
 
 - 运行时通过命名空间来区分，比如 `BEM` 规范。
 - 编译时自动转换选择器名字，添加上唯一标识，比如 `scoped` 和 `css-modules`
-- 通过 js 来管理 css，比如 `css in js`
+- 通过 `js` 来管理 `css`，比如 `css in js`
 
-[手写 Css-Modules 来深入理解它的原理](https://www.51cto.com/article/707429.html)
+[【工程化】深入浅出 CSS Modules](https://juejin.cn/post/6952665769209495566)
 
 ## 实践题
 
@@ -273,7 +285,7 @@ div::after {
 - grid 布局
   - 父级容器 `display: grid;` 并设置一行三列: `grid-template-rows: 100px;` `grid-template-columns: 300px auto 300px;`;
 
-[三栏布局五种实现方式](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/01-%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80.md)
+[详解 CSS 七种三栏布局技巧](https://zhuanlan.zhihu.com/p/25070186)
 
 ### 左右垂直居中布局
 
@@ -305,7 +317,7 @@ div::after {
 
 ### 媒体查询
 
-[深入浅出篇 — media 媒体查询 - 响应式开发必备](https://juejin.cn/post/6844903970226307080)
+[响应式布局之 @media 媒体查询](https://juejin.cn/post/7021398878461100040)
 
 ## 拓展
 

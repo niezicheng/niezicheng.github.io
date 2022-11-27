@@ -46,3 +46,7 @@ nav:
 [React Navigation 5.x-中文文档](https://juejin.cn/post/6844904190154653704)
 
 [React Navigation 官网](https://reactnavigation.org/docs/getting-started/)
+
+## 拓展
+
+[中高级前端必须注意的 40 条移动端 H5 坑位指南 | 网易三年实践](https://juejin.cn/post/6921886428158754829)

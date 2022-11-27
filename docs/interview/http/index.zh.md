@@ -85,6 +85,10 @@ nav:
 
 [都 9102 年了，还问 GET 和 POST 的区别](https://segmentfault.com/a/1190000018129846)
 
+[听说『99% 的人都理解错了 HTTP 中 GET 与 POST 的区别』？？](https://zhuanlan.zhihu.com/p/25028045)
+
+[为什么要禁止除 GET 和 POST 之外的 HTTP 方法？](https://www.freebuf.com/articles/web/172695.html)
+
 ### 四种常见的 POST 提交数据方式
 
 - `application/x-www-form-urlencoded` 默认表单数据提交类型
@@ -92,7 +96,7 @@ nav:
 - `application/json` JSON 格式数据提交类型
 - `text/xml` XML 格式数据提交类型
 
-[四种常见的 POST 提交数据方式](https://cloud.tencent.com/developer/article/1338460)
+[四种常见的 POST 提交数据方式](https://juejin.cn/post/6844903426195718152)
 
 ### 为什么要禁止除 GET 和 POST 之外的 HTTP 方法？
 
@@ -210,6 +214,8 @@ nav:
 - 启用 `Keep-Alive` 模式相对而言是更高效，性能更高。因为避免了建立/释放连接的开销（有些服务对持久连接数量有一定的限制，超出后会结束多余数量的连接）
 - `RFC` 指出：单用户客户端与任何服务器或代理之间的连接数不应该超过 `2` 个。一个代理与其它服务器或代码之间应该使用不超过 `2 * N` 的活跃并发连接。这是为了提高 `HTTP` 响应时间，避免拥塞（冗余的连接并不能代表执行性能的提升）
 
+[HTTP 协议头部与 Keep-Alive 模式详解](https://byvoid.com/zhs/blog/http-keep-alive-header/)
+
 [HTTP keep-alive 二三事](https://lotabout.me/2019/Things-about-keepalive)
 
 ## TCP
@@ -229,7 +235,7 @@ nav:
   - 可控制: 当意识到丢包了或者网络环境不佳，`TCP` 会根据具体情况调整自己的行为，控制自己的发送速度或者重发
 - **面向字节流:** `TCP` 为了维护状态，将一个个 `IP` 包变成了字节流。而 `UDP` 的数据传输是基于数据报的，这是因为仅仅只是继承了 `IP` 层的特性
 
-[TCP 和 UDP 的区别概述](http://47.98.159.95/my_blog/blogs/net/tcp/001.html)
+[TCP 协议与 UDP 协议的区别](https://zhuanlan.zhihu.com/p/24860273)
 
 ### 三次握手
 
@@ -316,3 +322,5 @@ nav:
 [HTTP 发展史（HTTP1.1，HTTPS，SPDY，HTTP2.0，QUIC，HTTP3.0）](https://juejin.cn/post/6844903988953874445)
 
 [一文读懂 HTTP/1、HTTP/2、HTTP/3](https://network.51cto.com/art/202003/612101.htm)
+
+[浅谈 HTTP/2 Server Push](https://zhuanlan.zhihu.com/p/26757514)

@@ -107,8 +107,6 @@ const [state, setState] = useState(() => {
 
 [React Router 中文文档（v5 ）](https://segmentfault.com/a/1190000020812860)
 
-[中文文档(看起来内容比较旧了)](https://react-guide.github.io/react-router-cn/)
-
 [「源码解析 」这一次彻底弄懂 react-router 路由原理](https://juejin.cn/post/6886290490640039943)
 
 ### Link 标签与 a 标签？
@@ -129,21 +127,11 @@ const [state, setState] = useState(() => {
 
 [中文文档](https://cn.redux.js.org/)
 
+[一幅图明白 React-Redux 的原理](https://juejin.cn/post/6844903589953929229)
+
 [手写系列之简易 redux -- createStore](https://juejin.cn/post/7156891589422514189)
 
 ## 源码解读
-
-### React Hooks 基本工作原理
-
-1. 为什么 useEffect 第二个参数是空数组，就相当于 ComponentDidMount ，只会执行一次？
-
-2. 为什么只能在函数的最外层调用 Hook，不能在循环、条件判断或者子函数中调用？
-
-3. 自定义的 Hook 是如何影响使用它的函数组件的？
-
-4. Capture Value 特性是如何产生的？
-
-[React 15 与 React 16 架构区别](https://blog.csdn.net/weixin_44135121/article/details/108753231)
 
 [《React 源码解析》系列完结！(v15)](https://juejin.cn/post/6844903568487497741)
 
@@ -188,5 +176,3 @@ const [state, setState] = useState(() => {
 - `Hydration`（滋润）【Hydration: 页面通过 `SSR` 渲染，将前端 `js` 交互应用逻辑添加到 `html` 的过程】
 
 [[译] React 18 新特性概览](https://juejin.cn/post/7014683796821770247)
-
-[React 18 新特性（二）: Suspense & SuspenseList](https://blog.csdn.net/zgd826237710/article/details/119568026)

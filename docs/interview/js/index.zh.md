@@ -41,7 +41,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
-[DOM 事件了解](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/03-DOM%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93.md)
+[理解 DOM 事件流的三个阶段](https://segmentfault.com/a/1190000004463384)
 
 [你真的理解事件冒泡和事件捕获吗？](https://juejin.cn/post/6844903834075021326)
 
@@ -92,6 +92,8 @@ setTimeout(function() {
 > 第二个差异是因为 `CommonJS` 加载的是一个对象（即 `module.exports` 属性），该对象只有在脚本运行完才会生成。而 `ES6` 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
 > `ES6` 模块的运行机制与 `CommonJS` 不一样。`ES6` 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块
 
+[ES6 的模块加载，你们真的完全懂了吗？](https://juejin.cn/post/7001671927836180487)
+
 [前端模块化详解(完整版)](https://juejin.cn/post/6844903744518389768)
 
 ### 动态模块加载 import()
@@ -101,7 +103,7 @@ setTimeout(function() {
 - es6 动态加载方式： `import()`
 - webpack 动态加载方式： `require.ensure`
 
-[模块方法](https://webpack.docschina.org/api/module-methods/)
+[深入理解 ES6 模块机制](https://juejin.cn/post/6844903565236895758)
 
 ## 浅拷贝和深拷贝
 
@@ -166,6 +168,14 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 
 [浅拷贝与深拷贝](https://juejin.cn/post/6844904197595332622)
 
+[深拷贝的终极探索（90%的人都不知道）](https://juejin.cn/post/6844903692756336653)
+
+[深入剖析 JavaScript 的深复制](https://jerryzou.com/posts/dive-into-deep-clone-in-javascript/)
+
+## 执行上下文和执行栈
+
+[[译] 理解 JavaScript 中的执行上下文和执行栈](https://juejin.cn/post/6844903682283143181)
+
 ## 闭包及其作用
 
 > 闭包是指有权访问另外一个函数作用域中的变量的函数
@@ -187,7 +197,11 @@ const cloneDeep = (obj, map = new WeekMap()) => {
 
 我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
 
+[破解前端面试（80% 应聘者不及格系列）：从闭包说起](https://juejin.cn/post/6844903474212143117)
+
 [JavaScript 深入之闭包](https://juejin.cn/post/6844903475998900237)
+
+[JavaScript 闭包的底层运行机制](http://blog.leapoahead.com/2015/09/15/js-closure/)
 
 ## js 中函数的 this
 
@@ -214,6 +228,8 @@ son.\_\_proto\_\_.constructor === Mother 为 `true`，但是 Mother.\_\_proto\_\
 所以，用 `consturctor` 判断就比用 `instance of` 判断，更为严谨。
 
 [JavaScript 深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
+
+[深入理解 JavaScript 原型](https://mp.weixin.qq.com/s/1UDILezroK5wrcK-Z5bHOg)
 
 ### 对象创建的几种方式
 
@@ -273,8 +289,6 @@ p2.sayName(); // chen
 > 可以在全局范围中声明一个函数，然后将引用传递给对象中的函数属性。但是这样做会导致全局函数过多，体现不了对象的封装性
 
 [js 对象的深入理解(六)](https://www.cnblogs.com/nzcblogs/p/11197289.html)
-
-[创建对象和原型链](https://github.com/qianguyihao/Web/blob/master/15-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/05-01.%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
 ### 继承的几种方式和优缺点？
 
@@ -340,9 +354,7 @@ function myInstanceof(instance, fun) {
 }
 ```
 
-[js 继承](https://www.cnblogs.com/nzcblogs/p/11210652.html)
-
-[JavaScript 继承的几种实现方式？](https://juejin.cn/post/6844904200917221389#heading-14)
+[详解 JS 原型链与继承](https://louiszhai.github.io/2015/12/15/prototypeChain/)
 
 ### 原型链与作用域区别
 
@@ -350,6 +362,8 @@ function myInstanceof(instance, fun) {
 
 - 作用域链是相对于**变量**而言，原型是相对于**属性**而言【依次向原型中寻找】
 - 作用域链最顶层是 `window`，原型链最顶层是 `Object`(null)【依次向上级作用中寻找】
+
+[JavaScript 深入之作用域链](https://github.com/mqyqingfeng/Blog/issues/6)
 
 ## JS 垃圾回收机制
 
@@ -531,7 +545,7 @@ console.log(baseState.b === nextState.b); // true
 
 ### symbol 简单了解
 
-[简单了解 ES6/ES2015 Symbol() 方法](https://juejin.cn/post/6844903591296106510)
+[简单了解 ES6/ES2015 Symbol() 方法](https://www.zhangxinxu.com/wordpress/2018/04/known-es6-symbol-function/)
 
 ### undefined 与 null 的区别
 

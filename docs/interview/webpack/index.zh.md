@@ -43,15 +43,19 @@ nav:
 
 ## loader
 
-[webpack 中如何自定义 loader](https://juejin.cn/post/6891649726656020493)
+[前端工程师都得掌握的 webpack Loader](https://github.com/axuebin/articles/issues/38)
 
-[webpack 如何自定义一个 loader？](https://segmentfault.com/a/1190000023921193)
+[手把手教你撸一个 Webpack Loader](https://juejin.cn/post/6844903555673882632)
 
-## externals
+[【webpack 进阶】你真的掌握了 loader 么？- loader 十问](https://juejin.cn/post/6844903693070909447)
 
-防止将某些 `import` 的包(`package`)打包到 `bundle` 中，而是在运行时(`runtime`)再去从外部获取这些扩展依赖(`external dependencies`)
+## plugin
 
-[Externals](https://webpack.js.org/configuration/externals/#externals)
+[揭秘 webpack 插件工作流程和原理](https://juejin.cn/post/6844904161515929614)
+
+[手把手带你入门 Webpack Plugin](https://juejin.cn/post/6968988552075952141)
+
+[揭秘 webpack plugin](https://champyin.com/2020/01/12/%E6%8F%AD%E7%A7%98webpack-plugin/)
 
 ## 代码分割
 
@@ -134,7 +138,7 @@ module.exports = {
 
 [Webpack Chunk 分包规则详解](https://juejin.cn/post/6961724298243342344)
 
-[Webpack 性能系列四：分包优化](https://www.51cto.com/article/689344.html)
+[Webpack 大法之 Code Splitting](https://zhuanlan.zhihu.com/p/26710831)
 
 ## Tree shaking
 
@@ -148,19 +152,25 @@ module.exports = {
 ### 注意事项
 
 - 使用 `ES2015` 模块语法（即 `import` 和 `export`）
-- 确保没有编译器将您的 ES2015 模块语法转换为 CommonJS（顺带一提，这是现在常用的 @babel/preset-env 的默认行为，详细信息请[参阅文档](https://babeljs.io/docs/en/babel-preset-env#modules)）
+- 确保没有编译器将您的 ES2015 模块语法转换为 CommonJS（顺带一提，这是现在常用的 `@babel/preset-env` 的默认行为，详细信息请[参阅文档](https://babeljs.io/docs/en/babel-preset-env#modules)）
 - 在项目的 `package.json` 文件中，添加 `sideEffects` 属性，将文件标记为无副作用；支持 `false` 或文件路径数组
 - 使用 `mode` 为 `production` 的配置项以启用更多优化项，包括压缩代码与 `tree shaking`
 
 [Webpack Tree shaking 深入探究](https://juejin.cn/post/6844903687412776974#heading-18)
 
+## Hot Module Replacement
+
+[轻松理解 webpack 热更新原理](https://juejin.cn/post/6844904008432222215)
+
 ## Source Map
 
 [打破砂锅问到底：详解 Webpack 中的 sourcemap](https://segmentfault.com/a/1190000008315937)
 
-## Hot Module Replacement
+## externals
 
-[轻松理解 webpack 热更新原理](https://juejin.cn/post/6844904008432222215)
+防止将某些 `import` 的包(`package`)打包到 `bundle` 中，而是在运行时(`runtime`)再去从外部获取这些扩展依赖(`external dependencies`)
+
+[Externals](https://webpack.js.org/configuration/externals/#externals)
 
 ## webpack 如何实现动态加载
 
@@ -176,7 +186,5 @@ require.ensure、import()
 [从零搭建 Webpack5-react 脚手架(附源码)](https://segmentfault.com/a/1190000040427502)
 
 [如何搭建一个 REACT 全家桶框架](https://juejin.cn/post/6844903811794862087)
-
-[前端工程化学习笔记](https://www.kancloud.cn/cyyspring/webpack/1835304)
 
 [深入浅出 Webpack](https://webpack.wuhaolin.cn/)

@@ -19,6 +19,12 @@ nav:
 - 发送 `HTTP`请求
 - 服务器处理并响应报文
 - 浏览器解析并渲染页面
+  - 构建 `DOM` 树
+  - 构建 `CSSOM`
+  - 计算元素位置信息，构建布局树
+  - 渲染引擎为特定的节点生成专用的图层，构建图层树
+  - 合成线程会按照视口附近的图块来优先生成位图【可视区域内容】
+  - 合成线程发送绘制图块命令给浏览器进程进行渲染
 - `TCP` 断开连接：`TCP`四次挥手
 
 [必须明白的浏览器渲染机制](https://juejin.cn/post/6844903846834094094)
@@ -157,11 +163,13 @@ nav:
   - 禁止内联脚本执行（规则较严格，目前发现 GitHub 使用）。
   - 禁止未授权的脚本执行（新特性，Google Map 移动版在使用）。
   - 合理使用上报可以及时发现 `XSS`，利于尽快修复问题。
-- 输入内容长度控制
+- 输入内容长度控制【不可有效的避免】
 - 输入内容限制
 - 其他安全措施
   - `HTTP-only: true`: 禁止 `JS` 读取某些敏感 `Cookie`(document.cookie)，攻击者完成 `XSS` 注入后也无法窃取此 `Cookie`。
   - 验证码：防止脚本冒充用户提交危险操作。
+
+[前端安全系列（一）：如何防止 XSS 攻击？](https://tech.meituan.com/2018/09/27/fe-security.html)
 
 ### CSRF（Cross-site request forgery）- 跨站请求伪造
 
@@ -177,126 +185,56 @@ nav:
 - `Cookie Samesite` 属性
 - 添加验证码
 
+[前端安全系列（二）：如何防止 CSRF 攻击？](https://tech.meituan.com/2018/10/11/fe-security-csrf.html)
+
 ### CSRF 和 XSS 的区别
 
 - `CSRF` 需要用户先登录网站 `A`，获取 `cookie`; `XSS` 不需要登录
 - `CSRF` 是利用网站 `A` 本身的漏洞，去请求网站 `A` 的 `api`; `XSS` 是向网站 `A` 注入 `JS` 代码，然后执行 `JS` 里的代码，篡改网站 `A` 的内容
 
+[前端如何给 JavaScript 加密（不是混淆）？](https://www.zhihu.com/question/47047191)
+
+[前端也需要了解的 JSONP 安全](https://juejin.cn/post/6844903660678299661)
+
 [寒冬求职之你必须要懂的 Web 安全](https://juejin.cn/post/6844903842635579405)
 
-## offset/scroll/client
+## 本地存储的四种方式
 
-[offset/scroll/client 各类属性详解](https://juejin.cn/post/6940808773564891166#heading-2)
+> 根据同源策略，`cookie` 是区分协议和端口的，但是对浏览器来说，`cookie` 只区分域，不区分端口和协议，所以在同一 `ip` 下的不同协议或多个端口的 `cookie` 是共享的
 
-## 图片的预加载和懒加载
+| **特性**       | **cookies**                                                                        | **localStorage**                                          | **sessionStorage**                                        | **indexedDB**            |
+| -------------- | :--------------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | ------------------------ |
+| 数据的生命期   | 一般由服务器生成，可设置失效时间。如果在浏览器端生成的`cookie`，默认会话结束后失效 | 除非手动被清除，否则永久保存                              | 仅在当前会话下有效，关闭页面或浏览器后失效                | 永久保存                 |
+| 存放数据的大小 | `4K`左右                                                                           | PC 一般 `5M`,移动端`2.5M`                                 | PC 一般`5M`,移动端`2.5M`                                  | 一般没有上限大小         |
+| 与服务器通信   | 始终在同源的`http` 请求中携带，如果使用 `cookie`保存过多会带来性能问题             | 仅在浏览器中保存，不参与和服务器通信                      | 仅在浏览器中保存，不参与和服务器通信                      | 不参与                   |
+| 易用性         | 原生的接口不太友好，需要封装下                                                     | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 原生接口可以接受，再次封装对`Object`和`Array`有更好的支持 | 比较繁琐，异步，支持事务 |
+| 同源策略       | 同源                                                                               | 同源                                                      | 同源                                                      | 同源                     |
 
-**预加载:**
+共同点:
 
-- 提前加载图片，当用户需要查看时可直接从本地缓存中渲染
+> 都是保存在浏览器端，并且是同源的
 
-**懒加载:**
+不同点:
 
-- 懒加载的主要目的是作为服务器前端的优化，减少请求数或延迟请求数
+- 与服务器通信:
+  - `cookie` 数据始终在同源的 `http` 请求中携带
+  - `webStorage` 不会在请求中携带，仅仅在本地存储
+- 存储大小区别:
+  - `cookie` 是最大长度`4K`
+  - `webStorage`可以达到 `5M` 甚至更大
+  - `indexedDB` 无限制
+- 数据有效时间区别:
+  - `sessionStorage` 仅仅是会话级别的存储，它只在当前浏览器关闭前有效，不能持久保持;
+  - `localStorage` 始终有效，即使窗口或浏览器关闭也一直有效，除非用户手动删除才会失效;
+  - `cookie` 只在设置的 `cookie` 过期时间之前一直有效，
+  - `indexedDB` 持久存储；
+- 作用域区别:
+  - `sessionStorage` 不能在不同的浏览器窗口中共享，即使是同一个页面;
+  - `localStorage`、`cookie`和`indexedDB` 在所有同源窗口都是共享的;
+- `webStorage` 支持事件通知机制，可以将数据更新的通知发送给监听者。`api` 的接口使用更方便。
+- `indexedDB` 支持事务
 
-**两种技术的本质:**
-
-- 两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载
-- 懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力
-
-**懒加载优化：**
-监听列表向上滚动事件，只对**上一次最后进入可视窗口加载的图片**后的所有图片进行循环监听判断是否加载【去除对已加载的图片再循环处理】
-
-[懒加载和预加载](https://juejin.cn/post/6844903614138286094)
-
-### 实现图片懒加载
-
-1. clientHeight、scrollTop 和 offsetTop
-
-- clientHeight = CSS height + CSS padding - 水平滚动条高度 (如果存在)
-- scrollTop = 滚动元素顶部距离容器顶部的高度【无法滚动元素 scrollTop 为 0】
-- offsetTop = 元素顶部距离容器顶部的高度
-
-给图片一个占位资源:
-
-```html
-<img src="default.jpg" data-src="http://www.xxx.com/target.jpg" />
-```
-
-监听 scroll 事件来判断图片是否到达视口:
-
-```js
-let img = document.getElementsByTagName('img');
-let num = img.length;
-let count = 0; //计数器，从第一张图片开始计
-
-lazyload(); //首次加载别忘了显示图片
-
-window.addEventListener('scroll', lazyload);
-
-function lazyload() {
-  let viewHeight = document.documentElement.clientHeight; //视口高度
-  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; //滚动条卷去的高度
-  for (let i = count; i < num; i++) {
-    // 元素现在已经出现在视口中【图片距离滚动父元素顶部距离 < 滚动超出窗口高度 + 窗口高度】
-    if (img[i].offsetTop < scrollHeight + viewHeight) {
-      if (img[i].getAttribute('src') !== 'default.jpg') continue;
-      img[i].src = img[i].getAttribute('data-src');
-      count++;
-    }
-  }
-}
-```
-
-对 scroll 事件做节流处理，以免频繁触发:
-
-```js
-// throttle函数我们上节已经实现
-window.addEventListener('scroll', throttle(lazyload, 200));
-```
-
-2. getBoundingClientRect
-
-`DOM` 元素的 [getBoundingClientRect](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect) API; 获取元素相对于**视口**的位置
-
-```js
-function lazyload() {
-  for (let i = count; i < num; i++) {
-    // 元素现在已经出现在视口中
-    if (
-      img[i].getBoundingClientRect().top < document.documentElement.clientHeight
-    ) {
-      if (img[i].getAttribute('src') !== 'default.jpg') continue;
-      img[i].src = img[i].getAttribute('data-src');
-      count++;
-    }
-  }
-}
-```
-
-3. IntersectionObserver
-
-浏览器内置的 API [IntersectionObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver)，实现了监听 `window` 的 `scroll` 事件、判断是否在视口中以及节流三大功能；`IntersectionObserver` 也可以用作其他资源的预加载
-
-```js
-let img = document.getElementsByTagName('img');
-
-const observer = new IntersectionObserver(changes => {
-  //changes 是被观察的元素集合
-  for (let i = 0, len = changes.length; i < len; i++) {
-    let change = changes[i];
-    // 通过这个属性判断是否在视口中
-    if (change.isIntersecting) {
-      const imgElement = change.target;
-      imgElement.src = imgElement.getAttribute('data-src');
-      observer.unobserve(imgElement);
-    }
-  }
-});
-
-Array.from(img).forEach(item => observer.observe(item));
-```
-
-[(1.6w 字)浏览器灵魂之问，请问你能接得住几个？](https://juejin.cn/post/6844904021308735502)
+[深入了解浏览器存储：对比 Cookie、LocalStorage、sessionStorage 与 IndexedDB](https://segmentfault.com/a/1190000018748168)
 
 ## SPA and MPA
 
@@ -360,6 +298,54 @@ cancel(); // 取消请求
 ```
 
 [Axios 如何取消重复请求](https://juejin.cn/post/6955610207036801031)
+
+### 拦截器
+
+```ts
+// 添加请求拦截器
+axios.interceptors.request.use(
+  function(config) {
+    // 在发送请求之前做些什么
+    return config;
+  },
+  function(error) {
+    // 对请求错误做些什么
+    return Promise.reject(error);
+  },
+);
+
+// 添加响应拦截器
+axios.interceptors.response.use(
+  function(response) {
+    // 对响应数据做点什么
+    return response;
+  },
+  function(error) {
+    // 对响应错误做点什么
+    return Promise.reject(error);
+  },
+);
+
+// 移除拦截器 eject
+let myInterceptor = axios.interceptors.request.use(function() {
+  /*...*/
+});
+axios.interceptors.request.eject(myInterceptor);
+
+// 为自定义 axios 实例添加拦截器
+let instance = axios.create();
+instance.interceptors.request.use(function() {
+  /*...*/
+});
+```
+
+**Q**：发现当前页面移除拦截器后，其他页面的拦截器也会同时移除
+
+**A**：`vue` 中应该是单页面的原因，可以将 `axios` 的实例挂在到最外层的 `vue` 实例上
+
+**需求**：某一页面不需要拦截器，其它页面还是需要的
+
+**思路**：通过在拦截器内判断页面路由来进行内容拦截，而不是移除拦截器
 
 ## 实践
 
@@ -429,3 +415,5 @@ url.searchParams.forEach((v, k) => {
   console.log(k, v);
 }); //注意这里的参数的key和value的顺序
 ```
+
+[(1.6w 字)浏览器灵魂之问，请问你能接得住几个？](https://juejin.cn/post/6844904021308735502)
