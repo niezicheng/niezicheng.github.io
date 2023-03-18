@@ -47,7 +47,7 @@ nav:
 
 ## 架构
 
-## MVC 和 MVVM
+### MVC 和 MVVM
 
 **MVC:**
 
@@ -75,6 +75,10 @@ nav:
 
 [浅谈 MVC、MVP 和 MVVM 架构模式](https://draveness.me/mvx/)
 
+### PWA (渐进式 WEB 应用)
+
+[网站渐进式增强体验(PWA)改造：Service Worker 应用详解](https://lzw.me/a/pwa-service-worker.html)
+
 ## TS 问题常见解答
 
 [钉钉前端面试题~TypeScript 相关问题的部分解答](https://juejin.cn/post/6988763249982308382)
@@ -92,3 +96,5 @@ nav:
 ## 拓展
 
 [聊聊 package.json 文件中的 module 字段](https://loveky.github.io/2018/02/26/tree-shaking-and-pkg.module/)
+
+[前端渣渣唠嗑一下前端中的设计模式（真实场景例子）](https://juejin.cn/post/6844904138707337229)
