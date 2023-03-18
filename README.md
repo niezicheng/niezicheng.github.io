@@ -1,5 +1,9 @@
 # docs-dumi
 
+## person blog
+
+[线上预览地址](https://niezicheng.github.io/)
+
 ## Getting Started
 
 Install dependencies,
